@@ -1,2 +1,2 @@
-# My_RPGMAKERMZ_Plugins
+# My RPGMAKERMZ Plugins
 Open-Source solutions that can be used for RPG Maker MZ.
