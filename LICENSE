@@ -1,4 +1,4 @@
-MIT License
+MIT License with Attribution Requirements
 
 Copyright (c) 2025 Alexandros Panagiotakopoulos
 
@@ -12,6 +12,36 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
+**ATTRIBUTION REQUIREMENT:**
+Any use of this Software, whether in source or binary form, must include
+appropriate attribution to the original author. This attribution must be
+visible to end users in one of the following ways:
+
+1. **In game credits or about screen:**
+   "PerformanceCatcher.js Plugin - Copyright © Alexandros Panagiotakopoulos"
+
+2. **In documentation or readme files:**
+   "Performance monitoring powered by PerformanceCatcher.js - Created by Alexandros Panagiotakopoulos"
+
+3. **Minimum attribution (if space is limited):**
+   "Plugin by Alexandros Panagiotakopoulos"
+
+**COMMERCIAL USE:**
+This software may be used in commercial projects provided the attribution
+requirements above are met. No additional fees or royalties are required.
+
+**MODIFICATIONS:**
+Modified versions of this software must:
+1. Retain all original copyright notices
+2. Include attribution to the original author as specified above
+3. Clearly indicate that modifications have been made
+
+**DISTRIBUTION:**
+When redistributing this software, whether modified or unmodified:
+1. This license file must be included
+2. Attribution requirements must be maintained
+3. Recipients must be made aware of the attribution requirements
+
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,3 +49,17 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+**License Type:** Custom MIT-Based License with Mandatory Attribution
+**SPDX Identifier:** Not applicable (Custom License)
+**Commercial Use:** Permitted with attribution
+**Modification:** Permitted with attribution
+**Distribution:** Permitted with attribution
+**Private Use:** Permitted with attribution
+**Warranty:** No warranty provided
+**Liability:** Author not liable for damages
+
+For questions about licensing or attribution requirements, please contact
+the copyright holder.
