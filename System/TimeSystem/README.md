@@ -825,3 +825,68 @@ $gameTime.pauseDuringEvents = true;                 // Smart pausing
 *📝 This documentation covers TimeSystem.js v1.0.0. For the latest updates and advanced customization options, consult the plugin comments and developer console tools.*
 
 **🎮 Happy Game Development!**
+
+
+## 🤝 Support & Contributing
+
+### Getting Help
+
+- **Issues**: Report bugs or performance problems
+- **Questions**: Ask about configuration or usage
+- **Suggestions**: Propose new features or improvements
+
+### Contributing
+
+- **Bug Reports**: Include detailed reproduction steps
+- **Feature Requests**: Describe the use case and expected behavior  
+- **Code Contributions**: Follow existing code style and include tests
+
+---
+
+## 📄 License & Terms
+
+### Copyright Notice
+
+**Copyright © Alexandros Panagiotakopoulos. All Rights Reserved.**
+
+### Usage Rights
+
+- ✅ **Free for commercial use** (with attribution)
+- ✅ **Free for non-commercial use** (with attribution)  
+- ✅ **Modify as needed for your project**
+- ✅ **Redistribute with proper attribution**
+
+### Attribution Requirements
+
+**Attribution is REQUIRED.** Please include the following credit:
+
+**In your game credits:**
+```
+TimeSystem.js Plugin
+Copyright © Alexandros Panagiotakopoulos
+```
+
+**In documentation or readme files:**
+```
+Performance monitoring powered by TimeSystem.js
+Created by Alexandros Panagiotakopoulos
+```
+
+**Minimum attribution:**
+```
+Plugin by Alexandros Panagiotakopoulos
+```
+
+### Disclaimer
+
+This plugin is provided "as is" without warranty. Use at your own risk and always backup your project before installing new plugins.
+
+**Copyright © Alexandros Panagiotakopoulos. All Rights Reserved.**
+
+---
+
+## 📞 Contact
+
+For support, questions, or feedback about this plugin, please refer to the documentation above or check for updates in the original distribution source.
+
+**Happy game developing! 🎮**
