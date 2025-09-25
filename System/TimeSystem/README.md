@@ -1,8 +1,9 @@
 # 🕐 RPG Maker MZ Time System Plugin Documentation
 
-**Plugin Name:** TimeSystem.js  
 **Version:** 1.0.0  
-**Compatible with:** RPG Maker MZ  
+**Compatibility:** RPG Maker MZ  
+**Copyright:** Alexandros Panagiotakopoulos. All Rights Reserved Ⓒ  
+**License:** Free to use with attribution required  
 
 ---
 
