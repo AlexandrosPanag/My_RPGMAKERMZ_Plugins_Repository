@@ -145,6 +145,9 @@ Experience the power of these optimization plugins firsthand in **RE;LIVE**, an 
 
 *RE;LIVE will serve as the ultimate showcase of what's possible when combining creative storytelling with performance-optimized plugin architecture.*
 
+### 🛡️ Trademark Notice
+**RE;LIVE™** is a trademark of Alexandros Panagiotakopoulos. All rights reserved. Unauthorized use of this trademark is prohibited.
+
 ---
 
 **Copyright © 2025 Alexandros Panagiotakopoulos. All Rights Reserved.**
