@@ -1,14 +1,12 @@
 //=============================================================================
 // TimeSystem.js
-// COPYRIGHT ALEXANDROSPANAGIOTAKOPOULOS - ALEXANDROSPANAG.GITHUB.IO
-// DATE: 03/09/2025
 //=============================================================================
 
 /*:
 @target MZ
-@plugindesc [v1.0.0] Time System with Day/Night Cycle
-@author YourName
-@url 
+@plugindesc [v1.0.1] Time System with Day/Night Cycle
+@author Alexandros Panagiotakopoulos
+@url alexandrospanag.github.io
 @help TimeSystem.js
 
 @param timeSpeed
@@ -171,7 +169,66 @@ $gameTime.hideTimeDisplay() - Hides permanent time display
 (() => {
     'use strict';
     
-    const pluginName = 'TimeSystem'; // Back to correct name
+    // Add immediate debug functions for testing
+    window.testTimeSystemTint = function() {
+        console.log('🧪 === TIME SYSTEM TINT TEST ===');
+        console.log('Checking basic tint functionality...');
+        
+        if (!$gameScreen) {
+            console.log('❌ $gameScreen not available - must be on map scene');
+            return false;
+        }
+        
+        console.log('✅ $gameScreen available');
+        console.log(`Current tone: [${$gameScreen._tone.join(', ')}]`);
+        
+        // Test direct tint
+        console.log('🎨 Testing direct red tint...');
+        $gameScreen.startTint([200, 0, 0, 0], 60);
+        
+        setTimeout(() => {
+            console.log(`Tone after red: [${$gameScreen._tone.join(', ')}]`);
+            
+            // Test blue tint
+            console.log('🎨 Testing direct blue tint...');
+            $gameScreen.startTint([0, 0, 200, 0], 60);
+            
+            setTimeout(() => {
+                console.log(`Tone after blue: [${$gameScreen._tone.join(', ')}]`);
+                
+                // Reset
+                console.log('🎨 Resetting to normal...');
+                $gameScreen.startTint([0, 0, 0, 0], 60);
+                
+                console.log('🧪 Basic tint test complete - if you saw color changes, tinting works!');
+            }, 1000);
+        }, 1000);
+        
+        return true;
+    };
+    
+    window.testTimeSystemParams = function() {
+        console.log('🔧 === TIME SYSTEM PARAMETER TEST ===');
+        const pluginName = 'TimeSystem';
+        const parameters = PluginManager.parameters(pluginName);
+        
+        console.log('Plugin name:', pluginName);
+        console.log('Raw parameters:', parameters);
+        console.log('enableTinting raw:', parameters['enableTinting']);
+        console.log('enableTinting processed:', parameters['enableTinting'] === 'true');
+        console.log('$gameTime available:', typeof $gameTime);
+        
+        if ($gameTime && $gameTime.updateScreenTint) {
+            console.log('🎨 Testing $gameTime.updateScreenTint(true)...');
+            $gameTime.updateScreenTint(true);
+        }
+        
+        return parameters;
+    };
+    
+    console.log('[TimeSystem] Debug functions added: testTimeSystemTint() and testTimeSystemParams()');
+    
+    const pluginName = 'TimeSystem'; // Fixed to match the actual filename
     const parameters = PluginManager.parameters(pluginName);
     
     // Debug: Log the raw parameters to see what's actually loaded
@@ -182,13 +239,12 @@ $gameTime.hideTimeDisplay() - Hides permanent time display
     const timeSpeed = parseFloat(parameters['timeSpeed'] || 1);
     const startHour = parseInt(parameters['startHour'] || 6);
     const startMinute = parseInt(parameters['startMinute'] || 0);
-    // More robust boolean parsing
-    const consoleLogging = parameters['consoleLogging'] === 'true' || parameters['consoleLogging'] === true;
+    const consoleLogging = parameters['consoleLogging'] === 'true';
     const consoleLogInterval = parseInt(parameters['consoleLogInterval'] || 10);
-    const showTimeDisplay = parameters['showTimeDisplay'] === 'true' || parameters['showTimeDisplay'] === true;
+    const showTimeDisplay = parameters['showTimeDisplay'] === 'true';
     const timeDisplayX = parseInt(parameters['timeDisplayX'] || 10);
     const timeDisplayY = parseInt(parameters['timeDisplayY'] || 10);
-    const enableTinting = parameters['enableTinting'] === 'true' || parameters['enableTinting'] === true;
+    const enableTinting = parameters['enableTinting'] === 'true';
     const dawnHour = parseInt(parameters['dawnHour'] || 6);
     const dayHour = parseInt(parameters['dayHour'] || 8);
     const duskHour = parseInt(parameters['duskHour'] || 18);
@@ -239,11 +295,6 @@ $gameTime.hideTimeDisplay() - Hides permanent time display
                 this._realTimeCounter = 0;
                 this.addMinute();
                 this.updateScreenTint();
-                
-                // Debug log every update if console logging is enabled
-                if (consoleLogging && Graphics.frameCount % 3600 === 0) { // Every 60 seconds
-                    console.log(`[TimeSystem] 🔄 Update tick - Time: ${this.getTimeString()}, RealCounter: ${this._realTimeCounter.toFixed(2)}`);
-                }
             }
         }
         
@@ -353,69 +404,57 @@ $gameTime.hideTimeDisplay() - Hides permanent time display
         }
         
         updateScreenTint(force = false) {
+            console.log(`[TimeSystem] 🎨 updateScreenTint called - force: ${force}, enableTinting: ${enableTinting}`);
+            
             if (!enableTinting) {
-                if (consoleLogging) {
-                    console.log(`[TimeSystem] 🎨 Screen tinting is disabled in settings`);
-                }
+                console.log(`[TimeSystem] 🚫 Tinting disabled in parameters`);
                 return;
             }
             
             if (!$gameScreen) {
-                if (consoleLogging) {
-                    console.log(`[TimeSystem] ❌ $gameScreen not available for tinting`);
-                }
+                console.log(`[TimeSystem] 🚫 $gameScreen not available`);
                 return;
             }
             
             const currentHour = this._hours;
             const timeOfDay = this.getTimeOfDay();
             
+            console.log(`[TimeSystem] 🕐 Current time: ${this.getTimeString()} (${timeOfDay}), hour: ${currentHour}, lastTintTime: ${this._lastTintTime}`);
+            
             // Only skip if same hour AND not forced AND not first initialization
-            if (!force && currentHour === this._lastTintTime && this._lastTintTime !== -1) return;
+            if (!force && currentHour === this._lastTintTime && this._lastTintTime !== -1) {
+                console.log(`[TimeSystem] ⏭️ Skipping tint update - same hour and not forced`);
+                return;
+            }
             
             this._lastTintTime = currentHour;
             let tint = [0, 0, 0, 0]; // [Red, Green, Blue, Gray]
             
             switch (timeOfDay) {
                 case 'night':
-                    tint = [-60, -60, 20, 60]; // Subtle blue-ish dark tint
+                    tint = [-50, -50, 20, 60]; // Subtle night tint (darker, slightly blue)
                     break;
                 case 'dawn':
-                    tint = [40, 20, -30, 25]; // Gentle orange/pink tint
+                    tint = [30, 15, -30, 20]; // Gentle dawn tint (warm, soft)
                     break;
                 case 'day':
                     tint = [0, 0, 0, 0]; // No tint
                     break;
                 case 'dusk':
-                    tint = [60, 25, -40, 35]; // Subtle orange/red tint
+                    tint = [40, 15, -40, 30]; // Gentle dusk tint (warm, orange)
                     break;
             }
             
-            if (consoleLogging) {
-                console.log(`[TimeSystem] 🎨 Applying ${timeOfDay} tint: [${tint.join(', ')}]`);
-                console.log(`[TimeSystem] 🎨 $gameScreen exists: ${!!$gameScreen}`);
-                console.log(`[TimeSystem] 🎨 Current screen tone: [${$gameScreen._tone.join(', ')}]`);
-            }
+            console.log(`[TimeSystem] 🎨 Applying ${timeOfDay} tint: [${tint.join(', ')}]`);
+            console.log(`[TimeSystem] 🎨 Current screen tone before: [${$gameScreen._tone.join(', ')}]`);
             
             $gameScreen.startTint(tint, 120); // 2-second transition
             this._currentTint = [...tint]; // Store the current intended tint
             
-            if (consoleLogging) {
-                // Check if tint was applied after a short delay
-                setTimeout(() => {
-                    if ($gameScreen && $gameScreen._tone) {
-                        console.log(`[TimeSystem] 🎨 New screen tone: [${$gameScreen._tone.join(', ')}]`);
-                        
-                        // Check if the tint matches what we set
-                        const currentTone = $gameScreen._tone;
-                        const tintMatches = tint.every((value, index) => Math.abs(currentTone[index] - value) < 5);
-                        if (!tintMatches) {
-                            console.log(`[TimeSystem] ⚠️ Tint mismatch detected! Expected: [${tint.join(', ')}], Got: [${currentTone.join(', ')}]`);
-                            console.log(`[TimeSystem] 🔧 Starting tint enforcer to maintain correct tint`);
-                        }
-                    }
-                }, 200);
-            }
+            // Log the result after a short delay
+            setTimeout(() => {
+                console.log(`[TimeSystem] 🎨 Screen tone after tint: [${$gameScreen._tone.join(', ')}]`);
+            }, 200);
         }
         
         // Start continuous tint monitoring to prevent other systems from overriding
@@ -489,17 +528,9 @@ $gameTime.hideTimeDisplay() - Hides permanent time display
         
         hideTimeDisplay() {
             const scene = SceneManager._scene;
-            
-            // Clean up from scene
             if (scene && scene._timeDisplayWindow) {
                 scene.removeChild(scene._timeDisplayWindow);
                 scene._timeDisplayWindow = null;
-            }
-            
-            // Clean up from spriteset if it exists
-            if (scene && scene._spriteset && scene._spriteset._timeDisplayWindow) {
-                scene._spriteset.removeChild(scene._spriteset._timeDisplayWindow);
-                scene._spriteset._timeDisplayWindow = null;
             }
         }
     }
@@ -510,16 +541,11 @@ $gameTime.hideTimeDisplay() - Hides permanent time display
     
     class Window_TimeDisplay extends Window_Base {
         constructor() {
-            const rect = new Rectangle(timeDisplayX, timeDisplayY, 200, 100); // Taller window
+            const rect = new Rectangle(timeDisplayX, timeDisplayY, 140, 72);
             super(rect);
-            
-            // Make it completely transparent
-            this.opacity = 0; // Completely transparent background
+            this.opacity = 180; // Semi-transparent background
             this.contentsOpacity = 255; // Full opacity text
-            this.frameVisible = false; // Hide the window frame completely
             this._refreshCounter = 0;
-            
-            // No background sprite needed for full transparency
             this.refresh();
         }
         
@@ -529,56 +555,40 @@ $gameTime.hideTimeDisplay() - Hides permanent time display
             }
             if (!window.$gameTime) {
                 if (this.contents) {
-                    this.changeTextColor(ColorManager.normalColor());
-                    this.contents.fontSize = 20;
-                    this.drawText("--:--", 12, 8, this.innerWidth - 24, 'center');
-                    this.contents.fontSize = 14;
-                    this.drawText("Loading...", 12, 32, this.innerWidth - 24, 'center');
+                    this.drawText("--:--", 4, 0, this.innerWidth - 8, 'left');
                 }
                 return;
             }
             
             const timeString = window.$gameTime.getTimeString();
             const timeOfDay = window.$gameTime.getTimeOfDay();
-            const emoji = window.$gameTime.getTimeEmoji();
             
-            // Add text shadow for better readability
-            this.contents.outlineColor = 'rgba(0, 0, 0, 0.8)';
-            this.contents.outlineWidth = 3;
+            // Draw time
+            this.changeTextColor(ColorManager.normalColor());
+            this.drawText(timeString, 4, 0, this.innerWidth - 8, 'left');
             
-            // Set larger font for time
-            this.contents.fontSize = 24;
-            this.changeTextColor('#ffffff'); // Pure white for time
-            this.drawText(timeString, 12, 8, this.innerWidth - 24, 'center');
-            
-            // Set smaller font for period
-            this.contents.fontSize = 16;
-            
-            // Draw time of day with better colors and emoji
+            // Draw time of day with color coding
             let color;
             switch (timeOfDay) {
                 case 'night':
-                    color = '#87ceeb'; // Sky blue
+                    color = ColorManager.textColor(3); // Blue
                     break;
                 case 'dawn':
-                    color = '#ffa500'; // Orange
+                    color = ColorManager.textColor(17); // Orange
                     break;
                 case 'day':
-                    color = '#ffff99'; // Light yellow
+                    color = ColorManager.textColor(0); // White/Normal
                     break;
                 case 'dusk':
-                    color = '#ff6347'; // Tomato red
+                    color = ColorManager.textColor(14); // Yellow
                     break;
                 default:
-                    color = '#ffffff';
+                    color = ColorManager.normalColor();
             }
             
             this.changeTextColor(color);
-            const timeOfDayText = `${emoji} ${timeOfDay.charAt(0).toUpperCase() + timeOfDay.slice(1)}`;
-            this.drawText(timeOfDayText, 12, 36, this.innerWidth - 24, 'center'); // Moved up from 42 to 36
-            
-            // Reset font size for other windows
-            this.contents.fontSize = $dataSystem.advanced.fontSize;
+            const timeOfDayText = timeOfDay.charAt(0).toUpperCase() + timeOfDay.slice(1);
+            this.drawText(timeOfDayText, 4, this.lineHeight(), this.innerWidth - 8, 'left');
         }
         
         update() {
@@ -780,22 +790,27 @@ $gameTime.hideTimeDisplay() - Hides permanent time display
     const _Scene_Map_createAllWindows = Scene_Map.prototype.createAllWindows;
     Scene_Map.prototype.createAllWindows = function() {
         _Scene_Map_createAllWindows.call(this);
-        // Remove duplicate - handled by Scene_Map_start
+        // Add time display window
+        if (window.$gameTime && showTimeDisplay) {
+            setTimeout(() => {
+                window.$gameTime.showTimeDisplay();
+            }, 100);
+        }
     };
     
-    // Remove alternative approach - causes duplicates
-    // const _Spriteset_Map_createLowerLayer = Spriteset_Map.prototype.createLowerLayer;
-    // Spriteset_Map.prototype.createLowerLayer = function() {
-    //     _Spriteset_Map_createLowerLayer.call(this);
-    //     this.createTimeDisplay();
-    // };
+    // Alternative approach - add to spriteset
+    const _Spriteset_Map_createLowerLayer = Spriteset_Map.prototype.createLowerLayer;
+    Spriteset_Map.prototype.createLowerLayer = function() {
+        _Spriteset_Map_createLowerLayer.call(this);
+        this.createTimeDisplay();
+    };
     
-    // Spriteset_Map.prototype.createTimeDisplay = function() {
-    //     if (showTimeDisplay && window.$gameTime) {
-    //         this._timeDisplayWindow = new Window_TimeDisplay();
-    //         this.addChild(this._timeDisplayWindow);
-    //     }
-    // };
+    Spriteset_Map.prototype.createTimeDisplay = function() {
+        if (showTimeDisplay && window.$gameTime) {
+            this._timeDisplayWindow = new Window_TimeDisplay();
+            this.addChild(this._timeDisplayWindow);
+        }
+    };
     
     // Clean up time display when leaving map
     const _Scene_Map_terminate = Scene_Map.prototype.terminate;
