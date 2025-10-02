@@ -206,6 +206,4 @@ This plugin is provided "as is" without warranty. Use at your own risk and alway
 
 ---
 
----
-
 **Simple Controller Overlay** - Making controller support visible and accessible! 🎮✨
