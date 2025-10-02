@@ -1,11 +1,15 @@
 # 🕐 RPG Maker MZ Time System Plugin Documentation
 
-**Version:** 1.0.0  
+**Version:** 1.0.2  
 **Compatibility:** RPG Maker MZ  
 **Copyright:** Alexandros Panagiotakopoulos. All Rights Reserved Ⓒ  
 **License:** Free to use with attribution required  
 
 ---
+
+Version 1.0.2 Changelog:
+- Hotfix on the enforcer.
+- Simplified the performance.
 
 ## 📖 Table of Contents
 
