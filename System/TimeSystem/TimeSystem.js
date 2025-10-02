@@ -304,6 +304,25 @@ $gameTime.hideTimeDisplay() - Hides permanent time display
             return timeOfDay === 'night' || timeOfDay === 'dusk';
         }
         
+        getTintForTimeOfDay(timeOfDay) {
+            let tint = [0, 0, 0, 0];
+            switch (timeOfDay) {
+                case 'night':
+                    tint = [-50, -50, 20, 60];
+                    break;
+                case 'dawn':
+                    tint = [30, 15, -30, 20];
+                    break;
+                case 'day':
+                    tint = [0, 0, 0, 0];
+                    break;
+                case 'dusk':
+                    tint = [40, 15, -40, 30];
+                    break;
+            }
+            return tint;
+        }
+        
         updateScreenTint(force = false) {
             if (!enableTinting) {
                 return;
@@ -321,23 +340,15 @@ $gameTime.hideTimeDisplay() - Hides permanent time display
                 return;
             }
             
-            this._lastTintTime = currentHour;
-            let tint = [0, 0, 0, 0]; // [Red, Green, Blue, Gray]
-            
-            switch (timeOfDay) {
-                case 'night':
-                    tint = [-50, -50, 20, 60]; // Subtle night tint (darker, slightly blue)
-                    break;
-                case 'dawn':
-                    tint = [30, 15, -30, 20]; // Gentle dawn tint (warm, soft)
-                    break;
-                case 'day':
-                    tint = [0, 0, 0, 0]; // No tint
-                    break;
-                case 'dusk':
-                    tint = [40, 15, -40, 30]; // Gentle dusk tint (warm, orange)
-                    break;
+            // Also check if we're already applying the correct tint for this time period
+            const expectedTintForTime = this.getTintForTimeOfDay(timeOfDay);
+            if (!force && this._currentTint && 
+                expectedTintForTime.every((value, index) => Math.abs(this._currentTint[index] - value) < 5)) {
+                return;
             }
+            
+            this._lastTintTime = currentHour;
+            const tint = this.getTintForTimeOfDay(timeOfDay);
             
             $gameScreen.startTint(tint, 120); // 2-second transition
             this._currentTint = [...tint]; // Store the current intended tint
@@ -356,12 +367,14 @@ $gameTime.hideTimeDisplay() - Hides permanent time display
                 const expectedTint = this._currentTint;
                 
                 // Check if tint has been changed by another system
-                const tintMatches = expectedTint.every((value, index) => Math.abs(currentTone[index] - value) < 5);
+                // Allow bigger tolerance and don't enforce during transitions
+                const tintMatches = expectedTint.every((value, index) => Math.abs(currentTone[index] - value) < 15);
                 
-                if (!tintMatches) {
-                    $gameScreen.startTint(expectedTint, 30); // Quick re-application
+                // Only enforce if there's a significant mismatch and we're not in transition
+                if (!tintMatches && !$gameScreen._tintDuration) {
+                    $gameScreen.startTint(expectedTint, 60); // Slower re-application
                 }
-            }, 2000); // Check every 2 seconds
+            }, 5000); // Check less frequently (every 5 seconds)
         }
         
         // Stop tint enforcer
