@@ -137,7 +137,7 @@ navigator.getGamepads()
 ```
 js/plugins/
 ├── SimpleControllerOverlay.js    # Main plugin file
-└── README.md                     # This documentation
+
 ```
 
 ## 🎯 Use Cases
@@ -164,32 +164,47 @@ js/plugins/
 - Menu-aware display logic
 - Complete conflict prevention
 
-## 🤝 Support
+## 📄 License & Terms
 
-### **Getting Help**
-1. Check this README first
-2. Test with `testControllerOverlay()` debug function
-3. Verify controller connection in browser
-4. Check browser console for error messages
+### Copyright Notice
 
-### **Reporting Issues**
-When reporting issues, please include:
-- RPG Maker MZ version
-- Browser and version
-- Controller model
-- Console error messages (if any)
-- Other plugins being used
+**Copyright © Alexandros Panagiotakopoulos. All Rights Reserved.**
 
-## 📜 License
+### Usage Rights
 
-MIT License - Free to use in commercial and non-commercial projects.
+- ✅ **Free for commercial use** (with attribution)
+- ✅ **Free for non-commercial use** (with attribution)  
+- ✅ **Modify as needed for your project**
+- ✅ **Redistribute with proper attribution**
 
-## 🏆 Credits
+### Attribution Requirements
 
-**Author**: Assistant  
-**Version**: 1.0.0  
-**Engine**: RPG Maker MZ  
-**Dependencies**: None  
+**Attribution is REQUIRED.** Please include the following credit:
+
+**In your game credits:**
+```
+SimpleControllerOverlay.js Plugin
+Copyright © Alexandros Panagiotakopoulos
+```
+
+**In documentation or readme files:**
+```
+Performance monitoring powered by SimpleControllerOverlay.js
+Created by Alexandros Panagiotakopoulos
+```
+
+**Minimum attribution:**
+```
+Plugin by Alexandros Panagiotakopoulos
+```
+
+### Disclaimer
+
+This plugin is provided "as is" without warranty. Use at your own risk and always backup your project before installing new plugins.
+
+**Copyright © Alexandros Panagiotakopoulos. All Rights Reserved.**
+
+---
 
 ---
 
