@@ -30,7 +30,7 @@ A clean, lightweight controller button overlay plugin that displays controller p
 | **□ (Square)** | Select | Pink/Magenta |
 | **× (Cross)** | Back | Blue |
 | **△ (Triangle)** | Menu | Green |
-| **R3 (Right Stick)** | Jump | Gray |
+| **L3 (Left Stick)** | Jump | Gray |
 
 ### Xbox Controller
 | Button | Action | Color |
@@ -38,7 +38,7 @@ A clean, lightweight controller button overlay plugin that displays controller p
 | **X** | Select | Blue |
 | **A** | Back | Green |
 | **Y** | Menu | Yellow |
-| **R3 (Right Stick)** | Jump | Gray |
+| **L3 (Left Stick)** | Jump | Gray |
 
 ## 🚀 Installation
 
