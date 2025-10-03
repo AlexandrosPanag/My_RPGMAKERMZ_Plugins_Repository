@@ -205,12 +205,10 @@ $gameTime.hideTimeDisplay() - Hides permanent time display
             this._lastTintTime = -1;
             this._lastLoggedMinute = -1;
             this._currentTint = [0, 0, 0, 0]; // Track current intended tint
-            this._tintEnforcer = null; // For continuous tint monitoring
             
             // Force initial screen tint application
             setTimeout(() => {
                 this.updateScreenTint(true);
-                this.startTintEnforcer(); // Start continuous tint monitoring
             }, 100);
         }
         
@@ -332,58 +330,33 @@ $gameTime.hideTimeDisplay() - Hides permanent time display
                 return;
             }
             
-            const currentHour = this._hours;
             const timeOfDay = this.getTimeOfDay();
+            const expectedTint = this.getTintForTimeOfDay(timeOfDay);
             
-            // Only skip if same hour AND not forced AND not first initialization
-            if (!force && currentHour === this._lastTintTime && this._lastTintTime !== -1) {
+            // Check if we're already applying the correct tint
+            const currentTone = $gameScreen._tone;
+            const tintAlreadyCorrect = expectedTint.every((value, index) => 
+                Math.abs(currentTone[index] - value) < 5
+            );
+            
+            // Skip if already correct and not forced
+            if (!force && tintAlreadyCorrect && !$gameScreen._tintDuration) {
                 return;
             }
             
-            // Also check if we're already applying the correct tint for this time period
-            const expectedTintForTime = this.getTintForTimeOfDay(timeOfDay);
-            if (!force && this._currentTint && 
-                expectedTintForTime.every((value, index) => Math.abs(this._currentTint[index] - value) < 5)) {
+            // Only update if hour changed OR forced OR tint is wrong
+            const currentHour = this._hours;
+            if (!force && currentHour === this._lastTintTime && tintAlreadyCorrect) {
                 return;
             }
             
             this._lastTintTime = currentHour;
-            const tint = this.getTintForTimeOfDay(timeOfDay);
+            this._currentTint = [...expectedTint];
             
-            $gameScreen.startTint(tint, 120); // 2-second transition
-            this._currentTint = [...tint]; // Store the current intended tint
+            $gameScreen.startTint(expectedTint, 120); // 2-second transition
         }
         
-        // Start continuous tint monitoring to prevent other systems from overriding
-        startTintEnforcer() {
-            if (this._tintEnforcer) {
-                clearInterval(this._tintEnforcer);
-            }
-            
-            this._tintEnforcer = setInterval(() => {
-                if (!enableTinting || !$gameScreen || !this._currentTint) return;
-                
-                const currentTone = $gameScreen._tone;
-                const expectedTint = this._currentTint;
-                
-                // Check if tint has been changed by another system
-                // Allow bigger tolerance and don't enforce during transitions
-                const tintMatches = expectedTint.every((value, index) => Math.abs(currentTone[index] - value) < 15);
-                
-                // Only enforce if there's a significant mismatch and we're not in transition
-                if (!tintMatches && !$gameScreen._tintDuration) {
-                    $gameScreen.startTint(expectedTint, 60); // Slower re-application
-                }
-            }, 5000); // Check less frequently (every 5 seconds)
-        }
-        
-        // Stop tint enforcer
-        stopTintEnforcer() {
-            if (this._tintEnforcer) {
-                clearInterval(this._tintEnforcer);
-                this._tintEnforcer = null;
-            }
-        }
+
         
         makeEmpty() {
             return {
