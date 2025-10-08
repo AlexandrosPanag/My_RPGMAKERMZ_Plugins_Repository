@@ -132,9 +132,9 @@ Experience the power of these optimization plugins firsthand in **RE;LIVE**, an 
 
 ### 🌟 What to Expect
 - **Epic storytelling** with rich character development
-- **Advanced time mechanics** powered by TimeSystem.js
-- **Seamless performance** thanks to PerformanceCatcher.js optimization
-- **Immersive world** with dynamic day/night cycles
+- **Advanced time mechanics** powered by my plugins, with commercial-tier improvements.
+- **Seamless performance** thanks to high-quality performance optimization!
+- **Immersive world** with dynamic day/night cycles, weather, lighting and effects!
 - **Professional polish** demonstrating plugin capabilities
 
 ### 📅 Release Information
