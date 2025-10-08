@@ -84,7 +84,7 @@ Console Commands (F12 Developer Tools):
 
 Terms of Use:
 - Free for commercial and non-commercial use
-- Credit appreciated but not required
+- Credit required
 - Modify as needed for your project
 */
 
@@ -668,3 +668,4 @@ Terms of Use:
     };
     
 })();
+
