@@ -390,7 +390,7 @@ Terms of Use:
                 self.onMapTransfer();
             };
             
-            if (enableCacheOptimization) {
+            if (enableImageOptimization) {
                 this.wrapImageManager();
                 this.wrapAudioManager();
                 this.wrapCacheManager();
