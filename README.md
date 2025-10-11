@@ -115,7 +115,7 @@ For commercial projects requiring custom modifications or dedicated support, con
 
 **Created by:** Alexandros Panagiotakopoulos  
 **Project Type:** Professional RPG Maker MZ Plugin Collection  
-**Focus:** Performance optimization and enhanced gameplay experience  
+**Focus:** Performance, System and enhanced gameplay optimized experience  
 
 ### Special Thanks
 - RPG Maker MZ community for feedback and testing
