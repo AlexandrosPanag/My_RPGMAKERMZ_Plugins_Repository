@@ -3,7 +3,8 @@
 //=============================================================================
 
 /*:
- * @plugindesc [v1.0.0] Custom Main Menu with Portraits & HUD Elements
+ * @target MZ
+ * @plugindesc [v1.0.1] Adds smoke effects when player and party members dash
  * @author Alexandros Panagiotakopoulos
  * @url alexandrospanag.github.io
  *
@@ -135,22 +136,16 @@
     }
 
     //-----------------------------------------------------------------------------
-    // Game_Player
+    // Game_CharacterBase
     //-----------------------------------------------------------------------------
 
-    const _Game_Player_update = Game_Player.prototype.update;
-    Game_Player.prototype.update = function(sceneActive) {
-        const wasDashing = this.isDashing();
-        const wasMoving = this.isMoving();
-        
-        _Game_Player_update.call(this, sceneActive);
-        
-        if (sceneActive && this.isDashing() && this.isMoving()) {
-            this.updateDashSmokeCounter();
-        }
+    const _Game_CharacterBase_initMembers = Game_CharacterBase.prototype.initMembers;
+    Game_CharacterBase.prototype.initMembers = function() {
+        _Game_CharacterBase_initMembers.call(this);
+        this._dashSmokeCounter = 0;
     };
 
-    Game_Player.prototype.updateDashSmokeCounter = function() {
+    Game_CharacterBase.prototype.updateDashSmokeCounter = function() {
         if (!this._dashSmokeCounter) {
             this._dashSmokeCounter = 0;
         }
@@ -162,6 +157,19 @@
             if (SceneManager._scene && SceneManager._scene._spriteset) {
                 SceneManager._scene._spriteset.createDashSmokeAt(this.screenX(), this.screenY());
             }
+        }
+    };
+
+    //-----------------------------------------------------------------------------
+    // Game_Player
+    //-----------------------------------------------------------------------------
+
+    const _Game_Player_update = Game_Player.prototype.update;
+    Game_Player.prototype.update = function(sceneActive) {
+        _Game_Player_update.call(this, sceneActive);
+        
+        if (sceneActive && this.isDashing() && this.isMoving()) {
+            this.updateDashSmokeCounter();
         }
     };
 
@@ -173,23 +181,9 @@
     Game_Follower.prototype.update = function() {
         _Game_Follower_update.call(this);
         
-        if (this.isVisible() && this.isDashing() && this.isMoving()) {
+        // Followers dash when the player dashes
+        if (this.isVisible() && $gamePlayer.isDashing() && this.isMoving()) {
             this.updateDashSmokeCounter();
-        }
-    };
-
-    Game_Follower.prototype.updateDashSmokeCounter = function() {
-        if (!this._dashSmokeCounter) {
-            this._dashSmokeCounter = 0;
-        }
-        
-        this._dashSmokeCounter++;
-        
-        if (this._dashSmokeCounter >= smokeInterval) {
-            this._dashSmokeCounter = 0;
-            if (SceneManager._scene && SceneManager._scene._spriteset) {
-                SceneManager._scene._spriteset.createDashSmokeAt(this.screenX(), this.screenY());
-            }
         }
     };
 
