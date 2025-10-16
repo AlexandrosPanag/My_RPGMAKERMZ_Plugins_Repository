@@ -1,4 +1,4 @@
-# Dash Smoke Effect Plugin
+# 💨 Dash Smoke Effect Plugin
 
 A Sonic-inspired smoke effect plugin for RPG Maker MZ that adds dynamic smoke puffs when the player and party members dash.
 
