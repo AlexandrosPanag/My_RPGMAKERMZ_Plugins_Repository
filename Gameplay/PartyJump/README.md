@@ -399,27 +399,24 @@ const customChargeLevelColor = (level) => {
 
 ---
 
-## 🤝 Credits & Support
+## 📝 License & Credits
 
-**Author**: GitHub Copilot & Alexandros Panagiotokopoulos  
-**Version**: 1.0.0  
-**License**: Free for commercial and non-commercial use  
+### License
+This project is licensed under the **Creative Commons Attribution 4.0 International License**.
 
-### 💫 **Support the Developer**
-If you find this plugin helpful, please consider:
-- ⭐ Starring the repository
-- 💝 [Sponsoring the developer](https://github.com/sponsors/AlexandrosPanag)
-- 🐛 Reporting bugs and suggesting improvements
-- 📢 Sharing with other developers
+**You are free to:**
+- ✅ Share — copy and redistribute in any medium or format
+- ✅ Adapt — remix, transform, and build upon the material  
+- ✅ Commercial Use — use for commercial projects
 
----
+**Under the following terms:**
+- 📝 **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made.
 
-## 📞 Support & Community
-
-- **Issues**: Report bugs via GitHub Issues
-- **Updates**: Follow for the latest versions
-- **Documentation**: This README for comprehensive guide
-- **Community**: Share your jumping adventures!
+### Credits
+- **Author**: Alexandros Panagiotakopoulos
+- **Framework**: RPG Maker MZ Plugin System
+- **Technologies**: JavaScript ES6+, CSS3 Animations, HTML5 APIs
+- **Inspiration**: Modern browser power management and mobile battery optimization
 
 ---
 
