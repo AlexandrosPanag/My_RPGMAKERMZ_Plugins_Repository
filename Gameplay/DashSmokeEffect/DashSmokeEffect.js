@@ -4,7 +4,7 @@
 
 /*:
  * @target MZ
- * @plugindesc [v1.0.1] Adds smoke effects when player and party members dash
+ * @plugindesc [v1.0.2] Adds smoke effects when player and party members dash
  * @author Alexandros Panagiotakopoulos
  * @url alexandrospanag.github.io
  *
@@ -30,7 +30,7 @@
  * @param smokeOpacity
  * @text Starting Opacity
  * @desc Starting opacity of smoke (0-255)
- * @default 200
+ * @default 120
  * @type number
  *
  * @help DashSmokeEffect.js
@@ -51,7 +51,7 @@
     const smokeDuration = Number(parameters['smokeDuration'] || 30);
     const smokeInterval = Number(parameters['smokeInterval'] || 8);
     const smokeScale = Number(parameters['smokeScale'] || 1.5);
-    const smokeOpacity = Number(parameters['smokeOpacity'] || 200);
+    const smokeOpacity = Number(parameters['smokeOpacity'] || 120);
 
     //-----------------------------------------------------------------------------
     // Sprite_DashSmoke
@@ -67,7 +67,7 @@
             this.anchor.y = 0.5;
             this.x = x;
             this.y = y;
-            this.z = 1;
+            this.z = 3;
             this.createBitmap();
             this.setupAnimation();
         }
@@ -85,10 +85,10 @@
             const centerY = ph / 2;
             const radius = pw / 3;
             
-            // Create gradient for softer smoke
+            // Create gradient for softer, more transparent smoke
             const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
-            gradient.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
-            gradient.addColorStop(0.5, 'rgba(220, 220, 220, 0.6)');
+            gradient.addColorStop(0, 'rgba(255, 255, 255, 0.5)');
+            gradient.addColorStop(0.5, 'rgba(220, 220, 220, 0.3)');
             gradient.addColorStop(1, 'rgba(200, 200, 200, 0)');
             
             ctx.fillStyle = gradient;
@@ -200,8 +200,9 @@
     Spriteset_Map.prototype.createDashSmokeContainer = function() {
         this._dashSmokeSprites = [];
         this._dashSmokeContainer = new Sprite();
-        this._dashSmokeContainer.z = 4;
-        this._tilemap.addChild(this._dashSmokeContainer);
+        this._dashSmokeContainer.z = 3;
+        // Add to the base sprite instead of tilemap to respect character layering
+        this._baseSprite.addChild(this._dashSmokeContainer);
     };
 
     Spriteset_Map.prototype.createDashSmokeAt = function(x, y) {
