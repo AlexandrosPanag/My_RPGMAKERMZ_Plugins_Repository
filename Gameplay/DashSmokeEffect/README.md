@@ -10,6 +10,10 @@ A Sonic-inspired smoke effect plugin for RPG Maker MZ that adds dynamic smoke pu
 - ⚙️ **Fully Customizable** - Adjust duration, interval, scale, and opacity via plugin parameters
 - 🎯 **Zero Setup** - No plugin commands needed, works immediately after installation
 
+
+## ⚙️ Changelogs:
+-1.0.2: Fixed an issuue with Star-marked tiles and smoothed the animation so it has less smoke.
+
 ## Installation
 
 1. Download `DashSmokeEffect.js`
