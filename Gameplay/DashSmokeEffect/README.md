@@ -12,8 +12,8 @@ A Sonic-inspired smoke effect plugin for RPG Maker MZ that adds dynamic smoke pu
 
 
 ## ⚙️ Changelogs:
--1.0.2: Fixed an issuue with Star-marked tiles and smoothed the animation so it has less smoke.
--1.0.3: Fixed an issuue with a non-existent 5th party-member's shadow. 
+#1.0.2: Fixed an issuue with Star-marked tiles and smoothed the animation so it has less smoke.
+#1.0.3: Fixed an issuue with a non-existent 5th party-member's shadow. 
 
 ## Installation
 
