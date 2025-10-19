@@ -1,5 +1,7 @@
 # Stability and Compatibility Fixes Plugin
 
+## ⚙️  Changelogs:
+-1.0.1: Fixed an issue with loading save files even after deleted.
 
 ## 📋 Overview
 
