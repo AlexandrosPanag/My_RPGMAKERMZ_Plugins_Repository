@@ -4,7 +4,7 @@
 
 /*:
 @target MZ
-@plugindesc [v1.0.0] Comprehensive stability fixes and memory management for long gameplay sessions
+@plugindesc [v1.0.1] Comprehensive stability fixes and memory management for long gameplay sessions
 @author Alexandros Panagiotakopoulos
 @url alexandrospanag.github.io
 
@@ -348,16 +348,23 @@ Place this plugin BEFORE other plugins in your plugin list for maximum effect.
     if (enableAutoSaveBackup) {
         const _DataManager_saveGame = DataManager.saveGame;
         DataManager.saveGame = function(savefileId) {
-            // Create backup before saving
-            try {
-                const backupId = `backup_${savefileId}`;
-                const existingData = StorageManager.loadObject(this.makeSavename(savefileId));
-                if (existingData) {
-                    StorageManager.saveObject(this.makeSavename(backupId), existingData);
-                }
-            } catch (e) {
-                console.error('Backup save failed:', e);
-            }
+            // Create backup before saving (only if save exists)
+            const saveName = this.makeSavename(savefileId);
+            const backupId = `backup_${savefileId}`;
+            
+            // Use async approach with proper error handling
+            StorageManager.loadObject(saveName)
+                .then(existingData => {
+                    if (existingData) {
+                        return StorageManager.saveObject(this.makeSavename(backupId), existingData);
+                    }
+                })
+                .catch(e => {
+                    // Silently ignore if no existing save (first time saving to this slot)
+                    if (enableErrorLogging && e.message !== 'Savefile not found') {
+                        console.error('Backup save failed:', e);
+                    }
+                });
             
             return _DataManager_saveGame.call(this, savefileId);
         };
