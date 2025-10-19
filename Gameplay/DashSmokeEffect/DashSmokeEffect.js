@@ -181,8 +181,11 @@
     Game_Follower.prototype.update = function() {
         _Game_Follower_update.call(this);
         
-        // Followers dash when the player dashes
-        if (this.isVisible() && $gamePlayer.isDashing() && this.isMoving()) {
+        // Only show smoke for followers within the current party size
+        const followerIndex = $gamePlayer._followers._data.indexOf(this);
+        const isActiveFollower = followerIndex >= 0 && followerIndex < $gameParty.size() - 1;
+        
+        if (isActiveFollower && this.isVisible() && $gamePlayer.isDashing() && this.isMoving()) {
             this.updateDashSmokeCounter();
         }
     };
