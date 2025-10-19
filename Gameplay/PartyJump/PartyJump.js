@@ -1,10 +1,8 @@
 /*:
  * @target MZ
- * @plugindesc PartyJump v1.0.0
- * @author GitHub Copilot & Alexandros Panagiotokopoulos
- * @version 1.0.0
- * @description A dynamic party jump system for RPG Maker MZ
- * @url 
+ * @plugindesc PartyJump
+ * @author Alexandros Panagiotakopoulos
+ * @url alexandrospanag.github.io
  * @help PartyJump.js
  * 
  * ============================================================================
@@ -953,4 +951,5 @@
         }
     }
     
+
 })();
