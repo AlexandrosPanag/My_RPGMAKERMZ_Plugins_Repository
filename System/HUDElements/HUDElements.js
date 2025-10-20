@@ -7,7 +7,7 @@
  * @author Alexandros Panagiotakopoulos
  * @version 1.0.0
  * @date 2025-09-26
- * @url 
+ * @url alexandrospanag.github.io
  * @help HUDElements.js
  * 
  * ============================================================================
@@ -737,5 +737,6 @@
     
     👥 Your party status is now beautifully displayed!
     `);
+
 
 })();
