@@ -1,13 +1,26 @@
 # HUDElements Plugin Documentation
 
-**Copyright © Alexandros Panagiotakopoulos. All Rights Reserved.**
+![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
+![Version](https://img.shields.io/badge/version-1.0.0-green)
+![License](https://img.shields.io/badge/license-CC%20BY%204.0-orange)
 
+
+
+## 👤 Author
+
+**Alexandros Panagiotakopoulos**
+
+---
+
+
+**Copyright © 2025 Alexandros Panagiotakopoulos. All Rights Reserved.**
+---
 The ultimate performance coordination system for RPG Maker MZ. Transform your plugin collection into a unified, intelligent performance management suite that delivers consistent, optimized gameplay across all devices.
 
-##🎯 Overview
+## 🎯 Overview
 The HUDElements plugin provides a real-time party status HUD system that displays HP/MP bars, names, and levels for all active party members. The HUD features smooth animations, customizable positioning, and automatic updates during gameplay.
 
-##⚡ Features
+## ⚡ Features
 - **Real-time Status Display**: Live HP/MP bars that update automatically
 - **Party Management**: Shows up to 4 party members with automatic formation handling
 - **Smooth Animations**: Optional animated transitions for status changes
