@@ -1,13 +1,13 @@
 //=============================================================================
 // SimpleControllerOverlay.js
 // Version: 1.0.0
-// Author: Assistant
+// Author: Alexandros Panagiotakopoulos
 //=============================================================================
 
 /*:
  * @target MZ
  * @plugindesc Simple Controller Button Overlay v1.0.0
- * @author Assistant
+ * @author Alexandros Panagiotakopoulos
  * @version 1.0.0
  * @url alexandrospanag.github.io
  * @date 26/09/2025
