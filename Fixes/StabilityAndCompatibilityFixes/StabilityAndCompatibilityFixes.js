@@ -541,33 +541,29 @@ Place this plugin BEFORE other plugins in your plugin list for maximum effect.
             }
         }
             
-            _Sprite_Animation_remove.call(this);
-        };
-    }
-    
-    //=============================================================================
-    // Map Memory Management
+        _Scene_Map_terminate.call(this);
+    };
+}
+
+//=============================================================================
+// Map Memory Management
     //=============================================================================
     
     if (enableMemoryManagement) {
-        const _Scene_Map_terminate = Scene_Map.prototype.terminate;
-        Scene_Map.prototype.terminate = function() {
-            // Clear all map events
-            if ($gameMap && $gameMap._events) {
-                for (const event of $gameMap._events) {
-                    if (event) {
-                        event._moveRouteIndex = 0;
-                        event._moveRoute = null;
+    const _Scene_Map_terminate = Scene_Map.prototype.terminate;
+    Scene_Map.prototype.terminate = function() {
+        // Clear all map events safely
+        if ($gameMap && $gameMap._events) {
+            for (const event of $gameMap._events) {
+                if (event) {
+                    event._moveRouteIndex = 0;
+                    // Don't set to null - reset to default empty structure
+                    if (event._moveRoute) {
+                        event._moveRoute = { list: [], repeat: false, skippable: false, wait: false };
                     }
                 }
             }
-            
-            _Scene_Map_terminate.call(this);
-            
-            // Clear tilemap
-            if (this._spriteset && this._spriteset._tilemap) {
-                this._spriteset._tilemap.refresh();
-            }
+        }
         };
     }
     
