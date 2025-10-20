@@ -7,7 +7,7 @@
  * @author Alexandros Panagiotakopoulos
  * @version 1.0.0
  * @date 2025-09-26
- * @url 
+ * @url alexandrospanag.github.io
  * @help VisualFilterMode.js
  * 
  * ============================================================================
@@ -1018,5 +1018,6 @@
     
     🎨 Click the purple 🎨 button to experience visual magic!
     `);
+
 
 })();
