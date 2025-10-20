@@ -6,7 +6,8 @@
 @target MZ
 @plugindesc [v1.0.1] Controller Detection System
 @author Alexandros Panagiotakopoulos
-@url 
+@url alexandrospanag.github.io
+@date 2025-09-20
 @help ControllerDetection.js
 
 @param enableControllerDetection
@@ -560,4 +561,5 @@ Terms of Use:
         }
     };
     
+
 })();
