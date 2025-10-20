@@ -3,7 +3,8 @@
  * @plugindesc Prevents walking through impassable tiles (X marked tiles)
  * @author Alexandros Panagiotokopoulos
  * @version 1.0.0
- * alexandrospanag.github.io
+* @date 2025-10-10
+ * @url alexandrospanag.github.io
  * @help
  * This plugin fixes collision detection to completely prevent walking
  * through tiles marked with X (impassable).
@@ -72,5 +73,6 @@
         
         return true;
     };
+
 
 })();
