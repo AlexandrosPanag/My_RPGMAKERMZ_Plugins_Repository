@@ -4,6 +4,15 @@
 
 *Eliminates the notorious "first tile clipping" bug where players can walk through impassable terrain marked with X on their first movement attempt.*
 
+
+![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
+![Version](https://img.shields.io/badge/version-1.0.0-green)
+![License](https://img.shields.io/badge/license-CC%20BY%204.0-orange)
+
+## 👤 Author
+
+**Alexandros Panagiotakopoulos**
+
 ---
 
 ## 📋 Overview
