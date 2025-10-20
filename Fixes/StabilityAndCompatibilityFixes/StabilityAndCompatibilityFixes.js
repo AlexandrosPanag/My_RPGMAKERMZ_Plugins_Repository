@@ -4,9 +4,10 @@
 
 /*:
 @target MZ
-@plugindesc [v1.0.1] Comprehensive stability fixes and memory management for long gameplay sessions
+@plugindesc [v1.0.2] Comprehensive stability fixes and memory management for long gameplay sessions
 @author Alexandros Panagiotakopoulos
 @url alexandrospanag.github.io
+@Date 20/10/2025
 
 @param enableMemoryManagement
 @text Enable Memory Management
@@ -407,6 +408,18 @@ Place this plugin BEFORE other plugins in your plugin list for maximum effect.
             this._waitMode = '';
             this._waitCount = 0;
         };
+        // Add safety check for move routes
+        const _Game_Character_updateRoutineMove = Game_Character.prototype.updateRoutineMove;
+        Game_Character.prototype.updateRoutineMove = function() {
+            // Ensure move route exists and has required structure
+            if (!this._moveRoute || !this._moveRoute.list) {
+                this._moveRoute = { list: [], repeat: false, skippable: false, wait: false };
+                this._moveRouteIndex = 0;
+                this._moveRouteForcing = false;
+                return;
+            }
+            _Game_Character_updateRoutineMove.call(this);
+        };
         
         // Prevent infinite loops
         const _Game_Interpreter_update = Game_Interpreter.prototype.update;
@@ -513,16 +526,20 @@ Place this plugin BEFORE other plugins in your plugin list for maximum effect.
     //=============================================================================
     
     if (enableMemoryManagement) {
-        const _Sprite_Animation_remove = Sprite_Animation.prototype.remove;
-        Sprite_Animation.prototype.remove = function() {
-            // Ensure all animation sprites are destroyed
-            if (this._targets) {
-                for (const target of this._targets) {
-                    if (target && target._animationSprites) {
-                        target._animationSprites = [];
+    const _Scene_Map_terminate = Scene_Map.prototype.terminate;
+    Scene_Map.prototype.terminate = function() {
+        // Clear all map events safely
+        if ($gameMap && $gameMap._events) {
+            for (const event of $gameMap._events) {
+                if (event) {
+                    event._moveRouteIndex = 0;
+                    // Don't set to null - reset to default empty structure
+                    if (event._moveRoute) {
+                        event._moveRoute = { list: [], repeat: false, skippable: false, wait: false };
                     }
                 }
             }
+        }
             
             _Sprite_Animation_remove.call(this);
         };
