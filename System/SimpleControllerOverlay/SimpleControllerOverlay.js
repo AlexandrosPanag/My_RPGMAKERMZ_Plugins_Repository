@@ -9,7 +9,8 @@
  * @plugindesc Simple Controller Button Overlay v1.0.0
  * @author Assistant
  * @version 1.0.0
- * @url 
+ * @url alexandrospanag.github.io
+ * @date 26/09/2025
  * @help SimpleControllerOverlay.js
  * 
  * @param controllerType
