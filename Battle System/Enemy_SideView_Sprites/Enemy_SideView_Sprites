@@ -6,6 +6,7 @@
  * @target MZ
  * @plugindesc Allows enemies to use side-view sprite sheets like actors
  * @author Alexandros Panagiotakopoulos
+ * @date 2025-10-20
  * @url https://alexandrospanag.github.io
  * @help Enemy_SideView_Sprites.js
  * 
