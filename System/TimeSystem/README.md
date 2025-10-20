@@ -1,5 +1,21 @@
 # 🕐 RPG Maker MZ Time System Plugin Documentation
 
+
+![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
+![Version](https://img.shields.io/badge/version-1.0.2-green)
+![License](https://img.shields.io/badge/license-CC%20BY%204.0-orange)
+
+
+
+## 👤 Author
+
+**Alexandros Panagiotakopoulos**
+
+---
+
+
+**Copyright © 2025 Alexandros Panagiotakopoulos. All Rights Reserved.**
+
 **Version:** 1.0.2  
 **Compatibility:** RPG Maker MZ  
 **Copyright:** Alexandros Panagiotakopoulos. All Rights Reserved Ⓒ  
