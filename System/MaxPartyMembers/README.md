@@ -2,6 +2,18 @@
 
 **Copyright © Alexandros Panagiotakopoulos. All Rights Reserved.**
 
+
+![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
+![Version](https://img.shields.io/badge/version-1.0.0-green)
+![License](https://img.shields.io/badge/license-CC%20BY%204.0-orange)
+
+
+
+## 👤 Author
+
+**Alexandros Panagiotakopoulos**
+
+---
 ## Overview
 
 **MaxPartyMembers** is an RPG Maker MZ plugin that enforces a strict maximum on active party members in both battle and on the map. This plugin uses a "nuclear option" approach, forcefully overriding core party functions to ensure your party size limit is respected regardless of what other plugins do.
