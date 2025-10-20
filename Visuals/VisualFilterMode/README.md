@@ -1,8 +1,17 @@
 # 🎨 VisualFilterMode.js - Professional Visual Filter System
 
-**Copyright © 2025 Alexandros Panagiotakopoulos. All Rights Reserved.**
-
 Transform your RPG Maker MZ game with stunning visual filters that players can control with a single click! Experience cinematic-quality visual effects that enhance atmosphere, mood, and immersion.
+
+![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
+![Version](https://img.shields.io/badge/version-1.0.0-green)
+![License](https://img.shields.io/badge/license-CC%20BY%204.0-orange)
+
+
+
+## 👤 Author
+
+**Alexandros Panagiotakopoulos**
+
 
 ---
 
