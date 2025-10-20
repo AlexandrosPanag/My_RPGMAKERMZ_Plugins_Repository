@@ -14,8 +14,8 @@ Welcome to my collection of RPG Maker MZ Fixes plugins! This repository contains
 
 ---
 ## ⚙️  Changelogs:
--1.0.1: Fixed an issue with loading save files even after deleted.
--1.0.2: Fixed an issue with loading lists causing the game to crash.
+# 1.0.1: Fixed an issue with loading save files even after deleted.
+# 1.0.2: Fixed an issue with loading lists causing the game to crash.
 
 ## 📋 Overview
 
