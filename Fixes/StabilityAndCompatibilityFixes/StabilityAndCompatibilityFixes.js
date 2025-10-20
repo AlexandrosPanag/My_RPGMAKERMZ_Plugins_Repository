@@ -549,21 +549,30 @@ Place this plugin BEFORE other plugins in your plugin list for maximum effect.
 // Map Memory Management
     //=============================================================================
     
+    //=============================================================================
+    // Map Memory Management
+    //=============================================================================
+    
     if (enableMemoryManagement) {
-    const _Scene_Map_terminate = Scene_Map.prototype.terminate;
-    Scene_Map.prototype.terminate = function() {
-        // Clear all map events safely
-        if ($gameMap && $gameMap._events) {
-            for (const event of $gameMap._events) {
-                if (event) {
-                    event._moveRouteIndex = 0;
-                    // Don't set to null - reset to default empty structure
-                    if (event._moveRoute) {
-                        event._moveRoute = { list: [], repeat: false, skippable: false, wait: false };
+        const _Scene_Map_terminate = Scene_Map.prototype.terminate;
+        Scene_Map.prototype.terminate = function() {
+            // Clear all map events safely
+            if ($gameMap && $gameMap._events) {
+                for (const event of $gameMap._events) {
+                    if (event && event._moveRoute) {
+                        // Reset to default empty structure instead of null
+                        event._moveRoute = { 
+                            list: [], 
+                            repeat: false, 
+                            skippable: false, 
+                            wait: false 
+                        };
+                        event._moveRouteIndex = 0;
                     }
                 }
             }
-        }
+            
+            _Scene_Map_terminate.call(this);
         };
     }
     
