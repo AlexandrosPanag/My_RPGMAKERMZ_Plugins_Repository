@@ -225,15 +225,6 @@ YourProject/
 - [RPG Maker Forums](https://forums.rpgmakerweb.com/)
 - [Plugin Development Guide](https://docs.google.com/document/d/1xz7kB1g_z_eTvLxNzLWLp7eKPKrO9yVK7S7i0f1Tq8E/)
 
-## 🔮 Future Features
-
-Planned improvements for future versions:
-- Custom motion speed configuration
-- Support for weapon-specific attack animations
-- Hybrid mode (mix static and animated enemies)
-- Extended motion set support
-- Visual plugin configurator
-
 ---
 
 **Made with ❤️ for the RPG Maker community**
