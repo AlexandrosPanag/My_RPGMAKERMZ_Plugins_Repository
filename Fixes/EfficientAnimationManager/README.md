@@ -1,10 +1,13 @@
 # Efficient Animation Manager for RPG Maker MZ
 
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
-![Version](https://img.shields.io/badge/version-1.0.0-green)
+![Version](https://img.shields.io/badge/version-1.0.1-green)
 ![License](https://img.shields.io/badge/license-CC%20BY%204.0-orange)
 
 A performance-optimized plugin that manages multiple animated objects (flames, water, crystals, etc.) using a single centralized update loop instead of resource-intensive parallel events.
+
+## ⚙️ Changelog
+### Version: 1.0.1 - Fixed an issue causing all animations to freeze.
 
 
 ## 📝 License & Credits
