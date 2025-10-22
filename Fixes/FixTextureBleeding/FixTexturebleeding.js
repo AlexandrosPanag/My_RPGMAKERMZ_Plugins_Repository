@@ -7,6 +7,7 @@
  * @plugindesc [v1.0.3] Adds smoke effects when player and party members dash
  * @author Alexandros Panagiotakopoulos
  * @url alexandrospanag.github.io
+* @version 1.0.0
  *
  * @help This plugin fixes the line artifacts that appear when zooming
  * or scaling sprites by adjusting PIXI rendering settings and texture wrapping.
