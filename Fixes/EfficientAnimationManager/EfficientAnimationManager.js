@@ -1,6 +1,6 @@
 //=============================================================================
 // EfficientAnimationManager.js
-// Version: 1.0.0
+// Version: 1.0.1
 //=============================================================================
 
 /*:
@@ -8,7 +8,7 @@
  * @plugindesc Automatically doubles sprite size for events with specific names
  * @author Alexandros Panagiotakopoulos
  * @url https://alexandrospanag.github.io
- * @date 21/10/2025
+ * @date 22/10/2025
  * 
  * @help EfficientAnimationManager.js
  * 
@@ -112,13 +112,11 @@
             
             // Get the character graphic info
             const characterName = this._characterName;
-            const characterIndex = this._characterIndex;
             
             if (characterName) {
                 // Calculate max frames based on bitmap width
                 const bitmap = ImageManager.loadCharacter(characterName);
                 if (bitmap && bitmap.isReady()) {
-                    const pw = bitmap.width / 4; // Pattern width (4 columns)
                     const maxFrames = 3; // Standard RPG Maker frame count
                     
                     this._animFrame = (this._animFrame + 1) % maxFrames;
@@ -154,16 +152,28 @@
     };
 
     //=========================================================================
-    // Sprite_Character - Apply visual updates
+    // Sprite_Character - Apply visual updates (ONLY for animated events)
     //=========================================================================
     
     const _Sprite_Character_updateCharacterFrame = Sprite_Character.prototype.updateCharacterFrame;
     Sprite_Character.prototype.updateCharacterFrame = function() {
-        _Sprite_Character_updateCharacterFrame.call(this);
-        
+        // CRITICAL FIX: Only override frame updates for events with <animate> tag
         if (this._character instanceof Game_Event && this._character.isAnimated()) {
+            // Custom animation frame update for tagged events only
+            this.updateAnimatedCharacterFrame();
             this.updateAnimatedVisuals();
+        } else {
+            // Normal frame update for all other characters/events
+            _Sprite_Character_updateCharacterFrame.call(this);
         }
+    };
+
+    Sprite_Character.prototype.updateAnimatedCharacterFrame = function() {
+        const pw = this.patternWidth();
+        const ph = this.patternHeight();
+        const sx = (this.characterBlockX() + this._character._pattern) * pw;
+        const sy = (this.characterBlockY() + this._character.direction() / 2 - 1) * ph;
+        this.setFrame(sx, sy, pw, ph);
     };
 
     Sprite_Character.prototype.updateAnimatedVisuals = function() {
