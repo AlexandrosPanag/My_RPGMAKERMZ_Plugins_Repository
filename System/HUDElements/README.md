@@ -4,7 +4,37 @@
 ![Version](https://img.shields.io/badge/version-1.0.0-green)
 ![License](https://img.shields.io/badge/license-CC%20BY%204.0-orange)
 
+## 📄 License & Attribution
 
+### **Copyright Information**
+**Copyright © 2025 Alexandros Panagiotakopoulos. All Rights Reserved.**
+
+### **License Terms**
+Licensed under **Custom MIT-Based License with Attribution Requirements**
+
+**You may:**
+- ✅ Use in commercial projects with attribution
+- ✅ Use in non-commercial projects with attribution
+- ✅ Modify and adapt for your specific needs
+- ✅ Redistribute with proper attribution
+
+**You must:**
+- 📝 Include attribution in your game credits
+- 📋 Maintain copyright notices in code
+- 📄 Include license information when redistributing
+
+### **Required Attribution**
+**Minimum attribution in game credits:**
+```
+Performance integration by Alexandros Panagiotakopoulos
+```
+
+**Professional attribution (recommended):**
+```
+PerformanceIntegration.js - Unified Performance Management
+Professional RPG Plugin Suite by Alexandros Panagiotakopoulos
+```
+**Copyright © 2025 Alexandros Panagiotakopoulos. All Rights Reserved.**
 
 ## 👤 Author
 
@@ -240,36 +270,69 @@ memberDiv.appendChild(statusIcon);
 - Works with custom battle systems
 - May require positioning adjustments with UI modification plugins
 
+## ⚡ Quick Start Checklist
 
+- [ ] Read this entire README
+- [ ] **BACKUP YOUR PROJECT**
+- [ ] Read specific modification documentation
+- [ ] Test in isolated environment
+- [ ] **BACKUP AGAIN**
+- [ ] Apply modification
+- [ ] Run full test suite
+- [ ] Document changes
+- [ ] Monitor performance
+- [ ] Keep backups accessible
 
-## 📄 License & Attribution
+---
 
-### **Copyright Information**
-**Copyright © 2025 Alexandros Panagiotakopoulos. All Rights Reserved.**
+## 🎯 Remember
 
-### **License Terms**
-Licensed under **Custom MIT-Based License with Attribution Requirements**
+> **"An ounce of backup is worth a pound of recovery."**
 
-**You may:**
-- ✅ Use in commercial projects with attribution
-- ✅ Use in non-commercial projects with attribution
-- ✅ Modify and adapt for your specific needs
-- ✅ Redistribute with proper attribution
+### The Three Laws of Engine Modification:
+1. 💾 **ALWAYS BACKUP**
+2. 🧪 **ALWAYS TEST**
+3. 📝 **ALWAYS DOCUMENT**
 
-**You must:**
-- 📝 Include attribution in your game credits
-- 📋 Maintain copyright notices in code
-- 📄 Include license information when redistributing
+---
 
-### **Required Attribution**
-**Minimum attribution in game credits:**
+## 📧 Contact & Attribution
+
+**Modified by:** Alexandros Panagiotakopoulos  
+**Copyright:** © 2025 All Rights Reserved
+
+**Required Attribution in Credits:**
 ```
-Performance integration by Alexandros Panagiotakopoulos
+Engine Modifications by Alexandros Panagiotakopoulos
+Original RPG Maker MZ Engine © Kadokawa / GOTCHA GOTCHA GAMES Inc.
 ```
 
-**Professional attribution (recommended):**
+---
+
+## 🔄 Repository Status
+
+**Last Updated:** 2025  
+**Status:** Active Development  
+**Modifications:** 1+  
+**Stability:** Beta Testing
+
+---
+
+## ⚠️ FINAL REMINDER
 ```
-PerformanceIntegration.js - Unified Performance Management
-Professional RPG Plugin Suite by Alexandros Panagiotakopoulos
+╔════════════════════════════════════════════════════════╗
+║                                                        ║
+║  ⚠️  BACKUP YOUR FILES BEFORE PROCEEDING  ⚠️          ║
+║                                                        ║
+║     USE AT YOUR OWN RISK - NO WARRANTIES PROVIDED     ║
+║                                                        ║
+╚════════════════════════════════════════════════════════╝
 ```
-**Copyright © 2025 Alexandros Panagiotakopoulos. All Rights Reserved.**
+
+**YOU HAVE BEEN WARNED! 🚨**
+
+---
+
+*Happy modding, and may your backups be plentiful! 💾✨*
+
+
