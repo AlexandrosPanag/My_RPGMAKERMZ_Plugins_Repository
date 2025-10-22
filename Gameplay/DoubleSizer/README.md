@@ -4,6 +4,11 @@
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-red.svg)
 ![License](https://img.shields.io/badge/license-CC%20BY%204.0-green.svg)
 
+
+⚠️ IMPORTANT: Due to common RPG Maker MZ bugs commonly known as Texture Bleeding I recommend you download and place FIRST the following plugin to avoid the "line" sprite animation bug:
+https://github.com/AlexandrosPanag/My_RPGMAKERMZ_Plugins_Repository/tree/main/Fixes/FixTextureBleeding
+
+
 ## 👤 Author
 
 **Alexandros Panagiotakopoulos**
