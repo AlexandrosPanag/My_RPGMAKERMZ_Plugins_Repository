@@ -29,3 +29,22 @@ This modification edits the `Game_Event.prototype.updateSelfMovement` method fro
 
 ### Modified Method
 ```javascript
+Game_Event.prototype.updateSelfMovement = function() {
+    if (
+        !this._locked &&
+        // Remove: this.isNearTheScreen() &&
+        this.checkStop(this.stopCountThreshold())
+    ) {
+        switch (this._moveType) {
+            case 1:
+                this.moveTypeRandom();
+                break;
+            case 2:
+                this.moveTypeTowardPlayer();
+                break;
+            case 3:
+                this.moveTypeCustom();
+                break;
+        }
+    }
+};
