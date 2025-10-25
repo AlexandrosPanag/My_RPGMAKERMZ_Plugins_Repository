@@ -1,65 +1,88 @@
-MIT License with Attribution Requirements
+# License
 
-Copyright (c) 2025 Alexandros Panagiotakopoulos
+## Creative Commons Attribution 4.0 International License (CC BY 4.0)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This work is licensed under the Creative Commons Attribution 4.0 International License.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+### You are free to:
 
-**ATTRIBUTION REQUIREMENT:**
-Any use of this Software, whether in source or binary form, must include
-appropriate attribution to the original author. This attribution must be
-visible to end users in one of the following ways:
+- **Share** — copy and redistribute the material in any medium or format
+- **Adapt** — remix, transform, and build upon the material for any purpose, even commercially
 
-1. **In game credits or about screen:**
-   "PerformanceCatcher.js Plugin - Copyright © Alexandros Panagiotakopoulos"
+### Under the following terms:
 
-2. **In documentation or readme files:**
-   "Performance monitoring powered by PerformanceCatcher.js - Created by Alexandros Panagiotakopoulos"
+- **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
 
-3. **Minimum attribution (if space is limited):**
-   "Plugin by Alexandros Panagiotakopoulos"
+- **No additional restrictions** — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
 
-**COMMERCIAL USE:**
-This software may be used in commercial projects provided the attribution
-requirements above are met. No additional fees or royalties are required.
+### Notices:
 
-**MODIFICATIONS:**
-Modified versions of this software must:
-1. Retain all original copyright notices
-2. Include attribution to the original author as specified above
-3. Clearly indicate that modifications have been made
+You do not have to comply with the license for elements of the material in the public domain or where your use is permitted by an applicable exception or limitation.
 
-**DISTRIBUTION:**
-When redistributing this software, whether modified or unmodified:
-1. This license file must be included
-2. Attribution requirements must be maintained
-3. Recipients must be made aware of the attribution requirements
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+No warranties are given. The license may not give you all of the permissions necessary for your intended use. For example, other rights such as publicity, privacy, or moral rights may limit how you use the material.
 
 ---
 
-**License Type:** Custom MIT-Based License with Mandatory Attribution
-**SPDX Identifier:** Not applicable (Custom License)
-**Commercial Use:** Permitted with attribution
-**Modification:** Permitted with attribution
-**Distribution:** Permitted with attribution
-**Private Use:** Permitted with attribution
-**Warranty:** No warranty provided
-**Liability:** Author not liable for damages
+## ⚠️ CRITICAL DISCLAIMER FOR DEBUG TOOLS
 
-For questions about licensing or attribution requirements, please contact
-the copyright holder.
+**THIS REPOSITORY CONTAINS DEBUG AND DIAGNOSTIC TOOLS ONLY**
+
+While this license permits commercial use, **these specific tools are designed for debugging and development purposes only**. They use aggressive techniques that bypass normal RPG Maker MZ systems and will cause:
+
+- Performance degradation
+- Unpredictable behavior
+- Potential save game corruption
+- Plugin conflicts
+- Game instability
+
+**You must REMOVE these debug tools before releasing any commercial or non-commercial game.**
+
+These tools are intended to help you **diagnose problems during development**, not to be included in production builds.
+
+### Proper Usage:
+1. ✅ Use during development to diagnose issues
+2. ✅ Identify the root cause of problems
+3. ✅ Remove the debug tool
+4. ✅ Implement proper fixes
+5. ✅ Test without debug tools
+6. ✅ Release clean code
+
+### Prohibited Usage:
+- ❌ Including in released games
+- ❌ Distributing in public demos with debug tools active
+- ❌ Using as permanent solutions
+- ❌ Shipping to end users
+
+**By using these tools, you acknowledge that they are diagnostic instruments only and must not be included in production software.**
+
+---
+
+## Attribution
+
+When using or adapting this work, please provide attribution as follows:
+
+**Author:** Alexandros Panagiotakopoulos  
+**License:** CC BY 4.0  
+**Source:** [Link to this repository]
+
+Example attribution:
+```
+RPG Maker MZ Debug Tools by Alexandros Panagiotakopoulos
+Licensed under CC BY 4.0
+```
+
+---
+
+## Full License Text
+
+To view the full license text, visit:
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+For a human-readable summary, visit:
+https://creativecommons.org/licenses/by/4.0/
+
+---
+
+**Made with ❤️ for the RPG Maker community**
+
+*Use responsibly. Debug wisely. Ship cleanly.* 🛡️
