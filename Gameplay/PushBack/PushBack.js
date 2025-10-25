@@ -1,15 +1,15 @@
 /*:
  * @target MZ
- * @plugindesc Prevents walking through impassable tiles (X marked tiles)
+ * @plugindesc Prevents walking through impassable tiles with 0.5 tile precision
  * @author Alexandros Panagiotokopoulos
- * @version 1.0.0
+ * @version 1.1.0
  * alexandrospanag.github.io
  * @help
  * This plugin fixes collision detection to completely prevent walking
  * through tiles marked with X (impassable).
  * No configuration needed - just install and it works automatically.
  * ============================================================================
- * PushBack Plugin
+ * PushBack Plugin (0.5 Tile Precision)
  * ============================================================================
  * 
  * Put this in an event's NOTE field:
@@ -17,10 +17,14 @@
  * <pushback: distance>
  * 
  * Example:
- * <pushback: 2>
+ * <pushback: 2.5>
+ * <pushback: 1.5>
+ * <pushback: 0.5>
  * 
  * This creates an invisible square around the event. When the player tries to
  * move into this zone, they get pushed back in the opposite direction.
+ * 
+ * Now supports decimal values for half-tile precision!
  * 
  * Perfect for moving traffic like carriages!
  * 
@@ -51,14 +55,14 @@
             if (!event || !event.event()) continue;
             
             const note = event.event().note;
-            const match = note.match(/<pushback:\s*(\d+)>/i);
+            const match = note.match(/<pushback:\s*([\d.]+)>/i);
             
             if (match) {
-                const distance = parseInt(match[1]);
+                const distance = parseFloat(match[1]);
                 const dx = Math.abs(x - event.x);
                 const dy = Math.abs(y - event.y);
                 
-                // Check if position is within the square zone
+                // Check if position is within the square zone (with 0.5 tile precision)
                 if (dx <= distance && dy <= distance) {
                     return true;
                 }
