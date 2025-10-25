@@ -98,7 +98,7 @@ Plugins by Alexandros Panagiotakopoulos
 
 ---
 
-## 📞 Support & Contact
+## 💻 Support 
 
 ### Getting Help
 - **Documentation**: Check individual plugin README files
