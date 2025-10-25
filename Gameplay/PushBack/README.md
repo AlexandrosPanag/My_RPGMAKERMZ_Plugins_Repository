@@ -1,9 +1,12 @@
 # PushBack Plugin for RPG Maker MZ
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-red.svg)
 ![License](https://img.shields.io/badge/license-CC%20BY%204.0-green.svg)
 
+
+## ⚙️ Changelog
+* 1.1.0 - Updated the plugin to work with decimal (like 0.5) square
 
 ## 👤 Author
 
