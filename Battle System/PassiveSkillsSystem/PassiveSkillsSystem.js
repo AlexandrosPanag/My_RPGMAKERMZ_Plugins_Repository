@@ -8,8 +8,7 @@
  * @plugindesc Adds passive skills system with auto-battle effects and stacking buffs
  * @author Alexandros Panagiotakopoulos
  * @url https://alexandrospanag.github.io
- * @help 
- * 
+ * @help
  * ============================================================================
  * Passive Skills System v1.0.0
  * ============================================================================
@@ -99,6 +98,10 @@
     };
 
     Game_BattlerBase.prototype.passiveSkills = function() {
+        // Only actors have skills - enemies don't
+        if (!this.skills || typeof this.skills !== 'function') {
+            return [];
+        }
         return this.skills().filter(skill => this.isPassiveSkill(skill));
     };
 
