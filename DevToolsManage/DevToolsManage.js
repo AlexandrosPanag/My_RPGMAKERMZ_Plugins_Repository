@@ -2,7 +2,7 @@
 // DevToolsManage.js
 // ----------------------------------------------------------------------------
 // Original Author: (C)2020 Triacontane
-// Modified by: [Your Name] (2025)
+// Modified by: Alexandros Panagiotakopoulos (2025)
 // This software is released under the MIT License.
 // http://opensource.org/licenses/mit-license.php
 // ----------------------------------------------------------------------------
@@ -255,27 +255,27 @@
  */
 
 /*:ja
- * @plugindesc 開発支援プラグイン
- * @author トリアコンタン
+ * @plugindesc Development Support Plug-in
+ * @author Triacontane (トリアコンタン) & Alexandros Panagiotakopoulos
  * @base PluginCommonBase
  * @orderAfter PluginCommonBase
  * @target MZ
  * @url https://github.com/triacontane/RPGMakerMV/tree/mz_master/DevToolsManage.js
  *
  * @param StartupDevTool
- * @text 開始時に起動
- * @desc ゲーム開始時に同時にデベロッパツールを起動します。
+ * @text Launch at startup
+ * @desc When you start the game, the developer tools will launch at the same time.
  * @default true
  * @type boolean
  *
  * @param ShortcutList
- * @text ショートカット一覧
- * @desc 利用するショートカット機能の一覧です。
+ * @text Shortcut list
+ * @desc This is a list of shortcut functions to use.
  * @type struct<ShortcutFunction>[]
  *
  * @param ShowFPS
- * @text FPS表示
- * @desc 初期状態で画面左上にFPSを表示します。（FPS/MS/OFF）
+ * @text FPS indicators
+ * @desc By default, FPS is displayed in the upper left corner of the screen (FPS/MS/OFF).
  * @default OFF
  * @type select
  * @option FPS
@@ -284,151 +284,149 @@
  *
  * @param CutTitle
  * @text タイトルカット
- * @desc タイトル画面をとばしてゲームを開始します。
+ * @desc Skip the title screen and start the game.
  * @default 0
  * @type select
- * @option 無効
+ * @option invalid
  * @value 0
- * @option ニューゲーム開始
+ * @option Start a new game
  * @value 1
- * @option 最新データをロード
+ * @option Load latest data
  * @value 2
  *
  * @param RapidStart
- * @text 高速開始
- * @desc 高速化された状態でゲームを開始します。（ON/OFF）
+ * @text High-speed start
+ * @desc Start the game in a faster state. (ON/OFF)
  * @default false
  * @type boolean
  *
  * @param RapidSpeed
- * @text 高速化倍率
- * @desc 高速化を実行した際の再生倍率です。16倍速まで指定できます。
+ * @text High-speed scaling
+ * @desc This is the playback speed when speeding up. You can specify up to 16x speed.
  * @default 2
  * @type number
  * @max 16
  *
  * @param SlowSpeed
- * @text 低速化倍率
- * @desc 低速化を実行した際の再生倍率(分母)です。1/16倍速まで指定できます。
+ * @text Low speed ratio
+ * @desc This is the playback speed (denominator) when slowing down the video. You can specify up to 1/16x speed.
  * @default 2
  * @type number
  * @max 16
  *
  * @param InvalidMessageSkip
- * @text メッセージスキップ無効
- * @desc 高速化された状態でのメッセージ強制スキップを無効にします。
+ * @text Message skip disabled
+ * @desc Disables forced skipping of messages in accelerated state.
  * @default false
  * @type boolean
  *
  * @param MenuBarVisible
- * @text メニューバー表示
- * @desc メニューバーを表示し各種デバッグコマンドを実行できます。(ON/OFF)
+ * @text Show Menu Bar
+ * @desc Displays the menu bar and allows you to execute various debug commands. (ON/OFF)
  * @default true
  * @type boolean
  *
  * @param ClickMenu
  * @text クリックメニュー
- * @desc クリックメニューから各種デバッグコマンドを実行できます。(-1:無効 0:左 1:ホイール 2:右)
+ * @desc You can execute various debug commands from the click menu. (-1: Disabled, 0: Left, 1: Wheel, 2: Right)
  * @default 1
  * @type select
- * @option 無効
+ * @option invalid  
  * @value -1
- * @option 左
+ * @option left
  * @value 0
- * @option ホイール
+ * @option wheel
  * @value 1
- * @option 右
+ * @option right
  * @value 2
  *
  * @param OutputStartupInfo
- * @text 起動時情報出力
- * @desc 起動時に様々な情報をログ出力します。
+ * @text Output startup information
+ * @desc Various information will be logged at startup.
  * @default true
  * @type boolean
  *
  * @param StartupOnTop
- * @text 最前面で起動
- * @desc 起動時にゲーム画面が最前面に固定されます。
+ * @text Launch at forefront
+ * @desc When starting, the game screen will be fixed at the forefront.
  * @default false
  * @type boolean
  *
  * @param UseReloadData
- * @text リロード機能を使う
- * @desc オンフォーカスでマップとデータを再読込します。競合等で動作に問題がある場合は無効にしてください。
+ * @text Use reload function
+ * @desc Reloads maps and data when on focus. Disable this if you are having problems with the app due to conflicts.
  * @default true
  * @type boolean
  *
  * @param UseBreakPoint
- * @text ブレークポイントを使う
- * @desc IDEなどが提供するブレークポイント機能を使ったときに、キー押下判定が解除されない問題の対策です。
+ * @text Use breakpoints
+ * @desc This is a workaround for the issue where key press detection is not canceled when using the breakpoint function provided by the IDE.
  * @default false
  * @type boolean
  *
- * @help デベロッパツールの挙動を調整する制作支援プラグインです。
- * このプラグインはローカル環境でのテストプレー時のみ有効となります。
- * 快適な開発支援のために以下の機能を提供します。
- *
- * 1. ゲーム開始時にデベロッパツールが自動で立ち上がります。(通常はF8で起動)
- *    OFFにしていた場合でもエラーが発生すると自動で立ち上がります。
- *
- * 2. ゲーム画面を常に最前面に表示してくれます。画面を見ながら作業をする場合に
- *    便利です。ゲーム中にメニューバーから切り替えできます。
- *
- * 3. マップやイベントを修正して再保存すると、ゲーム画面にフォーカスを戻した
- *    瞬間にマップとデータベースを自動でリロードしてくれます。
- *
- * 4. タイトル画面を飛ばして最新のセーブファイルをロードできます。
- *
- * 5. ゲームのスピードを高速化、もしくは低速化(16倍速まで)できます。
- *    また、完全に止めてしまうこともできます。
- *    ウィンドウ項目を選択中の間だけは通常スピードになります。
- *
- * 6. 強制的に敵を全滅させて勝利することができます。報酬も取得できます。
- *    強制敗北、強制中断も可能です。
- *
- * 7. 任意のスクリプトを毎フレーム実行させることができます。
- *    スクリプトの戻り値が変化したときのみ結果をコンソールに出力します。
- *
- * 8. エディタ経由で外部から戦闘テスト可能にします。
- *    urlオプションにbtestと設定してください。
- *
- * このプラグインにはプラグインコマンドはありません。
- *
- * 利用規約：
- *  作者に無断で改変、再配布が可能で、利用形態（商用、18禁利用等）
- *  についても制限はありません。
- *  このプラグインはもうあなたのものです。
+ * @help This is a development support plugin that adjusts the behavior of the developer tools.
+* This plugin is only active during test play in a local environment.
+* It provides the following features to support smooth development.
+*
+* 1. The developer tools launch automatically when the game starts. (Usually launched with F8).
+* Even if disabled, they will launch automatically if an error occurs.
+*
+* 2. They keep the game screen in the foreground. This is convenient for working while looking at the screen.
+* You can switch between them from the menu bar during gameplay.
+*
+* 3. If you modify a map or event and resave it, the map and database will automatically reload the moment you return focus to the game screen.
+*
+* 4. You can skip the title screen and load the latest save file.
+*
+* 5. You can speed up or slow down the game speed (up to 16x speed).
+* You can also stop the game completely.
+* The game will run at normal speed only while a window item is selected.
+*
+* 6. You can force annihilate all enemies to win. You can also obtain rewards.
+* Force defeat and forced abort are also possible.
+*
+* 7. You can execute any script every frame.
+* Results are output to the console only when the script's return value changes.
+*
+* 8. Battles can be tested externally via the editor.
+* Set the url option to btest.
+*
+* This plugin does not have a plugin command.
+*
+* Terms of Use:
+* You may modify and redistribute this plugin without permission from the author, and there are no restrictions on its use (commercial, R18, etc.).
+* This plugin is now yours.
  */
 
 /*~struct~ShortcutFunction:
  *
  * @param Command
- * @text コマンド内容
- * @desc 実行したいコマンドの内容です。
+ * @text Command
+ * @desc The content of the command you want to execute.
  * @default
  * @type select
- * @option 最前面に表示
+ * @option Always on top
  * @value AlwaysOnTop
- * @option 画面フリーズ
+ * @option Freeze screen
  * @value Freeze
- * @option 常駐スクリプト
+ * @option Execute script
  * @value ExecuteScript
- * @option 戦闘中断
+ * @option Force abort
  * @value ForceAbort
- * @option 戦闘敗北
+ * @option Force defeat
  * @value ForceDefeat
- * @option 戦闘勝利
+ * @option Force victory
  * @value ForceVictory
- * @option 高速化
+ * @option High speed toggle
  * @value ToggleRapid
- * @option 低速化
+ * @option Low speed toggle
  * @value ToggleSlow
- * @option プロジェクトを開く
+ * @option Open project
  * @value OpenProject
  *
  * @param HotKey
- * @text ホットキー
- * @desc コマンドを実行するためのホットキーです。
+ * @text Hotkey
+ * @desc Hotkey to execute the command.
  * @default
  * @type select
  * @option
@@ -446,14 +444,14 @@
  * @option F12
  *
  * @param Alt
- * @text ALTキー同時押し
- * @desc 有効にするとALTキーと同時押しした場合のみ実行します。
+ * @text ALT key press simultaneously
+ * @desc When enabled, it will only be executed when pressed simultaneously with the ALT key.
  * @type boolean
  * @default false
  *
  * @param Ctrl
- * @text CTRLキー同時押し
- * @desc 有効にするとCTRLキーと同時押しした場合のみ実行します。
+ * @text CTRL key press simultaneously
+ * @desc When enabled, it will only be executed when you press the CTRL key at the same time.
  * @type boolean
  * @default false
  *
@@ -461,7 +459,7 @@
 
 /**
  * Controller_NwJs
- * NW.jsのウィンドウを操作します。
+ * Manipulates NW.js windows.
  * @constructor
  */
 function Controller_NwJs() {
@@ -524,7 +522,7 @@ function Controller_NwJs() {
         }
     };
 
-    // テストプレー時以外は以降の機能を無効
+    // Disable subsequent features unless in test play
     if (!Utils.isOptionValid('test') && !DataManager.isBattleTest()) {
         console.log(PluginManagerEx.findPluginName(script) + ' is valid only test play!');
         return;
@@ -924,19 +922,19 @@ function Controller_NwJs() {
     class ShortCutCommand {
         constructor(shortcut, id) {
             const commands = {
-                AlwaysOnTop  : {name: '最前面に表示', type: 'checkbox'},
-                ToggleRapid  : {name: '高速化', type: 'checkbox'},
-                ToggleSlow   : {name: '低速化', type: 'checkbox'},
-                ForceVictory : {name: '強制勝利', type: 'normal'},
-                ExecuteScript: {name: '常駐スクリプト', type: 'normal'},
-                Freeze       : {name: '画面フリーズ', type: 'checkbox'},
-                ForceDefeat  : {name: '強制敗北', type: 'normal'},
-                ForceAbort   : {name: '強制中断', type: 'normal'},
-                OpenProject  : {name: 'プロジェクトを開く', type: 'normal'},
-                Capture      : {name: 'キャプチャ', type: 'normal'},
-                Record       : {name: '録画', type: 'normal'},
-                Screenshot   : {name: 'スクリーンショット', type: 'normal'},
-                Backup       : {name: 'バックアップ作成', type: 'normal'}
+                AlwaysOnTop  : {name: 'Bring to Front (最前面に表示)', type: 'checkbox'},
+                ToggleRapid  : {name: 'High Speed Toggle (高速化)', type: 'checkbox'},
+                ToggleSlow   : {name: 'Low Speed Toggle (低速化)', type: 'checkbox'},
+                ForceVictory : {name: 'Force Victory (強制勝利)', type: 'normal'},
+                ExecuteScript: {name: 'Execute Script (常駐スクリプト)', type: 'normal'},
+                Freeze       : {name: 'Freeze Screen (画面フリーズ)', type: 'checkbox'},
+                ForceDefeat  : {name: 'Force Defeat (強制敗北)', type: 'normal'},
+                ForceAbort   : {name: 'Force Abort (強制中断)', type: 'normal'},
+                OpenProject  : {name: 'Open Project (プロジェクトを開く)', type: 'normal'},
+                Capture      : {name: 'Capture (キャプチャ)', type: 'normal'},
+                Record       : {name: 'Record (録画)', type: 'normal'},
+                Screenshot   : {name: 'Screenshot (スクリーンショット)', type: 'normal'},
+                Backup       : {name: 'Backup (バックアップ作成)', type: 'normal'}
             };
             this._command  = commands[id];
             this._id       = id;
@@ -1070,7 +1068,7 @@ function Controller_NwJs() {
         }
 
         executeExecuteScript() {
-            const promptValue  = '常駐実行したいスクリプトを入力してください。';
+            const promptValue  = 'Enter the script you want to run as a resident program. (常駐実行したいスクリプトを入力してください。)';
             const nwWindow     = SceneManager.getNwWindow();
             const scriptString = window.prompt(promptValue, nwWindow.readClipboard());
             if (scriptString !== null && scriptString !== '') {
