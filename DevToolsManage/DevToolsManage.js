@@ -8,7 +8,7 @@
 // ----------------------------------------------------------------------------
 // Version
 
-// 1.3.0 2025/01/XX Improvements: Use of modern NW.js API, performance optimization, UI improvements
+// 1.3.0 2025/11/01 Improvements: Use of modern NW.js API, performance optimization, UI improvements
 // 1.2.2 2023/10/07 IDE breakpoint support is now optional.
 // 1.2.1 2023/07/20 Fixed an incorrect title cut for the English parameter.
 // 1.2.0 2023/01/08 Changed the behavior of title cuts to allow you to choose between starting a new game or loading the latest data.
@@ -283,7 +283,7 @@
  * @option OFF
  *
  * @param CutTitle
- * @text タイトルカット
+ * @text Title cut
  * @desc Skip the title screen and start the game.
  * @default 0
  * @type select
