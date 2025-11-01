@@ -4,7 +4,7 @@
 Copyright (c) 2020 Triacontane
 
 ## Modifications and Enhancements
-Copyright (c) 2025 [Your Name]
+Copyright (c) 2025 Alexandros Panagiotakopoulos
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -37,9 +37,9 @@ This is a modified version of DevToolsManage.js originally created by Triacontan
 - GitHub: https://github.com/triacontane/
 
 **Enhanced by:**
-- [Your Name]
-- Website: [Your Website URL]
-- GitHub: [Your GitHub URL] (if applicable)
+- Alexandros Panagiotakopoulos
+- Website: alexandrospanag.github.io
+- GitHub: https://github.com/AlexandrosPanag
 
 **Modifications Include:**
 - Modern NW.js API implementation
