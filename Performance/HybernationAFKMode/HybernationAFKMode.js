@@ -830,6 +830,14 @@
                 const scaleFactor = this.performanceScaleFactors[this.currentStage];
             }
         }
+        
+        debugLog(message, data = null) {
+            if (CONFIG.debugMode) {
+                if (data) {
+                } else {
+                }
+            }
+        }
     }
 
     let hibernationSystem = null;
