@@ -7,7 +7,7 @@
 A powerful development support plugin for RPG Maker MZ that supercharges your workflow with modern features, performance monitoring, and quality-of-life improvements.
 
 > **Original Author:** [Triacontane](https://github.com/triacontane/)  
-> **Enhanced by:** [Your Name]
+> **Enhanced by:** Alexandros Panagiotakopoulos
 
 ---
 
@@ -469,4 +469,4 @@ If this plugin helps your development, consider giving it a star! ⭐
 
 ---
 
-*Last Updated: January 2025*
+*Last Updated: November 2025*
