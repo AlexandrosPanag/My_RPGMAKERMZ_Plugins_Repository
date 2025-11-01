@@ -3,7 +3,8 @@
 
 > *Make your entire party leap into action with advanced hold-and-release charging system!*
 
-## Version 1.0.1 Original version of PartyJump that you simply use the spacebar to jump and return to the original position in the same X,Y position/ map coordinates (no object jumping/distance jumping).
+## Version 1.0.1: 
+Original version of PartyJump that you simply use the spacebar to jump and return to the original position in the same X,Y position/ map coordinates (no object jumping/distance jumping).
 
 ## 🌟 Overview
 
