@@ -1,10 +1,19 @@
 # 🦘 PartyJump Plugin for RPG Maker MZ
 
+
+![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
+![Version](https://img.shields.io/badge/version-1.1.0-green)
+![License](https://img.shields.io/badge/license-MIT-orange)
+
+
+An improved and evolved version of the PartyJump Plugin that uses smart-object detection for party jumping into an area and objects!
+
+
 > *Make your entire party leap into action with advanced hold-and-release charging system!*
 
 ## 🌟 Overview
 
-The **PartyJump** plugin adds a sophisticated jumping mechanic to RPG Maker MZ with a **hold-and-release charging system**. Hold **SPACE** or **L3** to charge your jump power, add directional input for 8-way directional jumps, then release to execute powerful leaps with visual feedback and dynamic sound effects!
+The **PartyJump** plugin adds a sophisticated jumping mechanic to RPG Maker MZ with a **hold-and-release charging system**. Hold **SPACE** or **L3** to charge your jump power, add directional input for 8-way directional jumps, then release to execute powerful leaps with visual feedback and dynamic sound effects! Now enchanced with object detection and smart-object jumping that can predict if an object can be traversed (or not) !
 
 ---
 
