@@ -1,6 +1,11 @@
 # Passive Skills System Plugin
 A comprehensive RPG Maker MZ plugin that adds a complete passive skill system with auto-regeneration, combat triggers, and stackable buffs.
 
+![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
+![Version](https://img.shields.io/badge/version-1.0.0-green)
+![License](https://img.shields.io/badge/license-CC%20BY%204.0-orange)
+
+
 ## 📋 Description
 This plugin introduces a powerful passive skill framework for RPG Maker MZ, allowing you to create skills that are always active once learned. Unlike active skills that must be manually selected in battle, passive skills work automatically in the background, providing constant benefits, regeneration effects, and triggered abilities based on combat actions.
 
