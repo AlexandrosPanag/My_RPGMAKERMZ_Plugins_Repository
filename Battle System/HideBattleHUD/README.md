@@ -2,7 +2,7 @@
 
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
 ![Version](https://img.shields.io/badge/version-1.0.2-green)
-![License](https://img.shields.io/badge/license-MIT-orange)
+![License](https://img.shields.io/badge/license-CC%20BY%204.0-green.svg)
 
 A plugin that hides the battle status HUD (portraits, HP/MP/TP bars) in RPG Maker MZ battles, while keeping all command windows (Fight/Escape, Attack, Skills, etc.) visible and fully functional. Perfect for minimalist or cinematic battle layouts.
 
