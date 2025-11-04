@@ -1,6 +1,6 @@
 # 🎮 RPG Maker MZ Controller Detection Plugin Documentation
 
-A comprehensive plugin that adds support to both XBOX and DualSense controller support.
+A comprehensive library that adds support to both XBOX and DualSense controller support.
 
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
 ![Version](https://img.shields.io/badge/version-2.0.0-green)
