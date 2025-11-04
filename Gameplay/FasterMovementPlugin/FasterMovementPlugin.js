@@ -11,19 +11,13 @@
  * 
  * @param walkSpeed
  * @text Walking Speed
- * @type number
- * @min 0.1
- * @max 20
- * @decimals 1
+ * @type text
  * @default 5
  * @desc Normal walking speed (default: 4, recommended: 5-6). Supports decimals like 5.5
  * 
  * @param dashSpeed
  * @text Running/Dash Speed
- * @type number
- * @min 0.1
- * @max 20
- * @decimals 1
+ * @type text
  * @default 7
  * @desc Running/dashing speed (default: 5, recommended: 7-8). Supports decimals like 7.5
  * 
@@ -42,12 +36,13 @@
  * - Walk: 5-6 (faster walking)
  * - Run/Dash: 7-8 (much faster running)
  * 
- * NEW: Decimal Support!
- * You can now use decimal values for fine-tuned control:
+ * Decimal Support:
+ * You can use decimal values for fine-tuned control by typing them directly:
  * - Walk: 5.5 (slightly faster than 5)
  * - Run/Dash: 7.5 (between 7 and 8)
+ * - Walk: 4.8, Dash: 6.3 (precise custom speeds)
  * 
- * This allows for precise speed adjustments to match your game's feel!
+ * Simply type the decimal number in the text field!
  * 
  * ============================================================================
  */
