@@ -5,7 +5,7 @@
 **Plugin Name:** DebugStatsExporter  
 **Version:** 1.0.0  
 **Target:** RPG Maker MZ  
-**Author:** YAlexandros Panagiotakopoulos 
+**Author:** Alexandros Panagiotakopoulos 
 
 
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
