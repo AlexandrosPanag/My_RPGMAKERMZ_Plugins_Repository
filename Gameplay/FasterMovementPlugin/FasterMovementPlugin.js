@@ -5,7 +5,7 @@
 
 /*:
  * @target MZ
- * @plugindesc HUDElements v1.0.0 - Advanced Party Status HUD System
+ * @plugindesc Increases walking and running speeds for the player party
  * @author Alexandros Panagiotakopoulos
  * @version 1.0.0
  * 
