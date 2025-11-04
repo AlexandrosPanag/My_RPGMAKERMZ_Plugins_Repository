@@ -604,7 +604,7 @@
                     <div style="display: flex; align-items: center; gap: 20px;">
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <div style="width: 34px; height: 34px; background: linear-gradient(145deg, #2196F3, #1976D2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 19px; box-shadow: 0 3px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.25); border: 1.5px solid rgba(255,255,255,0.1); text-shadow: 0 2px 3px rgba(0,0,0,0.7);">×</div>
-                            <span style="font-size: 14px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.9); letter-spacing: 0.3px;">Confirm</span>
+                            <span style="font-size: 14px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.9); letter-spacing: 0.3px;">Dash</span>
                         </div>
                         
                         <div style="width: 1px; height: 24px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2), transparent);"></div>
@@ -613,14 +613,14 @@
                             <div style="width: 34px; height: 34px; background: linear-gradient(145deg, #E91E63, #C2185B); border-radius: 4px; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2); border: 1.5px solid rgba(255,255,255,0.1); position: relative;">
                                 <div style="width: 16px; height: 16px; background: linear-gradient(145deg, #ffffff, #f0f0f0); border-radius: 1px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.3), 0 1px 0 rgba(255,255,255,1);"></div>
                             </div>
-                            <span style="font-size: 14px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.9); letter-spacing: 0.3px;">Cancel</span>
+                            <span style="font-size: 14px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.9); letter-spacing: 0.3px;">Select</span>
                         </div>
                         
                         <div style="width: 1px; height: 24px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2), transparent);"></div>
                         
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <div style="width: 34px; height: 34px; background: linear-gradient(145deg, #F44336, #D32F2F); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 18px; box-shadow: 0 3px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.25); border: 1.5px solid rgba(255,255,255,0.1); text-shadow: 0 2px 3px rgba(0,0,0,0.7);">●</div>
-                            <span style="font-size: 14px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.9); letter-spacing: 0.3px;">Dash</span>
+                            <span style="font-size: 14px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.9); letter-spacing: 0.3px;">Cancel</span>
                         </div>
                         
                         <div style="width: 1px; height: 24px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2), transparent);"></div>
@@ -637,21 +637,21 @@
                     <div style="display: flex; align-items: center; gap: 20px;">
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <div style="width: 34px; height: 34px; background: linear-gradient(145deg, #107C10, #0E6A0E); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 17px; box-shadow: 0 3px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.25); border: 1.5px solid rgba(255,255,255,0.1); text-shadow: 0 2px 3px rgba(0,0,0,0.8);">A</div>
-                            <span style="font-size: 14px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.9); letter-spacing: 0.3px;">Confirm</span>
+                            <span style="font-size: 14px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.9); letter-spacing: 0.3px;">Dash</span>
                         </div>
                         
                         <div style="width: 1px; height: 24px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2), transparent);"></div>
                         
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <div style="width: 34px; height: 34px; background: linear-gradient(145deg, #0078D7, #005A9E); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 17px; box-shadow: 0 3px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.25); border: 1.5px solid rgba(255,255,255,0.1); text-shadow: 0 2px 3px rgba(0,0,0,0.8);">X</div>
-                            <span style="font-size: 14px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.9); letter-spacing: 0.3px;">Cancel</span>
+                            <span style="font-size: 14px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.9); letter-spacing: 0.3px;">Confirm</span>
                         </div>
                         
                         <div style="width: 1px; height: 24px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2), transparent);"></div>
                         
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <div style="width: 34px; height: 34px; background: linear-gradient(145deg, #E74856, #C42B35); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 17px; box-shadow: 0 3px 8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.25); border: 1.5px solid rgba(255,255,255,0.1); text-shadow: 0 2px 3px rgba(0,0,0,0.8);">B</div>
-                            <span style="font-size: 14px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.9); letter-spacing: 0.3px;">Dash</span>
+                            <span style="font-size: 14px; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.9); letter-spacing: 0.3px;">Cancel</span>
                         </div>
                         
                         <div style="width: 1px; height: 24px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2), transparent);"></div>
