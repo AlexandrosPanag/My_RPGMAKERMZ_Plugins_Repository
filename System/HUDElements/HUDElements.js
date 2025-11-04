@@ -1,11 +1,22 @@
+/**
+ * Copyright (c) 2025 Alexandros Panagiotakopoulos
+ * 
+ * This work is licensed under the Creative Commons Attribution-NoDerivatives 4.0 
+ * International License. To view a copy of this license, visit 
+ * http://creativecommons.org/licenses/by-nd/4.0/
+ */
+
+
 //=============================================================================
 // HUDElements.js - Advanced Party Status HUD System
+// Version: 1.0.0
 //=============================================================================
 /*:
  * @target MZ
  * @plugindesc HUDElements v1.0.0 - Advanced Party Status HUD System
  * @author Alexandros Panagiotakopoulos
  * @version 1.0.0
+ * @license CC-BY-ND-4.0
  * @date 2025-09-26
  * @url alexandrospanag.github.io
  * @help HUDElements.js
@@ -740,3 +751,4 @@
 
 
 })();
+
