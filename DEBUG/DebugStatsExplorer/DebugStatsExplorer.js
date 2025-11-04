@@ -13,12 +13,12 @@
 
 /*:
  * @target MZ
- * @plugindesc Exports all actor stats, growth, and skills to a text file for balance analysis
+ * @plugindesc [1.0.0] Exports all actor stats, growth, and skills to a text file for balance analysis
  * @author Alexandros Panagiotakopoulos
  * @version 1.0.0
  * @url alexandrospanag.github.io
  * @license CC-BY-ND-4.0
- * 
+ *
  * @command exportStats
  * @text Export Actor Stats
  * @desc Exports all actor data to a downloadable text file
@@ -67,7 +67,7 @@
         this.downloadTextFile(output, "ActorStats_Export.txt");
         
         console.log("Actor stats exported successfully!");
-        if ($gameMessage) {
+        if ($gameMessage && !DataManager.isBattleTest() && !DataManager.isEventTest()) {
             $gameMessage.add("Actor stats exported successfully!");
         }
     };
@@ -83,35 +83,45 @@
         output += `Initial Level: ${actor.initialLevel}\n`;
         output += `Max Level: ${actor.maxLevel}\n\n`;
 
+        // Get stat values using Game_Actor for proper calculation
+        const tempActor = new Game_Actor(actor.id);
+        
         // Initial Stats
-        output += "INITIAL STATS:\n";
-        output += `  Max HP: ${actor.params[0][1]}\n`;
-        output += `  Max MP: ${actor.params[1][1]}\n`;
-        output += `  ATK: ${actor.params[2][1]}\n`;
-        output += `  DEF: ${actor.params[3][1]}\n`;
-        output += `  MAT: ${actor.params[4][1]}\n`;
-        output += `  MDF: ${actor.params[5][1]}\n`;
-        output += `  AGI: ${actor.params[6][1]}\n`;
-        output += `  LUK: ${actor.params[7][1]}\n\n`;
+        output += "INITIAL STATS (at Initial Level):\n";
+        tempActor.changeLevel(actor.initialLevel, false);
+        output += `  Max HP: ${tempActor.param(0)}\n`;
+        output += `  Max MP: ${tempActor.param(1)}\n`;
+        output += `  ATK: ${tempActor.param(2)}\n`;
+        output += `  DEF: ${tempActor.param(3)}\n`;
+        output += `  MAT: ${tempActor.param(4)}\n`;
+        output += `  MDF: ${tempActor.param(5)}\n`;
+        output += `  AGI: ${tempActor.param(6)}\n`;
+        output += `  LUK: ${tempActor.param(7)}\n\n`;
 
         // Stats Growth Per Level
         output += "STAT GROWTH BY LEVEL:\n";
         output += "Level | HP    | MP    | ATK | DEF | MAT | MDF | AGI | LUK\n";
         output += "-".repeat(70) + "\n";
         
+        const levelStats = [];
         for (let lvl = 1; lvl <= Math.min(actor.maxLevel, 99); lvl++) {
-            const hp = actor.params[0][lvl] || 0;
-            const mp = actor.params[1][lvl] || 0;
-            const atk = actor.params[2][lvl] || 0;
-            const def = actor.params[3][lvl] || 0;
-            const mat = actor.params[4][lvl] || 0;
-            const mdf = actor.params[5][lvl] || 0;
-            const agi = actor.params[6][lvl] || 0;
-            const luk = actor.params[7][lvl] || 0;
+            tempActor.changeLevel(lvl, false);
+            const stats = {
+                level: lvl,
+                hp: tempActor.param(0),
+                mp: tempActor.param(1),
+                atk: tempActor.param(2),
+                def: tempActor.param(3),
+                mat: tempActor.param(4),
+                mdf: tempActor.param(5),
+                agi: tempActor.param(6),
+                luk: tempActor.param(7)
+            };
+            levelStats.push(stats);
             
-            output += `${String(lvl).padStart(5)} | ${String(hp).padStart(5)} | ${String(mp).padStart(5)} | `;
-            output += `${String(atk).padStart(3)} | ${String(def).padStart(3)} | ${String(mat).padStart(3)} | `;
-            output += `${String(mdf).padStart(3)} | ${String(agi).padStart(3)} | ${String(luk).padStart(3)}\n`;
+            output += `${String(lvl).padStart(5)} | ${String(stats.hp).padStart(5)} | ${String(stats.mp).padStart(5)} | `;
+            output += `${String(stats.atk).padStart(3)} | ${String(stats.def).padStart(3)} | ${String(stats.mat).padStart(3)} | `;
+            output += `${String(stats.mdf).padStart(3)} | ${String(stats.agi).padStart(3)} | ${String(stats.luk).padStart(3)}\n`;
         }
         output += "\n";
 
@@ -120,17 +130,17 @@
         output += "Level | HP Gain | MP Gain\n";
         output += "-".repeat(30) + "\n";
         
-        for (let lvl = 2; lvl <= Math.min(actor.maxLevel, 99); lvl++) {
-            const hpGain = (actor.params[0][lvl] || 0) - (actor.params[0][lvl-1] || 0);
-            const mpGain = (actor.params[1][lvl] || 0) - (actor.params[1][lvl-1] || 0);
-            output += `${String(lvl).padStart(5)} | ${String(hpGain).padStart(7)} | ${String(mpGain).padStart(7)}\n`;
+        for (let i = 1; i < levelStats.length; i++) {
+            const hpGain = levelStats[i].hp - levelStats[i-1].hp;
+            const mpGain = levelStats[i].mp - levelStats[i-1].mp;
+            output += `${String(levelStats[i].level).padStart(5)} | ${String(hpGain).padStart(7)} | ${String(mpGain).padStart(7)}\n`;
         }
         output += "\n";
 
         // Skills
         output += "LEARNED SKILLS:\n";
         if (actor.traits) {
-            const skillLearnTraits = actor.traits.filter(t => t.code === 11); // Trait code 11 is initial skills
+            const skillLearnTraits = actor.traits.filter(t => t.code === 11);
             if (skillLearnTraits.length > 0) {
                 output += "Initial Skills:\n";
                 skillLearnTraits.forEach(trait => {
@@ -139,21 +149,26 @@
                         output += `  - ${skill.name} (ID: ${skill.id})\n`;
                     }
                 });
+                output += "\n";
             }
         }
         
         const classData = $dataClasses[actor.classId];
-        if (classData && classData.learnings) {
-            output += "\nSkills by Level:\n";
+        if (classData && classData.learnings && classData.learnings.length > 0) {
+            output += "Skills by Level:\n";
             classData.learnings.forEach(learning => {
                 const skill = $dataSkills[learning.skillId];
                 if (skill) {
                     output += `  Lv ${learning.level}: ${skill.name} (ID: ${skill.id})\n`;
                     output += `    Type: ${$dataSystem.skillTypes[skill.stypeId] || "None"}\n`;
                     output += `    MP Cost: ${skill.mpCost} | TP Cost: ${skill.tpCost}\n`;
-                    output += `    Description: ${skill.description}\n`;
+                    if (skill.description) {
+                        output += `    Description: ${skill.description}\n`;
+                    }
                 }
             });
+        } else {
+            output += "  No skills learned by level\n";
         }
         output += "\n";
 
@@ -170,18 +185,15 @@
 
         // Equipment Types
         output += "EQUIPMENT SLOTS:\n";
-        if (actor.traits) {
-            const equipTraits = actor.traits.filter(t => t.code === 51 || t.code === 52 || t.code === 53 || t.code === 54);
-            if (equipTraits.length > 0) {
-                equipTraits.forEach(trait => {
-                    if (trait.code === 54) { // Slot type
-                        const equipType = $dataSystem.equipTypes[trait.dataId];
-                        output += `  - ${equipType || "Unknown"}\n`;
-                    }
-                });
-            } else {
-                output += "  Default equipment slots\n";
-            }
+        tempActor.changeLevel(actor.initialLevel, false);
+        const equipSlots = tempActor.equipSlots();
+        if (equipSlots && equipSlots.length > 0) {
+            equipSlots.forEach((slotType, index) => {
+                const typeName = $dataSystem.equipTypes[slotType] || "Unknown";
+                output += `  Slot ${index + 1}: ${typeName}\n`;
+            });
+        } else {
+            output += "  No equipment slots\n";
         }
         output += "\n";
 
@@ -238,6 +250,15 @@
         } else if (trait.code === 23) { // Sp-Parameter
             const spParamNames = ["TGR", "GRD", "REC", "PHA", "MCR", "TCR", "PDR", "MDR", "FDR", "EXR"];
             output += `${spParamNames[trait.dataId]} x${trait.value}\n`;
+        } else if (trait.code === 11) { // Added Skill
+            const skill = $dataSkills[trait.dataId];
+            output += `${skill ? skill.name : "Unknown"} (ID: ${trait.dataId})\n`;
+        } else if (trait.code === 31) { // Attack Element
+            const element = $dataSystem.elements[trait.dataId];
+            output += `${element || "Unknown"}\n`;
+        } else if (trait.code === 41) { // Skill Type Add
+            const skillType = $dataSystem.skillTypes[trait.dataId];
+            output += `${skillType || "Unknown"}\n`;
         } else {
             output += `Data ${trait.dataId}, Value ${trait.value}\n`;
         }
