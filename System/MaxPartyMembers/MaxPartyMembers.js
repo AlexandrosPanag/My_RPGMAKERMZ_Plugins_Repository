@@ -1,5 +1,14 @@
+/**
+ * Copyright (c) 2025 Alexandros Panagiotakopoulos
+ * 
+ * This work is licensed under the Creative Commons Attribution-NoDerivatives 4.0 
+ * International License. To view a copy of this license, visit 
+ * http://creativecommons.org/licenses/by-nd/4.0/
+ */
+
 //=============================================================================
 // MaxPartyMembers.js
+// Version: 2.0.0
 //=============================================================================
 
 /*:
@@ -7,6 +16,7 @@
  * @plugindesc MaxPartyMembers v2.0.1 — Enforces max active party (battle + map followers)
  * @author Alexandros Panagiotakopoulos
  * @version 2.0.1
+ * @license CC-BY-ND-4.0
  * @description Nuclear option - forcefully limits battleMembers to max regardless of _actors array
  *
  * @param maxActiveMembers
@@ -241,4 +251,5 @@ Terms of Use:
     }
 
     debugLog('Plugin loaded - battleMembers() FORCEFULLY limited');
+
 })();
