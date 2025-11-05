@@ -20,20 +20,7 @@ Cheat-sheet ;)
 
 # RPG Maker MZ Reference Guide
 
-## 🧠 Custom States Needed
 
-| **State**         | **Effect** |
-|-------------------|------------|
-| **Burn**          | Deals fire damage each turn *(5% max HP)* |
-| **Bleeding**      | Deals physical damage each turn *(4% max HP)* |
-| **Flaming Surge** | Increases ATK by 10% each turn *(stacks)* |
-| **Poison Surge**  | Normal attacks inflict poison |
-| **Dragonform**    | Massive stat boosts, element amplification |
-| **Off-Balance**   | Defense Down variant |
-| **Element Resist**| Reduces all elemental damage by 25% |
-| **Resistance**    | Immunity to debuffs |
-
----
 
 ## ⚙️ Formula Variables in RPG Maker MZ
 
