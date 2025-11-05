@@ -14,3 +14,77 @@ A collection of powerful battle system enhancements that bring your RPG Maker MZ
 ---
 
 💡 *For detailed documentation, check each plugin's help section in the Plugin Manager.*
+
+
+Cheat-sheet ;)
+
+# RPG Maker MZ Reference Guide
+
+## 🧠 Custom States Needed
+
+| **State**         | **Effect** |
+|-------------------|------------|
+| **Burn**          | Deals fire damage each turn *(5% max HP)* |
+| **Bleeding**      | Deals physical damage each turn *(4% max HP)* |
+| **Flaming Surge** | Increases ATK by 10% each turn *(stacks)* |
+| **Poison Surge**  | Normal attacks inflict poison |
+| **Dragonform**    | Massive stat boosts, element amplification |
+| **Off-Balance**   | Defense Down variant |
+| **Element Resist**| Reduces all elemental damage by 25% |
+| **Resistance**    | Immunity to debuffs |
+
+---
+
+## ⚙️ Formula Variables in RPG Maker MZ
+
+| **Variable** | **Meaning** |
+|---------------|-------------|
+| `a` | User / caster |
+| `b` | Target |
+| `a.atk` | User's attack |
+| `a.mat` | User's magic attack |
+| `a.def` | User's defense |
+| `a.mdf` | User's magic defense |
+| `a.agi` | User's agility |
+| `a.luk` | User's luck |
+| *(same applies for `b` variables for target)* | |
+
+---
+
+## 💥 Damage Type Reference
+
+| **Damage Type** | **Description** |
+|------------------|-----------------|
+| **HP Damage** | Damages target HP |
+| **MP Damage** | Damages target MP |
+| **HP Recover** | Heals target HP |
+| **MP Recover** | Restores target MP |
+| **HP Drain** | Damages and recovers HP |
+| **MP Drain** | Drains MP and recovers it |
+| **None** | No damage *(for buffs/debuffs)* |
+
+---
+
+## 🎯 Hit Type Reference
+
+| **Hit Type** | **Description** |
+|---------------|-----------------|
+| **Certain Hit** | Always hits |
+| **Physical Attack** | Can miss, uses hit rate |
+| **Magical Attack** | Uses magic evasion |
+
+---
+
+## 🌈 Element IDs (Default)
+
+| **ID** | **Element** |
+|---------|--------------|
+| 1 | Normal |
+| 2 | Fire |
+| 3 | Ice |
+| 4 | Thunder / Lightning |
+| 5 | Water |
+| 6 | Earth |
+| 7 | Wind |
+| 8 | Light |
+| 9 | Darkness |
