@@ -4,6 +4,9 @@
 
 A comprehensive collection of performance optimization and game enhancement plugins for RPG Maker MZ, designed to improve gameplay experience and development workflow.
 
+🛒 For the official marketplace to buy premium plugins professionally made here is the direct link:
+https://alexandrospanag.itch.io/
+
 ---
 
 ## 🎮 About This Collection
