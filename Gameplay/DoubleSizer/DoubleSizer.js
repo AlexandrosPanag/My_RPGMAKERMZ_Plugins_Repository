@@ -39,7 +39,10 @@
  * ============================================================================
  * Terms of Use
  * ============================================================================
- * Free for commercial and non-commercial use.
+ *   - Free for commercial and non-commercial use with proper attribution
+ *   - Modify as needed for your project
+ *   - Include copyright notice when redistributing
+ *   - See LICENSE.md for full terms
  *
  * @param triggerWord
  * @text Trigger Word
