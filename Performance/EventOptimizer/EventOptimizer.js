@@ -6,7 +6,8 @@
 @target MZ
 @plugindesc [v1.0.0] Event Performance Optimizer
 @author Alexandros Panagiotakopoulos
-@url 
+@url alexandrospanag.github.io
+@date 12-11-2025
 @help EventOptimizer.js
 
 @param enableOptimization
