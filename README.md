@@ -153,7 +153,7 @@ Experience the power of these optimization plugins firsthand in **RE;LIVE**, an 
 
 ---
 
-**Copyright © 2025 Alexandros Panagiotakopoulos. All Rights Reserved.**
+**Copyright © Alexandros Panagiotakopoulos. All Rights Reserved.**
 
 *Building better RPGs through optimized performance and enhanced player experience.*
 
