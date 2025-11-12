@@ -8,7 +8,7 @@
  * @author Alexandros Panagiotakopoulos
  * @url https://alexandrospanag.github.io
  * @date 20/10/2025
- * v1.0.0
+ * @version 1.0.0
  *
  * @help DoubleSizer.js
  *
