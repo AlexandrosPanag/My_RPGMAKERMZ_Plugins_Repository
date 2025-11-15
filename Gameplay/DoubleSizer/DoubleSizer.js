@@ -7,8 +7,8 @@
  * @plugindesc Automatically doubles sprite size for events with specific names
  * @author Alexandros Panagiotakopoulos
  * @url https://alexandrospanag.github.io
- * @date 20/10/2025
- * @version 1.0.0
+ * @date 15/11/2025
+ * v1.2.0
  *
  * @help DoubleSizer.js
  *
@@ -16,6 +16,9 @@
  * event name. Simply name your event with the trigger word and it will
  * automatically be doubled in size - no parallel processes or plugin commands
  * needed!
+ *
+ * IMPORTANT: This plugin should be placed ABOVE EventConnect in the plugin list
+ * to ensure proper compatibility.
  *
  * ============================================================================
  * How to Use
@@ -58,6 +61,14 @@
  * @max 10.0
  * @default 2.0
  * @desc The size multiplier for doubled events (2.0 = double size).
+ * 
+ * @command enable
+ * @text Enable Double Size
+ * @desc Manually enable double size for the current event
+ * 
+ * @command disable
+ * @text Disable Double Size
+ * @desc Manually disable double size for the current event
  */
 
 (() => {
@@ -78,38 +89,86 @@
     Game_Event.prototype.initialize = function(mapId, eventId) {
         _Game_Event_initialize.call(this, mapId, eventId);
         this._doubleSizerEnabled = this.isDoubleSizerEvent();
+        this._doubleSizerScale = this._doubleSizerEnabled ? scaleFactor : 1.0;
     };
 
-    // Override Sprite_Character update scale method
-    const _Sprite_Character_updateScale = Sprite_Character.prototype.updateScale || function() {};
-    Sprite_Character.prototype.updateScale = function() {
-        _Sprite_Character_updateScale.call(this);
+    // Store original scale methods
+    const _Sprite_Character_initialize = Sprite_Character.prototype.initialize;
+    Sprite_Character.prototype.initialize = function(character) {
+        _Sprite_Character_initialize.call(this, character);
+        this._lastDoubleSizerState = false;
+    };
+
+    // Apply scale in update to ensure it persists
+    const _Sprite_Character_update = Sprite_Character.prototype.update;
+    Sprite_Character.prototype.update = function() {
+        _Sprite_Character_update.call(this);
         
         if (this._character instanceof Game_Event) {
-            if (this._character._doubleSizerEnabled) {
-                this.scale.x = scaleFactor;
-                this.scale.y = scaleFactor;
-            } else {
+            const shouldScale = this._character._doubleSizerEnabled;
+            
+            // Only update scale if state changed or scale is wrong
+            if (shouldScale) {
+                const targetScale = this._character._doubleSizerScale;
+                if (this.scale.x !== targetScale || this.scale.y !== targetScale) {
+                    this.scale.x = targetScale;
+                    this.scale.y = targetScale;
+                }
+                this._lastDoubleSizerState = true;
+            } else if (this._lastDoubleSizerState) {
+                // Reset scale if it was previously scaled
                 this.scale.x = 1.0;
                 this.scale.y = 1.0;
+                this._lastDoubleSizerState = false;
             }
         }
     };
 
-    // Call updateScale in the update loop
-    const _Sprite_Character_update = Sprite_Character.prototype.update;
-    Sprite_Character.prototype.update = function() {
-        _Sprite_Character_update.call(this);
-        this.updateScale();
-    };
-
-    // Ensure scale is applied when sprite is created
-    const _Sprite_Character_setCharacter = Sprite_Character.prototype.setCharacter;
-    Sprite_Character.prototype.setCharacter = function(character) {
-        _Sprite_Character_setCharacter.call(this, character);
-        if (character instanceof Game_Event && character._doubleSizerEnabled) {
-            this.updateScale();
+    // Ensure scale persists through character bitmap changes
+    const _Sprite_Character_setCharacterBitmap = Sprite_Character.prototype.setCharacterBitmap;
+    Sprite_Character.prototype.setCharacterBitmap = function() {
+        _Sprite_Character_setCharacterBitmap.call(this);
+        
+        if (this._character instanceof Game_Event && this._character._doubleSizerEnabled) {
+            this.scale.x = this._character._doubleSizerScale;
+            this.scale.y = this._character._doubleSizerScale;
         }
     };
+
+    // Override updateHalfBodySprites to maintain scale
+    const _Sprite_Character_updateHalfBodySprites = Sprite_Character.prototype.updateHalfBodySprites;
+    Sprite_Character.prototype.updateHalfBodySprites = function() {
+        _Sprite_Character_updateHalfBodySprites.call(this);
+        
+        if (this._character instanceof Game_Event && this._character._doubleSizerEnabled) {
+            // Reapply scale after half body sprite update
+            this.scale.x = this._character._doubleSizerScale;
+            this.scale.y = this._character._doubleSizerScale;
+        }
+    };
+
+
+    // Plugin Commands
+    PluginManager.registerCommand(pluginName, 'enable', args => {
+        if ($gameMap && $gameMap._interpreter && $gameMap._interpreter._eventId) {
+            const eventId = $gameMap._interpreter._eventId;
+            const event = $gameMap.event(eventId);
+            if (event) {
+                event._doubleSizerEnabled = true;
+                event._doubleSizerScale = scaleFactor;
+            }
+        }
+    });
+
+    PluginManager.registerCommand(pluginName, 'disable', args => {
+        if ($gameMap && $gameMap._interpreter && $gameMap._interpreter._eventId) {
+            const eventId = $gameMap._interpreter._eventId;
+            const event = $gameMap.event(eventId);
+            if (event) {
+                event._doubleSizerEnabled = false;
+                event._doubleSizerScale = 1.0;
+            }
+        }
+    });
 
 })();
