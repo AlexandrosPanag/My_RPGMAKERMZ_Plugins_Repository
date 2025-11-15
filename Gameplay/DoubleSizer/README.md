@@ -17,6 +17,28 @@ Automatic mode (original functionality): Events with the trigger word (default: 
 Manual mode (new): Use the enable command to manually double the size of the current event, or disable to reset it.
 
 
+## 📄 License
+
+This project is licensed under the **Creative Commons Attribution 4.0 International License**.
+
+You are free to:
+* ✅ **Share** — copy and redistribute in any medium or format
+* ✅ **Adapt** — remix, transform, and build upon the material
+* ✅ **Commercial Use** — use for commercial projects
+
+Under the following terms:
+* 📝 **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made.
+
+[View Full License](https://creativecommons.org/licenses/by/4.0/)
+
+## 👏 Credits
+
+* **Author**: Alexandros Panagiotakopoulos
+* **Framework**: RPG Maker MZ Plugin System
+* **Technologies**: JavaScript ES6+, CSS3 Animations, HTML5 APIs
+* **Inspiration**: Modern browser power management and mobile battery optimization
+
+
 ## 👤 Author
 
 **Alexandros Panagiotakopoulos**
@@ -168,26 +190,6 @@ Make specific characters stand out during important cutscenes.
 - Optimized performance with one-time initialization
 
 
-## 📄 License
-
-This project is licensed under the **Creative Commons Attribution 4.0 International License**.
-
-You are free to:
-* ✅ **Share** — copy and redistribute in any medium or format
-* ✅ **Adapt** — remix, transform, and build upon the material
-* ✅ **Commercial Use** — use for commercial projects
-
-Under the following terms:
-* 📝 **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made.
-
-[View Full License](https://creativecommons.org/licenses/by/4.0/)
-
-## 👏 Credits
-
-* **Author**: Alexandros Panagiotakopoulos
-* **Framework**: RPG Maker MZ Plugin System
-* **Technologies**: JavaScript ES6+, CSS3 Animations, HTML5 APIs
-* **Inspiration**: Modern browser power management and mobile battery optimization
 
 ---
 
