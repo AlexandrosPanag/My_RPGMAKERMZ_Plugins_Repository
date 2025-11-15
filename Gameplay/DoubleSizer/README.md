@@ -1,12 +1,18 @@
 # DoubleSizer Plugin for RPG Maker MZ
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-red.svg)
 ![License](https://img.shields.io/badge/license-CC%20BY%204.0-green.svg)
 
 
 ⚠️ IMPORTANT: Due to common RPG Maker MZ bugs commonly known as Texture Bleeding I recommend you download and place FIRST the following plugin to avoid the "line" sprite animation bug:
 https://github.com/AlexandrosPanag/My_RPGMAKERMZ_Plugins_Repository/tree/main/Fixes/FixTextureBleeding
+
+
+# ⚙️ Changelog
+1.2.0: Added enable/disable plugin options for extra functionality. The plugin has two different modes now: 
+Automatic mode (original functionality): Events with the trigger word (default: "DoubleEvent") in their name are automatically doubled
+Manual mode (new): Use the enable command to manually double the size of the current event, or disable to reset it.
 
 
 ## 👤 Author
