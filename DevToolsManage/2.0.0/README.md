@@ -2,7 +2,7 @@
 
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Version](https://img.shields.io/badge/version-1.3.0-orange)
+![Version](https://img.shields.io/badge/version-2.0.0-orange)
 
 A powerful development support plugin for RPG Maker MZ that supercharges your workflow with modern features, performance monitoring, and quality-of-life improvements.
 
