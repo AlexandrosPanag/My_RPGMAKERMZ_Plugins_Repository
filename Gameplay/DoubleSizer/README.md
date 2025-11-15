@@ -10,7 +10,9 @@ https://github.com/AlexandrosPanag/My_RPGMAKERMZ_Plugins_Repository/tree/main/Fi
 
 
 # ⚙️ Changelog
-1.2.0: Added enable/disable plugin options for extra functionality. The plugin has two different modes now: 
+## 1.2.0: 
+
+Added enable/disable plugin options for extra functionality. The plugin has two different modes now: 
 Automatic mode (original functionality): Events with the trigger word (default: "DoubleEvent") in their name are automatically doubled
 Manual mode (new): Use the enable command to manually double the size of the current event, or disable to reset it.
 
