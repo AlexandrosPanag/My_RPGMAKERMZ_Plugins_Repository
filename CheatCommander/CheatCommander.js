@@ -7,12 +7,13 @@
  * @plugindesc Advanced cheat console with dev tools (Press ~ to open)
  * @author Alexandros Panagiotakopoulos
  * @url https://alexandrospanag.github.io
- * @date 15/11/2025
- * v1.0.0
+ * @date 16/11/2025
+ * v1.0.1
  * @help CheatConsole.js
  *
  * This plugin adds a comprehensive developer/cheat console to your game.
  * Press the ~ (tilde) key to open the console.
+ * Use Page Up/Page Down to scroll through history.
  *
  * ============================================================================
  * Available Commands
@@ -66,7 +67,8 @@
         noEncounter: false,
         showFPS: false,
         showCoords: false,
-        historyIndex: -1
+        historyIndex: -1,
+        scrollOffset: 0  // Added for scroll tracking
     };
 
     //=============================================================================
@@ -141,15 +143,18 @@
             this._consoleWindow.open();
             this._consoleWindow.activate();
             consoleState.isOpen = true;
+            consoleState.scrollOffset = 0; // Reset scroll when opening
         }
     };
 
     //=============================================================================
-    // Input - Add Console Key
+    // Input - Add Console Key and Page Keys
     //=============================================================================
     Input.keyMapper[192] = 'console';
     Input.keyMapper[223] = 'console';
     Input.keyMapper[116] = 'console';
+    Input.keyMapper[33] = 'pageup';     // Page Up
+    Input.keyMapper[34] = 'pagedown';   // Page Down
 
     //=============================================================================
     // Window_DebugOverlay - Shows FPS and Coordinates
@@ -225,6 +230,7 @@
         if (consoleState.history.length === 0) {
             consoleState.history.push('=== Dev Console Activated ===');
             consoleState.history.push('Type "help" for available commands');
+            consoleState.history.push('Use Page Up/Down to scroll history');
         }
         
         this.refresh();
@@ -238,6 +244,23 @@
         Window_Selectable.prototype.update.call(this);
         if (this.active) {
             this.processInput();
+            this.processScroll();
+        }
+    };
+
+    Window_CheatConsole.prototype.processScroll = function() {
+        const lineHeight = this.lineHeight();
+        const maxLines = Math.floor((this.height - this.padding * 2 - lineHeight) / lineHeight);
+        const maxScroll = Math.max(0, consoleState.history.length - maxLines + 1);
+        
+        if (Input.isRepeated('pageup')) {
+            consoleState.scrollOffset = Math.min(consoleState.scrollOffset + 5, maxScroll);
+            this.refresh();
+            SoundManager.playCursor();
+        } else if (Input.isRepeated('pagedown')) {
+            consoleState.scrollOffset = Math.max(consoleState.scrollOffset - 5, 0);
+            this.refresh();
+            SoundManager.playCursor();
         }
     };
 
@@ -246,6 +269,7 @@
             this.executeCommand(this._inputText);
             this._inputText = '';
             consoleState.historyIndex = -1;
+            consoleState.scrollOffset = 0; // Reset scroll on command
             this.refresh();
             SoundManager.playOk();
         } else if (Input.isTriggered('cancel')) {
@@ -291,6 +315,12 @@
         }
         
         if (consoleState.isOpen && this._consoleWindow && this._consoleWindow.active) {
+            // Allow Page Up/Down to pass through for scrolling
+            if (event.key === 'PageUp' || event.key === 'PageDown') {
+                event.preventDefault();
+                return;
+            }
+            
             if (event.key === 'Enter' || event.key === 'Escape') {
                 return;
             }
@@ -388,13 +418,14 @@
                 break;
             case 'clear':
                 consoleState.history = [];
+                consoleState.scrollOffset = 0;
                 break;
             default:
                 consoleState.history.push('Unknown command: ' + cmd);
         }
 
-        if (consoleState.history.length > 100) {
-            consoleState.history = consoleState.history.slice(-100);
+        if (consoleState.history.length > 500) {
+            consoleState.history = consoleState.history.slice(-500);
         }
 
         this.refresh();
@@ -602,6 +633,7 @@
         consoleState.history.push('  killall              Win battle instantly');
         consoleState.history.push('  clear                Clear console');
         consoleState.history.push('═══════════════════════════════════════');
+        consoleState.history.push('  Use Page Up/Down to scroll history');
     };
 
     Window_CheatConsole.prototype.cmdGold = function(args) {
@@ -658,14 +690,33 @@
         
         const lineHeight = this.lineHeight();
         const maxLines = Math.floor((this.height - this.padding * 2 - lineHeight) / lineHeight);
-        const startIndex = Math.max(0, consoleState.history.length - maxLines + 1);
+        
+        // Calculate start index based on scroll offset
+        let startIndex = Math.max(0, consoleState.history.length - maxLines + 1 - consoleState.scrollOffset);
+        startIndex = Math.max(0, startIndex);
+        
+        // Draw scroll indicator if there's more history to view
+        if (consoleState.scrollOffset > 0) {
+            this.changeTextColor('#888888');
+            this.drawText('▲ More history above (Page Up)', 0, 0, this.width - this.padding * 2, 'center');
+            this.changeTextColor('#00ff00');
+        }
         
         this.changeTextColor('#00ff00');
-        for (let i = startIndex; i < consoleState.history.length; i++) {
-            const y = (i - startIndex) * lineHeight;
+        const startY = consoleState.scrollOffset > 0 ? lineHeight : 0;
+        for (let i = startIndex; i < Math.min(startIndex + maxLines - 1, consoleState.history.length); i++) {
+            const y = (i - startIndex) * lineHeight + startY;
             this.drawText(consoleState.history[i], 0, y, this.width - this.padding * 2);
         }
 
+        // Show scroll indicator at bottom if not at latest
+        if (consoleState.scrollOffset > 0) {
+            this.changeTextColor('#888888');
+            const indicatorY = (maxLines - 2) * lineHeight;
+            this.drawText('▼ Latest messages below (Page Down)', 0, indicatorY, this.width - this.padding * 2, 'center');
+        }
+
+        // Draw input line
         this.changeTextColor('#ffff00');
         const inputY = (maxLines - 1) * lineHeight;
         this.drawText('> ' + this._inputText + '_', 0, inputY, this.width - this.padding * 2);
