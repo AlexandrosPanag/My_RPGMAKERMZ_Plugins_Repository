@@ -8,7 +8,7 @@ A comprehensive developer console and cheat system for RPG Maker MZ. Instantly a
 
 ## ⚙️ Changelog
 
--[1.0.1] Added page-up/page-down keyboard compatibility to view the console history.
+-[1.0.1]: Added page-up/page-down keyboard compatibility to view the console history.
 
 ## 📄 License
 
