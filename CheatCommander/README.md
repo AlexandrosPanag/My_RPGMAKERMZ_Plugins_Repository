@@ -6,6 +6,10 @@
 
 A comprehensive developer console and cheat system for RPG Maker MZ. Instantly access powerful debugging tools, cheats, and utilities during playtesting. Press **~** (tilde) to open the console and take full control of your game.
 
+## ⚙️ Changelog
+
+-[1.0.1] Added page-up/page-down keyboard compatibility to view the console history.
+
 ## 📄 License
 
 This project is licensed under the **Creative Commons Attribution 4.0 International License**.
