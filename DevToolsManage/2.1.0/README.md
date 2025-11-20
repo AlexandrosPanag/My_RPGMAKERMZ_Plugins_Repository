@@ -9,6 +9,38 @@ Due to significant functionality changes and modernization of the JavaScript cod
 ## Executive Summary
 This document details the complete modernization and optimization of the DevToolsManage.js plugin for RPG Maker MZ, transforming legacy 2020-2021 JavaScript code into modern 2025 standards with enhanced performance, memory management, and maintainability.
 
+
+## Additional note this warning: If you encounter:
+
+DevTools failed to load SourceMap: Could not load content for chrome-extension://njgcanhfjdabfmnlmpmdedalocpafnhl/js/plugins/pixi-filters.js.map: System error: net::ERR_FILE_NOT_FOUND
+
+This is a SourceMap warning that appears in the DevTools console. It's not actually an error - your code works fine. The browser is looking for .map files (which help with debugging minified code) but can't find them.
+
+The code already has a solution built-in! Look at lines 417-424 in your file:
+```javascript
+
+SceneManager.suppressSourceMapWarnings = function() {
+    // Suppress annoying SourceMap and WebGL warnings in DevTools
+    const originalWarn = console.warn;
+    const originalError = console.error;
+    
+    console.warn = function(...args) {
+        const message = args.join(' ');
+        if (message.includes('DevTools failed to load SourceMap') ||
+```
+
+This function is suppressing these warnings, and it's being called on line 410.
+
+However, if you still see them, here's how to permanently disable SourceMap warnings in DevTools:
+
+Open DevTools (F12)
+Click the gear icon ⚙️ (Settings) in the top-right of DevTools
+Under "Sources" section, uncheck:
+✅ Enable JavaScript source maps
+✅ Enable CSS source maps
+
+
+
 ---
 
 ## Table of Contents
