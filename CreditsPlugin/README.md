@@ -1,19 +1,25 @@
 # Credits Plugin Documentation
 
-**Version:** 1.0.0  
-**Author:** Alexandros Panagiotakopoulos  
-**License:** CC-BY-ND-4.0  
-**Target:** RPG Maker MZ
+![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
+![Version](https://img.shields.io/badge/version-2.0.0-green)
+![License](https://img.shields.io/badge/license-CC%20BY%204.0-orange)
+
+
+## 👤 Author
+
+**Alexandros Panagiotakopoulos**
+
 
 ---
 
-## Overview
+## 📖  Overview
 
 The Credits Plugin adds a beautiful, scrolling credits scene to your RPG Maker MZ game. It reads credit information from a text file and displays it with smooth scrolling animations, perfect for showcasing your game's contributors at the end of your game or from the options menu.
 
+
 ---
 
-## Features
+## ✨ Features
 
 - **Simple Text File Integration** - Credits are read from an easy-to-edit text file
 - **Smooth Auto-Scrolling** - Automatic scrolling with configurable speed
@@ -25,7 +31,7 @@ The Credits Plugin adds a beautiful, scrolling credits scene to your RPG Maker M
 
 ---
 
-## Installation
+## 📦 Installation
 
 ### Step 1: Install the Plugin
 
@@ -408,19 +414,10 @@ Visit us at: www.yourgame.com
 All Rights Reserved
 ```
 
----
-
-## Support
-
-For issues, questions, or suggestions:
-- Check the Troubleshooting section above
-- Review the Examples for formatting guidance
-- Ensure your credits.txt file is properly formatted
-- Test with default plugin parameters first
 
 ---
 
-## License
+## ⚖️ License
 
 **Copyright © 2025 Alexandros Panagiotakopoulos**
 
