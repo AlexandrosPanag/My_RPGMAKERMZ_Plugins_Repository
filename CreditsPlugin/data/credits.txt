@@ -1,0 +1,11 @@
+📜 CREDITS
+
+This game was made possible with the use of resources, plugins, and DLC packs created by the RPG Maker community and official partners.
+
+  🎨 DLC & Resource Packs
+
+  DLC1 Example Set
+  Copyright (C) Gotcha Gotcha Games Inc.
+
+  RPG Maker MZ Plugins
+  Copyright (C) 2025 Alexandros Panagiotakopoulos
