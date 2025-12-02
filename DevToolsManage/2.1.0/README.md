@@ -1,6 +1,19 @@
 # DevToolsManage.js - Complete Modernization Documentation
 **Version 2.1.0 (2025-11-19)**
 
+
+# DevToolsManage.js - Enhanced Edition
+
+![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Version](https://img.shields.io/badge/version-2.1.0-orange)
+
+A powerful development support plugin for RPG Maker MZ that supercharges your workflow with modern features, performance monitoring, and quality-of-life improvements.
+
+> **Original Author:** [Triacontane](https://github.com/triacontane/)  
+> **Enhanced by:** Alexandros Panagiotakopoulos
+
+
 ## Executive Summary
 This document details the complete modernization and optimization of the DevToolsManage.js plugin for RPG Maker MZ, transforming legacy 2020-2021 JavaScript code into modern 2025 standards with enhanced performance, memory management, and maintainability.
 
