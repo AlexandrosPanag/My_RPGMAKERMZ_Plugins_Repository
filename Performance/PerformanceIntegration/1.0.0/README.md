@@ -1,4 +1,4 @@
-Version: 1.0.0 (Original Launch Version)
+## Version: 1.0.0 (Original Launch Version)
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-red.svg)
@@ -28,8 +28,6 @@ Under the following terms:
 ## 👤 Author
 
 **Alexandros Panagiotakopoulos**
-
-An automatic sprite size doubler for RPG Maker MZ that intelligently scales event sprites based on their names. Perfect for boats, vehicles, large NPCs, and any object that needs to stand out visually.
 
 
 # 🚀 PerformanceIntegration.js - Unified Performance Management Hub
