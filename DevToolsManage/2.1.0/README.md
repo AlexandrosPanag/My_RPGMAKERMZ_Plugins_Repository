@@ -1,8 +1,3 @@
-## ⚠️ EXPIREMENTAL PLUGIN WARNING 19/11/2025 ⚠️
-
-Due to significant functionality changes and modernization of the JavaScript codebase, this plugin requires additional testing and is currently marked as experimental.
-**Please backup your game and DevToolsManage version before updating!**
-
 # DevToolsManage.js - Complete Modernization Documentation
 **Version 2.1.0 (2025-11-19)**
 
