@@ -714,16 +714,31 @@ function Controller_NwJs() {
     };
 
     SceneManager.suppressSourceMapWarnings = function() {
-        // Suppress annoying SourceMap warnings in DevTools
+        // Suppress annoying SourceMap and WebGL warnings in DevTools
         const originalWarn = console.warn;
+        const originalError = console.error;
+        
         console.warn = function(...args) {
             const message = args.join(' ');
             if (message.includes('DevTools failed to load SourceMap') ||
                 message.includes('Could not load content for') ||
-                message.includes('ERR_FILE_NOT_FOUND')) {
+                message.includes('ERR_FILE_NOT_FOUND') ||
+                message.includes('chrome-extension://')) {
                 return; // Suppress these specific warnings
             }
             originalWarn.apply(console, args);
+        };
+        
+        console.error = function(...args) {
+            const message = args.join(' ');
+            // Suppress WebGL feedback loop and invalid operation errors (common in PIXI.js)
+            if (message.includes('GL_INVALID_OPERATION') ||
+                message.includes('Feedback loop formed') ||
+                message.includes('Object cannot be used because it has not been generated') ||
+                message.includes('[.WebGL-')) {
+                return; // Suppress WebGL errors
+            }
+            originalError.apply(console, args);
         };
     };
 
