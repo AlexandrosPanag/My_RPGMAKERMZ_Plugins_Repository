@@ -11,11 +11,6 @@ The ultimate performance coordination system for RPG Maker MZ. Transform your pl
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-red.svg)
 ![License](https://img.shields.io/badge/license-CC%20BY%204.0-green.svg)
 
-A comprehensive developer console and cheat system for RPG Maker MZ. Instantly access powerful debugging tools, cheats, and utilities during playtesting. Press **~** (tilde) to open the console and take full control of your game.
-
-## ⚙️ Changelog
-
--[2.0.0]: Added page-up/page-down keyboard compatibility to view the console history.
 
 ## 📄 License
 
@@ -41,8 +36,6 @@ Under the following terms:
 ## 👤 Author
 
 **Alexandros Panagiotakopoulos**
-
-An automatic sprite size doubler for RPG Maker MZ that intelligently scales event sprites based on their names. Perfect for boats, vehicles, large NPCs, and any object that needs to stand out visually.
 
 
 ---
