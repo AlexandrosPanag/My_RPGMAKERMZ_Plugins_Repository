@@ -7,7 +7,7 @@
 
 The ultimate performance coordination system for RPG Maker MZ. Transform your plugin collection into a unified, intelligent performance management suite that delivers consistent, optimized gameplay across all devices.
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-red.svg)
 ![License](https://img.shields.io/badge/license-CC%20BY%204.0-green.svg)
 
