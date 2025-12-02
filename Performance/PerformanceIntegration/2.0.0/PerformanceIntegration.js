@@ -1,12 +1,15 @@
 //=============================================================================
 // PerformanceIntegration.js
+// version 2.0.0
 //=============================================================================
 
 /*:
 @target MZ
 @plugindesc [v2.0.0] Performance Integration Hub - Enhanced Edition
 @author Alexandros Panagiotakopoulos
-@url 
+@url https://alexandrospanag.github.io
+@version 2.0.0
+@date 02-12-2025
 @help PerformanceIntegration.js
 
 @param enableIntegration
