@@ -663,26 +663,17 @@ Terms of Use:
         }
         
         hookSpriteRendering() {
-            // Optimize sprite visibility checks
-            const self = this;
-            const originalSpriteUpdate = Sprite.prototype.update;
+            // NOTE: Aggressive sprite culling removed in v2.0.1 as it caused
+            // visual artifacts during player movement. The getBounds() culling
+            // was interfering with smooth sprite updates near screen edges.
+            // 
+            // If you need sprite culling for very low-end devices, you can
+            // implement it on a per-sprite basis in your own plugins using:
+            // if (window.$qualityLevel <= 2) { /* custom culling logic */ }
             
-            Sprite.prototype.update = function() {
-                // Skip update for invisible or fully transparent sprites
-                if (!this.visible || this.alpha <= 0 || this.scale.x === 0 || this.scale.y === 0) {
-                    return;
-                }
-                
-                // Skip off-screen sprites (culling)
-                if (self.currentQualityLevel <= 3 && this.parent) {
-                    const bounds = this.getBounds ? this.getBounds(false) : null;
-                    if (bounds && self.isOffScreen(bounds)) {
-                        return;
-                    }
-                }
-                
-                originalSpriteUpdate.call(this);
-            };
+            if (enableConsoleIntegration) {
+                console.log(`[${pluginName}] Sprite rendering: using default (smooth movement preserved)`);
+            }
         }
         
         isOffScreen(bounds) {
@@ -697,17 +688,17 @@ Terms of Use:
         }
         
         optimizeTilemapRendering() {
-            // Optimize tilemap layer updates
-            const originalTilemapUpdate = Tilemap.prototype.update;
-            let lastTilemapUpdate = 0;
-            const tilemapUpdateInterval = this.currentQualityLevel >= 4 ? 0 : 2; // Skip frames on low quality
+            // NOTE: Tilemap update throttling removed in v2.0.1 as it caused
+            // visible texture "judder" during player movement. Tilemaps need
+            // to update every frame for smooth scrolling.
+            //
+            // The performance gain from throttling tilemaps was minimal compared
+            // to the visual quality loss. Other optimizations (event throttling,
+            // object pooling) provide better performance without visual artifacts.
             
-            Tilemap.prototype.update = function() {
-                lastTilemapUpdate++;
-                if (lastTilemapUpdate < tilemapUpdateInterval) return;
-                lastTilemapUpdate = 0;
-                originalTilemapUpdate.call(this);
-            };
+            if (enableConsoleIntegration) {
+                console.log(`[${pluginName}] Tilemap rendering: using default (smooth scrolling preserved)`);
+            }
         }
         
         //-----------------------------------------------------------------------------
