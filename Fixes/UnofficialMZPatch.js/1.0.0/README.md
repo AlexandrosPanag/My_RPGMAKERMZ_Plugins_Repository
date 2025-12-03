@@ -26,9 +26,11 @@ This plugin is an independent, community-created tool developed to address commo
 - Compatibility issues with other plugins
 - Any issues arising from the use of this plugin
 
-- DO NOT install any other performance and/or fixes since this one already includes existing one as an all-in-one package!
 
 ---
+
+ ## ⚠️ DO NOT install any other performance and/or fixes since this one already includes existing one as an all-in-one package!
+
 
 ## 🔴 CRITICAL BACKUP WARNING
 
