@@ -29,7 +29,7 @@ This plugin is an independent, community-created tool developed to address commo
 
 ---
 
- ## ⚠️ DO NOT install any other performance and/or fixes since this one already includes existing one as an all-in-one package!
+ ### ⚠️ Important: Don't install other performance/fix plugins from my repositories — they're already bundled in this all-in-one package!
 
 
 ## 🔴 CRITICAL BACKUP WARNING
