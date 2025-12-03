@@ -31,6 +31,7 @@ This plugin is an independent, community-created tool developed to address commo
 
  ### ⚠️ Important: Don't install other performance/fix plugins from my repositories — they're already bundled in this all-in-one package!
 
+---
 
 ## 🔴 CRITICAL BACKUP WARNING
 
