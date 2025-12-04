@@ -1,10 +1,14 @@
 # UnofficialMZPatch for RPG Maker MZ
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ%201.9.0-red.svg)
 ![License](https://img.shields.io/badge/license-CC%20BY%204.0-green.svg)
 
 A comprehensive stability, performance, and compatibility patch for RPG Maker MZ 1.9.0. This plugin combines multiple fixes, optimizations, and quality-of-life improvements into a single, unified solution.
+
+## Changelog [1.0.1]:
+
+- Identified and fixed costum font loading issues for HUDs - if you experience flickering disable it from QoL improvements.
 
 ---
 
