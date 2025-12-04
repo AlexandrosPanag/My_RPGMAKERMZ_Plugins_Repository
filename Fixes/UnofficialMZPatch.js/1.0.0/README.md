@@ -6,7 +6,7 @@
 
 A comprehensive stability, performance, and compatibility patch for RPG Maker MZ 1.9.0. This plugin combines multiple fixes, optimizations, and quality-of-life improvements into a single, unified solution.
 
-## Changelog [1.0.1]:
+## ⚙️ Changelog [1.0.1]:
 
 - Identified and fixed costum font loading issues for HUDs - if you experience flickering disable it from QoL improvements.
 
