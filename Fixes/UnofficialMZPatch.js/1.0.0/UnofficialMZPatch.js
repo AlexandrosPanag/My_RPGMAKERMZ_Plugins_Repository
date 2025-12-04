@@ -1,15 +1,15 @@
 //=============================================================================
 // UnofficialMZPatch.js
-// Version: 1.0.0
+// Version: 1.0.1
 // Date: 03-12-2025
 //=============================================================================
 
 /*:
 @target MZ
-@plugindesc [v1.0.0] Comprehensive RPG Maker MZ 1.9.0 Patches.
+@plugindesc [v1.0.1] Comprehensive RPG Maker MZ 1.9.0 Patches.
 @author Alexandros Panagiotakopoulos
 @url https://alexandrospanag.github.io
-@version 1.0.0
+@version 1.0.1
 
 @param --- Core Fixes ---
 @default
@@ -208,15 +208,15 @@
 
 @param enableFontLoadingFix
 @text Enable Font Loading Fix
-@desc Ensures fonts are fully loaded before rendering text
+@desc Ensures fonts are fully loaded before rendering text (WARNING: Can cause text flickering on custom HUDs)
 @type boolean
-@default true
+@default false
 
 @param enableWindowThrottling
 @text Enable Window Refresh Throttling
-@desc Prevents unnecessary window redraws for better performance
+@desc Prevents unnecessary window redraws for better performance (WARNING: Can cause HUD flickering)
 @type boolean
-@default true
+@default false
 
 @param windowRefreshInterval
 @text Window Refresh Interval (ms)
@@ -417,8 +417,8 @@ Copyright © Alexandros Panagiotakopoulos. All Rights Reserved.
         enableLeakVisualWarning: parameters['enableLeakVisualWarning'] !== 'false',
         
         // QoL Improvements
-        enableFontLoadingFix: parameters['enableFontLoadingFix'] !== 'false',
-        enableWindowThrottling: parameters['enableWindowThrottling'] !== 'false',
+        enableFontLoadingFix: parameters['enableFontLoadingFix'] === 'true',  // Default OFF - can cause HUD flicker
+        enableWindowThrottling: parameters['enableWindowThrottling'] === 'true',  // Default OFF - can cause HUD flicker
         windowRefreshInterval: parseInt(parameters['windowRefreshInterval']) || 50,
         enableSmoothTransitions: parameters['enableSmoothTransitions'] !== 'false',
         transitionDuration: parseInt(parameters['transitionDuration']) || 12
