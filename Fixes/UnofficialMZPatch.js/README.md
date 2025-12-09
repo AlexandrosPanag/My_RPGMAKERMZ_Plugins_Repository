@@ -9,7 +9,13 @@ An all-in-one Comprehensive RPG Maker MZ 1.9.0 Patches, Stability Fixes & Perfor
 ## ⚙️ Changelog
 
 -[03-12-2025]:
--[1.0.0]:  Initial plugin Launch.
+
+-[1.0.0]: Initial plugin Launch.
+
+-[10-12-2025]:
+
+-[1.0.1]: Fixes & Optimization. 
+
 
 ## 📄 License
 
