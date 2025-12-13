@@ -10,7 +10,7 @@
  * @date 22/11/2025
  * @url https://github.com/AlexandrosPanag/My_RPGMAKERMZ_Plugins_Repository/tree/main/CreditsPlugin
  * @version 1.0
-* @license CC-BY-SA-4.0
+ * @license CC-BY-SA-4.0
  * 
  * @param creditsFile
  * @text Credits File Path
