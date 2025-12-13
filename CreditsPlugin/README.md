@@ -16,6 +16,7 @@
 
 The Credits Plugin adds a beautiful, scrolling credits scene to your RPG Maker MZ game. It reads credit information from a text file and displays it with smooth scrolling animations, perfect for showcasing your game's contributors at the end of your game or from the options menu.
 
+- Credis Plugin Markdown version accepts special markdown documents (.md format) for more professional characters and/or documentation.
 
 ---
 
