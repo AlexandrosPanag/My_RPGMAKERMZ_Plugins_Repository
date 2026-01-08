@@ -6,7 +6,7 @@
 // http://opensource.org/licenses/mit-license.php
 // ----------------------------------------------------------------------------
 // Version
-// 1.0.0 09/01/2026 Initial release - Python-like syntax transpiler for DevConsole
+// 1.0.0 2025/12/02 Initial release - Python-like syntax transpiler for DevConsole
 // ----------------------------------------------------------------------------
 // [GitHub] : https://github.com/AlexandrosPanag
 //=============================================================================
@@ -193,15 +193,19 @@
             js = this.convertFStrings(js);
             
             // Convert Python syntax to JS
+            // Note: convertBuiltins must run early to handle len(), print(), etc.
+            js = this.convertBuiltins(js);
             js = this.convertKeywords(js);
             js = this.convertOperators(js);
-            js = this.convertBuiltins(js);
             js = this.convertLoops(js);
             js = this.convertConditionals(js);
             js = this.convertFunctions(js);
             js = this.convertRPGMakerShortcuts(js);
             js = this.convertMethodCalls(js);
             js = this.convertAssignments(js);
+            
+            // Handle len() LAST to avoid conflicts with function calls
+            js = js.replace(/\blen\s*\(\s*([a-zA-Z_$][\w.$]*(?:\[[^\]]+\])?)\s*\)/g, '$1.length');
             
             // Post-process: Handle indentation-based blocks
             js = this.convertIndentationBlocks(js);
@@ -268,6 +272,9 @@
          * Convert Python built-in functions
          */
         convertBuiltins(code) {
+            // DO NOT handle len() here - it conflicts with other conversions
+            // len() will be handled separately after all other conversions
+            
             const builtins = [
                 // Print
                 [/\bprint\s*\(/g, 'console.log('],
@@ -286,9 +293,6 @@
                 [/\bpow\s*\(/g, 'Math.pow('],
                 [/\bround\s*\(/g, 'Math.round('],
                 [/\bsqrt\s*\(/g, 'Math.sqrt('],
-                
-                // len() -> .length
-                [/\blen\s*\(\s*(\w+)\s*\)/g, '$1.length'],
                 
                 // type() -> typeof
                 [/\btype\s*\(/g, 'typeof('],
@@ -453,7 +457,7 @@
             code = code.replace(/\.sort\(\)/g, '.sort()');
             code = code.replace(/\.extend\(/g, '.push(...');
             code = code.replace(/\.index\(/g, '.indexOf(');
-            code = code.replace(/\.count\(/g, '.filter(x => x === ').replace(/\)$/, ').length');
+            // Note: .count() is complex and not fully supported - users should use .filter().length manually
             
             // Dict methods
             code = code.replace(/(\w+)\.keys\(\)/g, 'Object.keys($1)');
@@ -575,8 +579,58 @@
     window.PythonTranspiler = PythonTranspiler;
 
     // Register /py command with DevConsole if available
-    if (typeof DevConsole !== 'undefined' && DevConsole.register) {
-        DevConsole.register('py', (args) => {
+    // DevToolsManage creates global command functions, so we'll do the same
+    console.log('[DevToolsPythonCompiler] Registering Python commands as global functions...');
+    
+    // Create global /py command function
+    window.py_cmd = function(code) {
+        if (!code || code.trim() === '') {
+            console.log('Usage: py_cmd("your python code")');
+            console.log('Example: py_cmd("print(\\"Hello World\\")")');
+            console.log('Example: py_cmd("for i in range(5): print(i)")');
+            return;
+        }
+        return executePython(code);
+    };
+    
+    // Also create a direct command interpreter
+    window.pyexec = function(...args) {
+        const code = args.join(' ');
+        if (!code || code.trim() === '') {
+            console.log('Usage: pyexec(print("Hello"))');
+            console.log('Example: pyexec("for i in range(5): print(i)")');
+            return;
+        }
+        return executePython(code);
+    };
+    
+    // Try to find and hook into DevConsole if it exists
+    const searchForDevConsole = () => {
+        // Check various possible locations
+        let DevConsoleAPI = window.DevConsole || 
+                           window.$devConsole || 
+                           (window.SceneManager && window.SceneManager._devConsole) ||
+                           (window.$gameTemp && window.$gameTemp.devConsole);
+        
+        // Search in window properties
+        if (!DevConsoleAPI) {
+            for (let key in window) {
+                if (window[key] && typeof window[key] === 'object' && window[key].register && window[key].alias) {
+                    DevConsoleAPI = window[key];
+                    console.log('[DevToolsPythonCompiler] Found DevConsole at window.' + key);
+                    break;
+                }
+            }
+        }
+        
+        return DevConsoleAPI;
+    };
+    
+    const DevConsoleAPI = searchForDevConsole();
+    
+    if (DevConsoleAPI && DevConsoleAPI.register) {
+        console.log('[DevToolsPythonCompiler] DevConsole found! Registering /py command...');
+        DevConsoleAPI.register('py', (args) => {
             if (args.length === 0) {
                 console.log('Usage: /py <python code>');
                 console.log('Example: /py print("Hello World")');
@@ -586,8 +640,9 @@
             const code = args.join(' ');
             return executePython(code);
         }, 'Execute Python-like code', '/py <code>');
+        console.log('[DevToolsPythonCompiler] /py command registered successfully!');
         
-        DevConsole.register('pyhelp', () => {
+        DevConsoleAPI.register('pyhelp', () => {
             const style = 'color: #3776AB; font-weight: bold;';
             const codeStyle = 'color: #4CAF50; font-family: monospace;';
             
@@ -627,11 +682,23 @@
             console.log('%cUse pytranspile("code") to see JS output without executing', 'color: #FF9800; font-style: italic;');
         }, 'Show Python syntax help', '/pyhelp');
         
-        DevConsole.alias('python', 'py');
+        DevConsoleAPI.alias('python', 'py');
+        console.log('[DevToolsPythonCompiler] /python alias registered successfully!');
+    } else {
+        console.warn('[DevToolsPythonCompiler] DevConsole API not found.');
+        console.warn('[DevToolsPythonCompiler] Using fallback: py_cmd("code") and pyexec("code") functions are available.');
     }
+    
+    console.log('[DevToolsPythonCompiler] ✓ Global functions registered: py`code`, $py("code"), pyrun("code"), py_cmd("code"), pyexec("code")');
 
     // Log initialization
-    console.log('%c🐍 Python Compiler Ready! Use /py, py`code`, or $py("code")', 
+    console.log('%c🐍 Python Compiler Ready!', 
         'background: #3776AB; color: white; padding: 5px; border-radius: 3px; font-weight: bold;');
+    console.log('%cUse: py`code` | $py("code") | pyrun("code") | py_cmd("code") | pyexec("code")', 
+        'color: #3776AB; font-style: italic;');
+    if (!DevConsoleAPI) {
+        console.log('%cNote: /py command not available. DevConsole API not found.', 
+            'color: #FF9800; font-style: italic;');
+    }
 
 })();
