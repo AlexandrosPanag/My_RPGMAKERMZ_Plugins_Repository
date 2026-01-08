@@ -6,7 +6,7 @@
 // http://opensource.org/licenses/mit-license.php
 // ----------------------------------------------------------------------------
 // Version
-// 1.0.0 2025/12/02 Initial release - Python-like syntax transpiler for DevConsole
+// 1.0.0 09/01/2026 Initial release - Python-like syntax transpiler for DevConsole
 // ----------------------------------------------------------------------------
 // [GitHub] : https://github.com/AlexandrosPanag
 //=============================================================================
@@ -20,7 +20,7 @@
  *
  * @param EnablePythonMode
  * @text Enable Python Mode
- * @desc Enable Python-like syntax in DevConsole (use /py or py`code`)
+ * @desc Enable Python-like syntax in DevConsole (use py_cmd("code") or py`code`)
  * @default true
  * @type boolean
  *
@@ -38,9 +38,9 @@
  * 
  * In the browser console (F8), you can use:
  * 
- * 1. The /py command:
- *    /py print("Hello World")
- *    /py for i in range(5): print(i)
+ * 1. The py_cmd() function:
+ *    py_cmd("print('Hello World')")
+ *    py_cmd("for i in range(5): print(i)")
  * 
  * 2. The py`` tagged template:
  *    py`player.x = 10`
@@ -54,6 +54,9 @@
  *    for item in items:
  *        print(item.name)
  *    `)
+ * 
+ * 5. Alternative: pyexec() function:
+ *    pyexec("print('test')")
  * 
  * ============================================================================
  * SUPPORTED PYTHON SYNTAX
@@ -139,22 +142,22 @@
  * ============================================================================
  * 
  * # Heal all party members
- * /py for actor in party.members(): actor.recoverAll()
+ * py_cmd("for actor in party.members(): actor.recoverAll()")
  * 
  * # Give gold
- * /py party.gainGold(10000)
+ * py_cmd("party.gainGold(10000)")
  * 
  * # Teleport player
- * /py player.setPosition(10, 15)
+ * py_cmd("player.setPosition(10, 15)")
  * 
  * # Print player position
- * /py print(f"Position: ({player.x}, {player.y})")
+ * py_cmd("print(f'Position: ({player.x}, {player.y})')")
  * 
  * # Loop through items
- * /py for i in range(1, 10): print(items[i].name if items[i] else "Empty")
+ * py_cmd("for i in range(1, 10): print(items[i].name if items[i] else 'Empty')")
  * 
  * # Check switches
- * /py for i in range(1, 20): print(f"Switch {i}: {switches.value(i)}")
+ * py_cmd("for i in range(1, 20): print(f'Switch {i}: {switches.value(i)}')")
  * 
  * ============================================================================
  */
@@ -612,13 +615,22 @@
                            (window.SceneManager && window.SceneManager._devConsole) ||
                            (window.$gameTemp && window.$gameTemp.devConsole);
         
-        // Search in window properties
+        // Search in window properties (avoid deprecated properties that trigger warnings)
         if (!DevConsoleAPI) {
+            const skipProperties = ['webkitStorageInfo', 'webkitIndexedDB']; // Skip deprecated properties
             for (let key in window) {
-                if (window[key] && typeof window[key] === 'object' && window[key].register && window[key].alias) {
-                    DevConsoleAPI = window[key];
-                    console.log('[DevToolsPythonCompiler] Found DevConsole at window.' + key);
-                    break;
+                if (skipProperties.includes(key)) continue;
+                
+                try {
+                    const prop = window[key];
+                    if (prop && typeof prop === 'object' && prop.register && typeof prop.register === 'function' && prop.alias) {
+                        DevConsoleAPI = prop;
+                        console.log('[DevToolsPythonCompiler] Found DevConsole at window.' + key);
+                        break;
+                    }
+                } catch (e) {
+                    // Skip properties that throw errors when accessed
+                    continue;
                 }
             }
         }
@@ -647,13 +659,14 @@
             const codeStyle = 'color: #4CAF50; font-family: monospace;';
             
             console.log('%c╔══════════════════════════════════════════════╗', style);
-            console.log('%c║     Python-like Syntax for DevConsole        ║', style);
+            console.log('%c║     Python-like Syntax for RPG Maker MZ      ║', style);
             console.log('%c╚══════════════════════════════════════════════╝', style);
             console.log('');
             console.log('%c▸ Basic Usage:', style);
-            console.log('  %c/py print("Hello")', codeStyle);
+            console.log('  %cpy_cmd("print(\'Hello\')")', codeStyle);
             console.log('  %cpy`player.x = 10`', codeStyle);
             console.log('  %c$py(\'print(player.x)\')', codeStyle);
+            console.log('  %cpyexec("print(\'test\')")', codeStyle);
             console.log('');
             console.log('%c▸ Variables:', style);
             console.log('  %cx = 10                    → let x = 10', codeStyle);
@@ -675,9 +688,9 @@
             console.log('  %cvariables → $gameVariables', codeStyle);
             console.log('');
             console.log('%c▸ Examples:', style);
-            console.log('  %c/py party.gainGold(10000)', codeStyle);
-            console.log('  %c/py for actor in party.members(): actor.recoverAll()', codeStyle);
-            console.log('  %c/py print(f"HP: {party.leader().hp}")', codeStyle);
+            console.log('  %cpy_cmd("party.gainGold(10000)")', codeStyle);
+            console.log('  %cpy_cmd("for actor in party.members(): actor.recoverAll()")', codeStyle);
+            console.log('  %cpy_cmd("print(f\'HP: {party.leader().hp}\')")' , codeStyle);
             console.log('');
             console.log('%cUse pytranspile("code") to see JS output without executing', 'color: #FF9800; font-style: italic;');
         }, 'Show Python syntax help', '/pyhelp');
