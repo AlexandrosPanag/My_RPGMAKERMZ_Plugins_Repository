@@ -6,6 +6,7 @@
 // http://opensource.org/licenses/mit-license.php
 // ----------------------------------------------------------------------------
 // Version
+// 1.0.1 09/01/2026 Quick Hotfix: Added pyhelp() command.
 // 1.0.0 09/01/2026 Initial release - Python-like syntax transpiler for DevConsole
 // ----------------------------------------------------------------------------
 // [GitHub] : https://github.com/AlexandrosPanag
