@@ -1,3 +1,4 @@
+
 //=============================================================================
 // DevToolsPythonCompiler.js
 // ----------------------------------------------------------------------------
@@ -16,6 +17,7 @@
  * @plugindesc Python-like Syntax Compiler for DevConsole
  * @author Alexandros Panagiotakopoulos
  * @target MZ
+ * @url https://github.com/AlexandrosPanag
  * @base DevToolsManage
  * @orderAfter DevToolsManage
  *
