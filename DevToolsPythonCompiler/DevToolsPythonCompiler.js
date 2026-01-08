@@ -1,7 +1,7 @@
 //=============================================================================
 // DevToolsPythonCompiler.js
 // ----------------------------------------------------------------------------
-// Author: Alexandros Panagiotakopoulos (2025)
+// Author: Alexandros Panagiotakopoulos (2026)
 // This software is released under the MIT License.
 // http://opensource.org/licenses/mit-license.php
 // ----------------------------------------------------------------------------
@@ -581,9 +581,49 @@
     // Expose transpiler for advanced usage
     window.PythonTranspiler = PythonTranspiler;
 
-    // Register /py command with DevConsole if available
-    // DevToolsManage creates global command functions, so we'll do the same
-    console.log('[DevToolsPythonCompiler] Registering Python commands as global functions...');
+    // Help function - always available globally
+    window.pyhelp = function() {
+        const style = 'color: #3776AB; font-weight: bold;';
+        const codeStyle = 'color: #4CAF50; font-family: monospace;';
+        
+        console.log('%c╔══════════════════════════════════════════════╗', style);
+        console.log('%c║     Python-like Syntax for RPG Maker MZ      ║', style);
+        console.log('%c╚══════════════════════════════════════════════╝', style);
+        console.log('');
+        console.log('%c▸ Basic Usage:', style);
+        console.log('  %cpy_cmd("print(\'Hello\')")', codeStyle);
+        console.log('  %cpy`player.x = 10`', codeStyle);
+        console.log('  %c$py(\'print(player.x)\')', codeStyle);
+        console.log('  %cpyexec("print(\'test\')")', codeStyle);
+        console.log('');
+        console.log('%c▸ Variables:', style);
+        console.log('  %cx = 10                    → let x = 10', codeStyle);
+        console.log('  %cprint(x)                  → console.log(x)', codeStyle);
+        console.log('');
+        console.log('%c▸ Loops:', style);
+        console.log('  %cfor i in range(5):        → for loop 0-4', codeStyle);
+        console.log('  %cfor item in list:         → for...of loop', codeStyle);
+        console.log('  %cwhile x > 0:              → while loop', codeStyle);
+        console.log('');
+        console.log('%c▸ Conditionals:', style);
+        console.log('  %cif x > 5:                 → if statement', codeStyle);
+        console.log('  %celif x > 2:               → else if', codeStyle);
+        console.log('  %celse:                     → else', codeStyle);
+        console.log('');
+        console.log('%c▸ RPG Maker Shortcuts:', style);
+        console.log('  %cplayer → $gamePlayer      party → $gameParty', codeStyle);
+        console.log('  %cmap → $gameMap            switches → $gameSwitches', codeStyle);
+        console.log('  %cvariables → $gameVariables', codeStyle);
+        console.log('');
+        console.log('%c▸ Examples:', style);
+        console.log('  %cpy_cmd("party.gainGold(10000)")', codeStyle);
+        console.log('  %cpy_cmd("for actor in party.members(): actor.recoverAll()")', codeStyle);
+        console.log('  %cpy_cmd("print(f\'HP: {party.leader().hp}\')")', codeStyle);
+        console.log('');
+        console.log('%cUse pytranspile("code") to see JS output without executing', 'color: #FF9800; font-style: italic;');
+    };
+
+    // Register Python command functions globally
     
     // Create global /py command function
     window.py_cmd = function(code) {
@@ -654,64 +694,19 @@
         }, 'Execute Python-like code', '/py <code>');
         console.log('[DevToolsPythonCompiler] /py command registered successfully!');
         
+        // Also register pyhelp as DevConsole command
         DevConsoleAPI.register('pyhelp', () => {
-            const style = 'color: #3776AB; font-weight: bold;';
-            const codeStyle = 'color: #4CAF50; font-family: monospace;';
-            
-            console.log('%c╔══════════════════════════════════════════════╗', style);
-            console.log('%c║     Python-like Syntax for RPG Maker MZ      ║', style);
-            console.log('%c╚══════════════════════════════════════════════╝', style);
-            console.log('');
-            console.log('%c▸ Basic Usage:', style);
-            console.log('  %cpy_cmd("print(\'Hello\')")', codeStyle);
-            console.log('  %cpy`player.x = 10`', codeStyle);
-            console.log('  %c$py(\'print(player.x)\')', codeStyle);
-            console.log('  %cpyexec("print(\'test\')")', codeStyle);
-            console.log('');
-            console.log('%c▸ Variables:', style);
-            console.log('  %cx = 10                    → let x = 10', codeStyle);
-            console.log('  %cprint(x)                  → console.log(x)', codeStyle);
-            console.log('');
-            console.log('%c▸ Loops:', style);
-            console.log('  %cfor i in range(5):        → for loop 0-4', codeStyle);
-            console.log('  %cfor item in list:         → for...of loop', codeStyle);
-            console.log('  %cwhile x > 0:              → while loop', codeStyle);
-            console.log('');
-            console.log('%c▸ Conditionals:', style);
-            console.log('  %cif x > 5:                 → if statement', codeStyle);
-            console.log('  %celif x > 2:               → else if', codeStyle);
-            console.log('  %celse:                     → else', codeStyle);
-            console.log('');
-            console.log('%c▸ RPG Maker Shortcuts:', style);
-            console.log('  %cplayer → $gamePlayer      party → $gameParty', codeStyle);
-            console.log('  %cmap → $gameMap            switches → $gameSwitches', codeStyle);
-            console.log('  %cvariables → $gameVariables', codeStyle);
-            console.log('');
-            console.log('%c▸ Examples:', style);
-            console.log('  %cpy_cmd("party.gainGold(10000)")', codeStyle);
-            console.log('  %cpy_cmd("for actor in party.members(): actor.recoverAll()")', codeStyle);
-            console.log('  %cpy_cmd("print(f\'HP: {party.leader().hp}\')")' , codeStyle);
-            console.log('');
-            console.log('%cUse pytranspile("code") to see JS output without executing', 'color: #FF9800; font-style: italic;');
+            window.pyhelp();
         }, 'Show Python syntax help', '/pyhelp');
         
         DevConsoleAPI.alias('python', 'py');
         console.log('[DevToolsPythonCompiler] /python alias registered successfully!');
-    } else {
-        console.warn('[DevToolsPythonCompiler] DevConsole API not found.');
-        console.warn('[DevToolsPythonCompiler] Using fallback: py_cmd("code") and pyexec("code") functions are available.');
     }
     
-    console.log('[DevToolsPythonCompiler] ✓ Global functions registered: py`code`, $py("code"), pyrun("code"), py_cmd("code"), pyexec("code")');
-
     // Log initialization
     console.log('%c🐍 Python Compiler Ready!', 
         'background: #3776AB; color: white; padding: 5px; border-radius: 3px; font-weight: bold;');
     console.log('%cUse: py`code` | $py("code") | pyrun("code") | py_cmd("code") | pyexec("code")', 
         'color: #3776AB; font-style: italic;');
-    if (!DevConsoleAPI) {
-        console.log('%cNote: /py command not available. DevConsole API not found.', 
-            'color: #FF9800; font-style: italic;');
-    }
 
 })();
