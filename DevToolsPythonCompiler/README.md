@@ -21,343 +21,216 @@
 
 ---
 
-## Quick Start
+# DevTools Python Compiler - Quick Start Guide
 
-Open the browser console (F8 in RPG Maker MZ) and try these commands:
+## 🐍 What is this?
 
-```python
-# Print a message
-/py print("Hello World")
+This plugin lets you write Python-like code in the browser console to control your RPG Maker MZ game. No more complex JavaScript syntax!
 
-# Use f-strings
-/py print(f"Player position: ({player.x}, {player.y})")
+## 🚀 How to Use
 
-# Give gold to party
-/py party.gainGold(5000)
+Open the browser console (`F8` or `F12`) and start using Python syntax!
 
-# Heal all party members
-/py for actor in party.members(): actor.recoverAll()
-```
+### Basic Commands
 
----
+🚀 Use "pyhelp()" (without the " " command 🚀
 
-## Usage Methods
-
-The plugin provides four ways to execute Python-like code:
-
-### 1. `/py` Command (Console)
-Execute single-line Python commands directly in the console:
-```python
-/py print("Hello")
-/py for i in range(5): print(i)
-```
-
-### 2. Tagged Template Literal
-Use backticks with the `py` tag:
 ```javascript
-py`player.x = 10`
-py`print(player.x, player.y)`
+// Simple print
+py_cmd("print('Hello World')")
+
+// Using template literals
+py`print('Quick test')`
+
+// Alternative methods
+$py("print('Alternative')")
+pyexec("print('Another way')")
 ```
 
-### 3. `$py()` Function
-Pass Python code as a string:
+### 🎮 RPG Maker Shortcuts
+
+Instead of writing `$gameParty`, just write `party`:
+
 ```javascript
-$py('print("Hello")')
-$py('x = 10; print(x * 2)')
+// Give gold
+py_cmd("party.gainGold(10000)")
+
+// Teleport player
+py_cmd("player.setPosition(10, 15)")
+
+// Heal all party members
+py_cmd("for actor in party.members(): actor.recoverAll()")
 ```
 
-### 4. `pyrun()` Function
-Best for multi-line code blocks:
+**Available shortcuts:**
+- `player` → `$gamePlayer`
+- `party` → `$gameParty`
+- `map` → `$gameMap`
+- `switches` → `$gameSwitches`
+- `variables` → `$gameVariables`
+- `actors` → `$gameActors`
+- `items` → `$dataItems`
+- `weapons` → `$dataWeapons`
+- `armors` → `$dataArmors`
+
+### 📝 Python Syntax Features
+
+#### Print Statements
+```javascript
+py_cmd("print('Hello')")
+py_cmd("print('HP:', player.hp)")
+
+// F-strings (formatted strings)
+py_cmd("print(f'Position: ({player.x}, {player.y})')")
+```
+
+#### Variables
+```javascript
+py_cmd("x = 100")
+py_cmd("player_hp = party.leader().hp")
+```
+
+#### Loops
+```javascript
+// Range loop
+py_cmd("for i in range(5): print(i)")
+
+// Loop through arrays
+py_cmd("for actor in party.members(): print(actor.name())")
+
+// With start and end
+py_cmd("for i in range(1, 10): print(f'Item {i}')")
+```
+
+#### Conditionals
+```javascript
+py_cmd("if party.gold() > 1000: print('Rich!')")
+
+// Ternary operator
+py_cmd("status = 'alive' if player.hp > 0 else 'dead'")
+```
+
+#### Boolean Logic
+```javascript
+py_cmd("if player.hp > 50 and party.gold() > 100: print('Good condition')")
+py_cmd("if x == 10 or y == 20: print('Match found')")
+py_cmd("if not player.isMoving(): print('Stopped')")
+```
+
+### 🔧 Useful Examples
+
+#### Check Switches
+```javascript
+py_cmd("for i in range(1, 20): print(f'Switch {i}: {switches.value(i)}')")
+```
+
+#### List All Items
+```javascript
+py_cmd("for i in range(1, 10): print(items[i].name if items[i] else 'Empty')")
+```
+
+#### Give Items to Party
+```javascript
+py_cmd("party.gainItem(items[1], 5)")
+```
+
+#### Check Party Status
+```javascript
+py_cmd("for actor in party.members(): print(f'{actor.name()}: HP {actor.hp}/{actor.mhp}')")
+```
+
+#### Modify Variables
+```javascript
+py_cmd("variables.setValue(1, 100)")
+py_cmd("print(f'Variable 1 = {variables.value(1)}')")
+```
+
+#### Array Operations
+```javascript
+py_cmd("arr = [1, 2, 3, 4, 5]")
+py_cmd("print(len(arr))")
+py_cmd("arr.append(6)")
+py_cmd("print(arr)")
+```
+
+### 📚 Multi-line Code
+
+For longer scripts, use `pyrun()`:
+
 ```javascript
 pyrun(`
-for i in range(10):
-    if i % 2 == 0:
-        print(i)
+gold = party.gold()
+if gold < 1000:
+    print('Need more gold!')
+    party.gainGold(5000)
+else:
+    print(f'You have {gold} gold')
 `)
 ```
 
----
+### 🔍 Debugging
 
-## Supported Python Syntax
+See the transpiled JavaScript code without executing:
 
-### Print Statements
-```python
-print("hello")              # → console.log("hello")
-print(x, y, z)              # → console.log(x, y, z)
-print(f"Value: {x}")        # → console.log(`Value: ${x}`)
-```
-
-### Variables
-```python
-x = 10                      # → let x = 10
-player.hp = 100             # → player.hp = 100 (property assignment)
-```
-
-### For Loops
-```python
-for i in range(10):         # → for (let i = 0; i < 10; i++)
-for i in range(2, 10):      # → for (let i = 2; i < 10; i++)
-for i in range(0, 10, 2):   # → for (let i = 0; i < 10; i += 2)
-for item in items:          # → for (const item of items)
-```
-
-### While Loops
-```python
-while x > 0:                # → while (x > 0) {
-    x = x - 1               #       x = x - 1
-                            #    }
-```
-
-### Conditionals
-```python
-if x > 5:                   # → if (x > 5) {
-    print("big")            # → console.log("big")
-elif x > 2:                 # → } else if (x > 2) {
-    print("medium")         # → console.log("medium")
-else:                       # → } else {
-    print("small")          # → console.log("small")
-                            # → }
-
-# Ternary operator
-result = "yes" if x > 5 else "no"  # → result = x > 5 ? "yes" : "no"
-```
-
-### Functions
-```python
-def greet(name):            # → function greet(name) {
-    print(f"Hello {name}")  #       console.log(`Hello ${name}`)
-                            #    }
-
-# Lambda functions
-double = lambda x: x * 2    # → double = (x) => x * 2
-```
-
-### Boolean Values & Operators
-```python
-True, False, None           # → true, false, null
-x and y                     # → x && y
-x or y                      # → x || y
-not x                       # → !x
-x is None                   # → x === null
-x is not None               # → x !== null
-```
-
-### List Operations
-```python
-len(items)                  # → items.length
-items.append(x)             # → items.push(x)
-items.pop()                 # → items.pop()
-x in items                  # → items.includes(x)
-x not in items              # → !items.includes(x)
-items.reverse()             # → items.reverse()
-items.sort()                # → items.sort()
-items.index(x)              # → items.indexOf(x)
-```
-
-### String Operations
-```python
-text.upper()                # → text.toUpperCase()
-text.lower()                # → text.toLowerCase()
-text.strip()                # → text.trim()
-text.split(",")             # → text.split(",")
-text.startswith("pre")      # → text.startsWith("pre")
-text.endswith("suf")        # → text.endsWith("suf")
-text.replace("a", "b")      # → text.replace("a", "b")
-```
-
-### Dictionary Operations
-```python
-dict.keys()                 # → Object.keys(dict)
-dict.values()               # → Object.values(dict)
-dict.items()                # → Object.entries(dict)
-dict.get(key, default)      # → (dict[key] ?? default)
-```
-
-### Math Operations
-```python
-abs(x)                      # → Math.abs(x)
-min(a, b)                   # → Math.min(a, b)
-max(a, b)                   # → Math.max(a, b)
-pow(x, y)                   # → Math.pow(x, y)
-round(x)                    # → Math.round(x)
-sqrt(x)                     # → Math.sqrt(x)
-
-# Operators
-x ** y                      # → Math.pow(x, y) (power)
-x // y                      # → Math.floor(x / y) (floor division)
-```
-
-### Type Conversions
-```python
-int(x)                      # → parseInt(x)
-float(x)                    # → parseFloat(x)
-str(x)                      # → String(x)
-bool(x)                     # → Boolean(x)
-list(x)                     # → Array.from(x)
-type(x)                     # → typeof(x)
-```
-
----
-
-## RPG Maker Shortcuts
-
-The plugin provides convenient shortcuts for common RPG Maker MZ objects:
-
-| Python Keyword | JavaScript Equivalent | Description |
-|----------------|----------------------|-------------|
-| `player` | `$gamePlayer` | The player character |
-| `party` | `$gameParty` | The party |
-| `map` | `$gameMap` | The current map |
-| `switches` | `$gameSwitches` | Game switches |
-| `variables` | `$gameVariables` | Game variables |
-| `actors` | `$gameActors` | Actor data |
-| `items` | `$dataItems` | Item database |
-| `weapons` | `$dataWeapons` | Weapon database |
-| `armors` | `$dataArmors` | Armor database |
-| `enemies` | `$dataEnemies` | Enemy database |
-| `troop` | `$gameTroop` | Enemy troop |
-| `screen` | `$gameScreen` | Screen effects |
-| `message` | `$gameMessage` | Message window |
-| `system` | `$gameSystem` | Game system |
-| `temp` | `$gameTemp` | Temporary data |
-| `timer` | `$gameTimer` | Game timer |
-
----
-
-## Practical Examples
-
-### Player Manipulation
-```python
-# Teleport player
-/py player.setPosition(10, 15)
-
-# Get player coordinates
-/py print(f"Position: ({player.x}, {player.y})")
-
-# Move player
-/py player.moveStraight(2)  # 2 = down
-```
-
-### Party Management
-```python
-# Heal all party members
-/py for actor in party.members(): actor.recoverAll()
-
-# Give gold
-/py party.gainGold(10000)
-
-# Add item
-/py party.gainItem(items[1], 5)
-
-# Check party leader HP
-/py print(f"Leader HP: {party.leader().hp}")
-```
-
-### Switches & Variables
-```python
-# Set a switch
-/py switches.setValue(1, True)
-
-# Check multiple switches
-/py for i in range(1, 10): print(f"Switch {i}: {switches.value(i)}")
-
-# Set variable
-/py variables.setValue(5, 100)
-
-# Get variable with f-string
-/py print(f"Variable 5: {variables.value(5)}")
-```
-
-### Item Inspection
-```python
-# List all non-null items
-/py for i in range(1, 20): print(items[i].name if items[i] else "Empty")
-
-# Find items by name
-/py for i in range(1, len(items)): 
-    if items[i] and "Potion" in items[i].name: 
-        print(f"ID {i}: {items[i].name}")
-```
-
-### Battle Commands
-```python
-# Enemy HP check
-/py for enemy in troop.members(): print(f"{enemy.name()}: {enemy.hp}")
-
-# Kill all enemies (for testing)
-/py for enemy in troop.members(): enemy.die()
-```
-
-### Map Inspection
-```python
-# Display map info
-/py print(f"Map ID: {map.mapId()}, Display Name: {map.displayName()}")
-
-# Check map events
-/py print(f"Events on map: {len(map.events())}")
-
-# Event loop
-/py for event in map.events(): 
-    if event: 
-        print(f"Event {event.eventId()}: ({event.x}, {event.y})")
-```
-
-### Conditional Logic
-```python
-# Check gold and give items
-/py if party.gold() > 1000:
-    party.gainItem(items[10], 1)
-    print("Gave rare item!")
-else:
-    print("Not enough gold")
-```
-
----
-
-## Advanced Features
-
-### Debug Transpilation
-View the generated JavaScript without executing:
 ```javascript
-pytranspile("for i in range(5): print(i)")
-// Output: Generated JS code
+pytranspile("print('Hello')")
+// Output: console.log('Hello')
 ```
 
-### Console Help
-View quick reference in console:
-```
-/pyhelp
+### 📖 Get Help
+
+```javascript
+// View help in console
+pyhelp()
 ```
 
-### Command Aliases
-The plugin registers aliases:
+## 💡 Tips
+
+1. **Use f-strings** for formatted output: `f'HP: {player.hp}'`
+2. **Chain methods** work: `party.leader().name()`
+3. **Python booleans** work: `True`, `False`, `None`
+4. **Math operators** work: `x ** 2` (power), `x // 2` (floor division)
+5. **List comprehensions** aren't supported - use loops instead
+
+## ⚠️ Limitations
+
+- List comprehensions not supported
+- Dictionary comprehensions not supported
+- Classes and decorators not supported
+- Import statements not supported
+- Some complex Python features won't work
+
+## 🎯 Common Tasks
+
+### Reset Player Position
+```javascript
+py_cmd("player.setPosition(0, 0)")
 ```
-/python <code>  # Same as /py
+
+### Give All Items
+```javascript
+py_cmd("for i in range(1, 100): party.gainItem(items[i], 1) if items[i] else None")
+```
+
+### Max Out Party Stats
+```javascript
+py_cmd("for actor in party.members(): actor.recoverAll()")
+```
+
+### Clear All Switches
+```javascript
+py_cmd("for i in range(1, 100): switches.setValue(i, False)")
+```
+
+### Test Battle
+```javascript
+py_cmd("$gameTroop.setup(1)")  // Setup troop ID 1
 ```
 
 ---
 
-## Debug Output
+**Enjoy coding with Python syntax in RPG Maker MZ! 🐍🎮**
 
-The plugin provides colored console output for debugging:
-
-- **[Python]** (Blue) - Original Python code
-- **[JS]** (Yellow) - Transpiled JavaScript
-- **[Result]** (Green) - Execution result
-- **[Error]** (Red) - Error messages
-
-Example:
-```python
-/py print(2 + 2)
-```
-
-Console output:
-```
-[Python] print(2 + 2)
-[JS] console.log(2 + 2)
-4
-[Result] undefined
-```
 
 ---
 
