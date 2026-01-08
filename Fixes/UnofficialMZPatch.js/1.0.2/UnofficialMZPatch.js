@@ -6,10 +6,10 @@
 
 /*:
 @target MZ
-@plugindesc [v1.0.1] Comprehensive RPG Maker MZ 1.9.0 Patches.
+@plugindesc [v1.0.2] Comprehensive RPG Maker MZ 1.9.0 Patches.
 @author Alexandros Panagiotakopoulos
 @url https://alexandrospanag.github.io
-@version 1.0.1
+@version 1.0.2
 
 @param --- Core Fixes ---
 @default
