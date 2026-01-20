@@ -1,6 +1,6 @@
 ## An all-in-one comprehensive unofficial RPG Maker MZ Patch 
 
-![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)
+![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-red.svg)
 ![License](https://img.shields.io/badge/license-CC%20BY%204.0-green.svg)
 
