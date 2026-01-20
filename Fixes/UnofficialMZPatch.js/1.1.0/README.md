@@ -1,4 +1,4 @@
-# UnofficialMZPatch.js - v1.0.1 Patch Notes
+# UnofficialMZPatch.js - v1.1.0 Patch Notes
 
 ## Fixed Issues
 
