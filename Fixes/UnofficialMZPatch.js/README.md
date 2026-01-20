@@ -12,6 +12,7 @@ An all-in-one Comprehensive RPG Maker MZ 1.9.0 Patches, Stability Fixes & Perfor
 
 -[10-12-2025][1.0.1]: Fixes & Optimization. 
 
+-[20-01-2026][1.1.0]: Critical Fix Resolved.
 
 ## 📄 License
 
