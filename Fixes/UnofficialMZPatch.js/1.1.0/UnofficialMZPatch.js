@@ -966,29 +966,6 @@ Copyright © Alexandros Panagiotakopoulos. All Rights Reserved.
             this._forcing = false;
             this._reflectionTarget = null;
         };
-        
-        // Battle sprite cleanup
-        const _Spriteset_Battle_terminate = Spriteset_Battle.prototype.terminate;
-        Spriteset_Battle.prototype.terminate = function() {
-            // Destroy all battle sprites
-            if (this._actorSprites) {
-                for (const sprite of this._actorSprites) {
-                    if (sprite && sprite.destroy) sprite.destroy();
-                }
-                this._actorSprites = [];
-            }
-            
-            if (this._enemySprites) {
-                for (const sprite of this._enemySprites) {
-                    if (sprite && sprite.destroy) sprite.destroy();
-                }
-                this._enemySprites = [];
-            }
-            
-            if (_Spriteset_Battle_terminate) {
-                _Spriteset_Battle_terminate.call(this);
-            }
-        };
     }
 
     //=========================================================================
