@@ -19,7 +19,6 @@ The BattleHUD Plugin displays animated health bars with status effects for both 
 ## ✨ Features
 
 - **Animated Health Bars** - Seamless looping gradient animations for both enemies and allies
-- **Status Effect Icons** - Small, stackable icon boxes showing buffs/debuffs below health bars
 - **Resource Bars for Actors** - HP, MP, and TP bars for party members
 - **Enemy Simplicity** - Enemies display only HP bars (no MP/TP)
 - **Smooth Damage Animation** - Instant damage visualization with smooth HP drain effect
@@ -346,30 +345,12 @@ Bar Height: 16
 Animation Speed: 4
 ```
 
----
-
-## 📜 Changelog
-
-### Version 2.0.0 (2025)
-- Renamed from EnemyHealthBar to BattleHUD
-- Added MP and TP bars for actors
-- Implemented status effect icon display
-- Enhanced health bar visual styling
-- Improved gradient animation algorithm
-- Added comprehensive parameter controls
-- Performance optimizations
-
-### Version 1.0.0
-- Initial release (EnemyHealthBar)
-- Basic health bar functionality
-- Gradient animations
-- Damage drain effects
 
 ---
 
 ## ⚖️ License
 
-**Copyright © 2025 Alexandros Panagiotakopoulos**
+**Copyright © 2026 Alexandros Panagiotakopoulos**
 
 This work is licensed under the Creative Commons Attribution-NoDerivatives 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nd/4.0/
 
