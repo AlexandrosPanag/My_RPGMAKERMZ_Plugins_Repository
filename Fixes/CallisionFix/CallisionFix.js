@@ -2,8 +2,8 @@
  * @target MZ
  * @plugindesc Prevents walking through impassable tiles (X marked tiles)
  * @author Alexandros Panagiotokopoulos
- * @version 1.0.0
-* @date 2025-10-10
+ * @version 1.0.1
+ * @date 2025-10-10
  * @url alexandrospanag.github.io
  * @help
  * This plugin fixes collision detection to completely prevent walking
@@ -18,6 +18,10 @@
     // Override moveStraight to add strict collision checking
     const _Game_Player_moveStraight = Game_Player.prototype.moveStraight;
     Game_Player.prototype.moveStraight = function(d) {
+        // Always face the direction the player is trying to move
+        // This ensures the character turns even when blocked
+        this.setDirection(d);
+        
         const x = this.x;
         const y = this.y;
         const x2 = $gameMap.roundXWithDirection(x, d);
@@ -26,10 +30,10 @@
         // Strict passability check - check all layers
         if (!this.canPassDiagonally(x, y, d, d)) {
             if (!$gameMap.isPassable(x2, y2, this.reverseDir(d))) {
-                return;
+                return; // Blocked, but already facing the right direction
             }
             if (!$gameMap.isPassable(x, y, d)) {
-                return;
+                return; // Blocked, but already facing the right direction
             }
         }
         
@@ -76,3 +80,4 @@
 
 
 })();
+
