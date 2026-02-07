@@ -2,7 +2,7 @@
 
 A lightweight, plug-and-play loot randomization system for RPG Maker MZ that brings dynamic treasure and weapon drops to your game using simple note tags.
 
-![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-red.svg)
 ![License](https://img.shields.io/badge/license-CC%20BY%204.0-green.svg)
 
