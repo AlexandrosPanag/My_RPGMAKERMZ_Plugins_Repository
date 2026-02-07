@@ -1,3 +1,14 @@
+# Code Written by Alexandros Panagiotakopoulos
+# Date: 07-02-2026
+# alexandrospanag.github.io
+
+# Reorganize Animations for DLC
+# This script categorizes animations based on their names and effect names, then reorganizes them with
+# category separators and renumbered IDs. The categorization logic is designed to prioritize certain keywords
+# to ensure accurate classification, especially for effects that may have overlapping keywords (e.g., "
+#blood" in both physical and magical effects). The script also prints out statistics about the reorganization process.
+# License: 4.0 International (CC BY 4.0)
+
 import json
 import re
 from typing import Dict, List
