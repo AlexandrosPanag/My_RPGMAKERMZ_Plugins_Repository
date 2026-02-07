@@ -8,8 +8,7 @@
 // ----------------------------------------------------------------------------
 // Version
 
-// 2.2.0 2026/02/07 Fixed require.main.filename error with NW.js fallback paths for backup creation
-// 2.2.0 2025/12/02 Added /help console command system, code optimizations, cached DOM queries
+// 2.2.0 2026/02/07 Fixed require.main.filename error with NW.js fallback paths, added /help console command system, code optimizations, cached DOM queries
 // 2.1.0 2025/11/19 Code Modernization: Updated to 2025 standards, replaced deprecated Node.js APIs
 // 2.0.1 2025/11/15 Memory & Performance Update: Fixed memory leaks, added cleanup methods
 // 1.3.0 2025/11/01 Improvements: Use of modern NW.js API, performance optimization, UI improvements
