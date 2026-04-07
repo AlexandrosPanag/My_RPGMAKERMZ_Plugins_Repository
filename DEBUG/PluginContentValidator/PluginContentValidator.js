@@ -1,6 +1,6 @@
 //=============================================================================
 // Plugin Content Validator
-// Version: 1.0.0
+// Version: 1.0.1
 //=============================================================================
 
 /*:
@@ -395,13 +395,172 @@
         }
 
         isRecognizedNotetag(tagName) {
-            // Build a list of common/known notetags
-            // This should be enhanced with actual plugin metadata
-            const commonTags = [
+            const tag = tagName.toLowerCase();
+
+            // ---------------------------------------------------------------
+            // General / RPG Maker MZ built-in
+            // ---------------------------------------------------------------
+            const builtinTags = [
                 'note', 'meta', 'description'
             ];
-            
-            return commonTags.includes(tagName.toLowerCase());
+
+            // ---------------------------------------------------------------
+            // UnifiedTacticalSystem (RE;LIVE/UnifiedTacticalSystem)
+            // Cooldowns, quick skills, resources, limit break, momentum,
+            // stance, targeting, passives, multi-hit, state slip damage, etc.
+            // ---------------------------------------------------------------
+            const utsTags = [
+                // Cooldown system
+                'cooldown', 'cooldownreduce',
+                // Quick skills
+                'quickskill', 'quickcost',
+                // Resource costs / requirements
+                'hpcost', 'hpcostflat', 'requirehp', 'requiretp',
+                // Limit break / uses
+                'limitbreak', 'usesperbattle',
+                // Finisher
+                'finisher', 'finisherthreshold', 'statedamagebonus',
+                // Momentum
+                'buildmomentum', 'requiremomentum', 'consumemomentum',
+                // Stance
+                'stance', 'stanceskill', 'requirestance',
+                // Targeting & positioning
+                'pierce', 'piercepercent', 'backstab', 'aoe',
+                // Passive skills
+                'passive', 'passivestate', 'onattackstate', 'onattackselfstate',
+                'onhitstate', 'hpregen', 'mpregen', 'tpregen',
+                // Multi-hit & execution
+                'multihit', 'randomhits', 'execute',
+                // Charge skills
+                'chargeskill',
+                // State tags
+                'stackmax', 'momentum',
+                // Slip damage / heal (HP)
+                'slipdamage', 'slipheal', 'slipdamagepercent', 'sliphealPercent',
+                'slipformula',
+                // Slip damage / heal (MP)
+                'slipmpdamage', 'slipmpheal', 'slipmpdamagepercent', 'slipmphealPercent',
+                'slipmpformula',
+                // Slip damage / heal (TP)
+                'sliptpdamage', 'sliptpgain', 'sliptpdamagepercent', 'sliptpgainpercent',
+                'sliptpformula',
+                // Slip chance
+                'slipchance',
+                // Misc skill tags used in your database
+                'hide'
+            ];
+
+            // ---------------------------------------------------------------
+            // CustomEquipMenu (RE;LIVE/CustomEquipMenu)
+            // ---------------------------------------------------------------
+            const equipTags = [
+                'equip'
+            ];
+
+            // ---------------------------------------------------------------
+            // Enemy_SideView_Sprites (RE;LIVE/Enemy_SideView_Sprites)
+            // ---------------------------------------------------------------
+            const sideViewTags = [
+                'sideviewsprite'
+            ];
+
+            // ---------------------------------------------------------------
+            // EventRespawnTimer (RE;LIVE/EventRespawnTimer)
+            // ---------------------------------------------------------------
+            const respawnTags = [
+                'respawn'
+            ];
+
+            // ---------------------------------------------------------------
+            // SkillCastToMove (RE;LIVE/SkillCastToMove)
+            // ---------------------------------------------------------------
+            const castMoveTags = [
+                'casttomove', 'castmove'
+            ];
+
+            // ---------------------------------------------------------------
+            // HeightModifier / TN_SpriteExtender
+            // ---------------------------------------------------------------
+            const spriteTags = [
+                'height', 'spriteheight', 'torsoratio'
+            ];
+
+            // ---------------------------------------------------------------
+            // DoubleSizer / TripleSizer (RE;LIVE)
+            // ---------------------------------------------------------------
+            const sizerTags = [
+                'doublesizer', 'triplesizer', 'nosizer'
+            ];
+
+            // ---------------------------------------------------------------
+            // LightingSystem (RE;LIVE/LightingSystem)
+            // ---------------------------------------------------------------
+            const lightingTags = [
+                'light', 'lightradius', 'lightcolor', 'lightintensity',
+                'nolight', 'lamp'
+            ];
+
+            // ---------------------------------------------------------------
+            // PartyJump (RE;LIVE/PartyJump)
+            // ---------------------------------------------------------------
+            const jumpTags = [
+                'nojump', 'jumpheight'
+            ];
+
+            // ---------------------------------------------------------------
+            // RandomLootPlugin (RE;LIVE/RandomLootPlugin)
+            // ---------------------------------------------------------------
+            const lootTags = [
+                'loot', 'lootchance', 'loottable'
+            ];
+
+            // ---------------------------------------------------------------
+            // MiniMapOverlay (RE;LIVE/MiniMapOverlay)
+            // ---------------------------------------------------------------
+            const minimapTags = [
+                'minimap', 'minimapicon', 'nominimap'
+            ];
+
+            // ---------------------------------------------------------------
+            // TimeSystem (RE;LIVE/TimeSystem)
+            // ---------------------------------------------------------------
+            const timeTags = [
+                'timetrigger', 'openhours', 'closedhours'
+            ];
+
+            // ---------------------------------------------------------------
+            // WeatherSystem (RE;LIVE/WeatherSystem)
+            // ---------------------------------------------------------------
+            const weatherTags = [
+                'weather', 'noweather'
+            ];
+
+            // ---------------------------------------------------------------
+            // Sun_0_SvEquipSpriteEx
+            // ---------------------------------------------------------------
+            const svEquipTags = [
+                'svequip', 'svweapon', 'svarmor', 'svequipsprite'
+            ];
+
+            const allKnownTags = [
+                ...builtinTags,
+                ...utsTags,
+                ...equipTags,
+                ...sideViewTags,
+                ...respawnTags,
+                ...castMoveTags,
+                ...spriteTags,
+                ...sizerTags,
+                ...lightingTags,
+                ...jumpTags,
+                ...lootTags,
+                ...minimapTags,
+                ...timeTags,
+                ...weatherTags,
+                ...svEquipTags
+            ].map(t => t.toLowerCase());
+
+            return allKnownTags.includes(tag);
         }
 
         //---------------------------------------------------------------------
