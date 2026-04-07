@@ -1,6 +1,6 @@
 //=============================================================================
 // Plugin Content Validator
-// Version: 1.0.1
+// Version: 1.1.0
 //=============================================================================
 
 /*:
@@ -8,7 +8,7 @@
  * @plugindesc Detects orphaned plugin commands, notetags, and mismatches in your project
  * @author Alexandros Panagiotakopoulos
  * @url https:alexandrospanag.github.io
- * @date 15/11/2025
+ * @date 07/04/2026
  *
  * @help
  * ============================================================================
@@ -406,8 +406,6 @@
 
             // ---------------------------------------------------------------
             // UnifiedTacticalSystem (RE;LIVE/UnifiedTacticalSystem)
-            // Cooldowns, quick skills, resources, limit break, momentum,
-            // stance, targeting, passives, multi-hit, state slip damage, etc.
             // ---------------------------------------------------------------
             const utsTags = [
                 // Cooldown system
@@ -448,6 +446,15 @@
                 'slipchance',
                 // Misc skill tags used in your database
                 'hide'
+            ];
+
+            // ---------------------------------------------------------------
+            // SkillSystemPlugin / extra skill tags used in database
+            // (removeByAction, criticalGuaranteed, reviveParty, chargeTime, stunChance)
+            // ---------------------------------------------------------------
+            const skillSystemTags = [
+                'removebyaction', 'criticalguaranteed', 'reviveparty',
+                'chargetime', 'stunchance'
             ];
 
             // ---------------------------------------------------------------
@@ -539,12 +546,18 @@
             // Sun_0_SvEquipSpriteEx
             // ---------------------------------------------------------------
             const svEquipTags = [
-                'svequip', 'svweapon', 'svarmor', 'svequipsprite'
+                'equipimg', 'equipcustimg1', 'equipcustimg2',
+                'equipsvimg1', 'equipsvimg2',
+                'armorimageitem', 'weaponimageitem',
+                'custarmortypemodeitem', 'custequipmotionmodeitem',
+                'custweapontypemodeitem', 'equipspriteconfigitem',
+                'equipspriteenableitem'
             ];
 
             const allKnownTags = [
                 ...builtinTags,
                 ...utsTags,
+                ...skillSystemTags,
                 ...equipTags,
                 ...sideViewTags,
                 ...respawnTags,
