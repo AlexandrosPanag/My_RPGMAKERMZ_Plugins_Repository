@@ -15,7 +15,7 @@ This happens because:
 
 There is no built-in way to fix this without a plugin.
 
-![]()
+![](https://raw.githubusercontent.com/AlexandrosPanag/My_RPGMAKERMZ_Plugins_Repository/refs/heads/main/System/BoardDockingSystem/example_for_x56_y35_x54_y41.png)
 
 ---
 
