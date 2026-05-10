@@ -1,7 +1,9 @@
 # BoatBoardingSystem.js
-### RPG Maker MZ Plugin
-
 ---
+
+![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
+![Version](https://img.shields.io/badge/version-1.0.0-green)
+![License](https://img.shields.io/badge/license-CC%20BY%204.0-orange)
 
 ## The Problem
 
@@ -169,5 +171,5 @@ See [LICENSE](https://creativecommons.org/licenses/by/4.0/) for full details.
 
 **Created by**: Alexandros Panagiotakopoulos  
 **Website**: [alexandrospanag.github.io](https://alexandrospanag.github.io)  
-**Date**: February 7, 2026
+**Date**: May 11, 2026
 
