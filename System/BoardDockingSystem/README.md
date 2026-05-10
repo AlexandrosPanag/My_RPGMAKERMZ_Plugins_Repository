@@ -1,5 +1,4 @@
 # BoatBoardingSystem.js
----
 
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
 ![Version](https://img.shields.io/badge/version-1.0.0-green)
