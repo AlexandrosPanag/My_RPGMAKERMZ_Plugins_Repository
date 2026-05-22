@@ -3,7 +3,7 @@
 Stop guessing where your frame budget is going. Get real per-frame ms costs across every subsystem in your RPG Maker MZ game — including the PIXI render pass that every other profiler misses.
 
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
-![Version](https://img.shields.io/badge/version-3.0.0-green)
+![Version](https://img.shields.io/badge/version-1.0.0-green)
 ![License](https://img.shields.io/badge/license-CC%20BY%204.0-orange)
 ![Type](https://img.shields.io/badge/type-DEBUG%20%2F%20Dev%20Tool-red)
 
