@@ -57,36 +57,33 @@ This is a professional plugin collection focused on creating immersive RPG exper
 
 ## ⚖️ License & Copyright
 
-### Copyright Notice
-**Copyright © 2025 - 2026 Alexandros Panagiotakopoulos. All Rights Reserved.**
+## 📄 License & Attribution
 
-### License Terms
-This project is licensed under a **Custom MIT-Based License with Attribution Requirements**.
+**Copyright © 2025-2026 Alexandros Panagiotakopoulos. All Rights Reserved.**
 
-**You may:**
-- ✅ Use in commercial projects (with attribution)
-- ✅ Use in non-commercial projects (with attribution)
-- ✅ Modify and adapt for your needs
-- ✅ Redistribute with proper attribution
+Licensed under **Creative Commons Attribution 4.0 International License**
 
-**You must:**
-- 📝 Include proper attribution in your project credits
-- 📋 Maintain copyright notices
-- 📄 Include license file when redistributing
+**You are free to:**
+- ✅ **Share** — copy and redistribute in any medium or format
+- ✅ **Adapt** — remix, transform, and build upon the material
+- ✅ **Commercial Use** — use in commercial projects
+- ✅ **Modify** — change and customize for your needs
 
-### Attribution Requirements
+**Under the following terms:**
+- 📝 **Attribution** — Give appropriate credit and link to the license
+- 📋 **Indicate Changes** — Note if you made changes
+- 🚫 **No Warranty** — Provided "as is"
 
-**Required attribution in your game credits:**
+### Required Attribution
 ```
-Professional RPG Plugin Collection
-Copyright © Alexandros Panagiotakopoulos
+<Plugin name(s)> by Alexandros Panagiotakopoulos
+Licensed under CC BY 4.0
 ```
 
-**For documentation or technical credits:**
-```
-Performance optimization powered by Professional RPG Plugins
-Created by Alexandros Panagiotakopoulos
-```
+---
+
+**Copyright © 2026 Alexandros Panagiotakopoulos. All Rights Reserved.**
+
 
 **Minimum attribution:**
 ```
@@ -94,7 +91,6 @@ Plugins by Alexandros Panagiotakopoulos
 ```
 
 **Full license details:** [LICENSE.md](LICENSE.md)
-
 
 ---
 
