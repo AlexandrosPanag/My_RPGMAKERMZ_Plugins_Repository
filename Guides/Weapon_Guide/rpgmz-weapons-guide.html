@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RPG Maker MZ — Weapons Database Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  :root {
+    --bg:        #0d0f14;
+    --surface:   #161a24;
+    --panel:     #1d2235;
+    --border:    #2a3050;
+    --gold:      #c9a84c;
+    --gold-dim:  #7a6130;
+    --cyan:      #5ec4d6;
+    --red:       #e05a6a;
+    --green:     #56c97a;
+    --purple:    #9f7aea;
+    --text:      #d4daf0;
+    --muted:     #6e7a9f;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(160deg, #0d0f14 0%, #1a1030 50%, #0d0f14 100%);
+    border-bottom: 1px solid var(--gold-dim);
+    padding: 48px 32px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '⚔';
+    position: absolute;
+    font-size: 300px;
+    opacity: 0.03;
+    top: -60px; left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+  header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(24px, 5vw, 46px);
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-shadow: 0 0 40px rgba(201,168,76,0.3);
+    position: relative;
+  }
+  header p {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ── NAV TABS ── */
+  nav {
+    display: flex;
+    overflow-x: auto;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    scrollbar-width: none;
+    gap: 2px;
+    padding: 0 8px;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  nav button {
+    flex-shrink: 0;
+    padding: 14px 20px;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color .2s, border-color .2s;
+    white-space: nowrap;
+  }
+  nav button:hover { color: var(--text); }
+  nav button.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* ── LAYOUT ── */
+  main { max-width: 900px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  section { display: none; }
+  section.active { display: block; }
+
+  /* ── TYPOGRAPHY ── */
+  h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    color: var(--gold);
+    margin-bottom: 6px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--gold-dim);
+  }
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--cyan);
+    margin: 28px 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  p { margin-bottom: 14px; color: var(--text); }
+  strong { color: #fff; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 24px;
+    margin-bottom: 18px;
+  }
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  /* ── PARAMS TABLE ── */
+  .params-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 600px) { .params-grid { grid-template-columns: 1fr; } }
+
+  .param-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    border-left: 3px solid var(--gold-dim);
+    transition: border-color .2s;
+    cursor: default;
+  }
+  .param-card:hover { border-left-color: var(--gold); }
+
+  .param-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--cyan);
+    margin-bottom: 2px;
+  }
+  .param-full {
+    font-size: 12px;
+    color: var(--gold);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .param-desc {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .param-example {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--green);
+    margin-top: 6px;
+    background: rgba(86,201,122,0.06);
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+
+  /* ── TRAITS TABLE ── */
+  .trait-row {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  @media (max-width: 600px) { .trait-row { grid-template-columns: 1fr; gap: 6px; } }
+
+  .trait-tag {
+    background: rgba(201,168,76,0.12);
+    border: 1px solid var(--gold-dim);
+    border-radius: 5px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold);
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .trait-body .trait-title {
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .trait-body p { font-size: 13px; margin-bottom: 0; }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 20px 0;
+    border-left: 4px solid;
+  }
+  .callout.info  { background: rgba(94,196,214,0.08); border-color: var(--cyan); }
+  .callout.warn  { background: rgba(224, 90,106,0.08); border-color: var(--red); }
+  .callout.tip   { background: rgba(86,201,122,0.08); border-color: var(--green); }
+  .callout.gold  { background: rgba(201,168,76,0.08);  border-color: var(--gold); }
+
+  .callout-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .callout.info  .callout-label { color: var(--cyan); }
+  .callout.warn  .callout-label { color: var(--red); }
+  .callout.tip   .callout-label { color: var(--green); }
+  .callout.gold  .callout-label { color: var(--gold); }
+
+  .callout p { font-size: 14px; margin-bottom: 0; }
+
+  /* ── BUFF DIAGRAM ── */
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+  }
+  .flow-box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    min-width: 110px;
+  }
+  .flow-box.actor  { border-color: var(--cyan);   color: var(--cyan);   }
+  .flow-box.skill  { border-color: var(--purple);  color: var(--purple); }
+  .flow-box.target { border-color: var(--red);     color: var(--red);    }
+  .flow-box.self   { border-color: var(--green);   color: var(--green);  }
+  .flow-arrow { color: var(--muted); font-size: 20px; }
+
+  /* ── PERCENT EXPLAINER ── */
+  .percent-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .pct-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+  }
+  .pct-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 26px;
+    font-weight: 700;
+  }
+  .pct-val.boost  { color: var(--green); }
+  .pct-val.normal { color: var(--cyan); }
+  .pct-val.nerf   { color: var(--red); }
+  .pct-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* ── INTERACTIVE BUFF DEMO ── */
+  .buff-demo {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin: 20px 0;
+  }
+  .demo-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .demo-row label {
+    font-size: 13px;
+    color: var(--muted);
+    min-width: 120px;
+    font-weight: 600;
+  }
+  .demo-row input[type=range] {
+    flex: 1;
+    min-width: 120px;
+    accent-color: var(--gold);
+  }
+  .demo-row .val-display {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    min-width: 60px;
+    text-align: right;
+    color: var(--gold);
+  }
+  .demo-result {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .res-item { text-align: center; }
+  .res-val {
+    font-family: 'Cinzel', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+  .res-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ── WEAPON TYPE INFO ── */
+  .wtype-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .wtype-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    border-top: 2px solid var(--gold-dim);
+    transition: border-top-color .2s;
+  }
+  .wtype-card:hover { border-top-color: var(--gold); }
+  .wtype-name { font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .wtype-desc { font-size: 13px; color: var(--muted); }
+
+  /* ── ELEMENT CHIPS ── */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+  .chip {
+    background: rgba(94,196,214,0.1);
+    border: 1px solid rgba(94,196,214,0.3);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--cyan);
+  }
+
+  /* ── SECTION INTRO ── */
+  .section-intro {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⚔ RPG Maker MZ — Weapons Database</h1>
+  <p>Complete Guide · No Plugins · Explained Like You're Five</p>
+</header>
+
+<nav>
+  <button class="active" onclick="switchTab('overview')">Overview</button>
+  <button onclick="switchTab('params')">Params</button>
+  <button onclick="switchTab('traits')">Traits</button>
+  <button onclick="switchTab('buffs')">Buffs & Debuffs</button>
+  <button onclick="switchTab('elements')">Elements</button>
+  <button onclick="switchTab('calc')">Damage Calc</button>
+</nav>
+
+<main>
+
+<!-- ═══════════════ OVERVIEW ═══════════════ -->
+<section id="overview" class="active">
+  <h2>The Weapons Database — Big Picture</h2>
+  <p class="section-intro">Think of a weapon entry as a card with three zones: basic info at the top, number boosts in the middle (Params), and special rules at the bottom (Traits). Together they define everything a weapon does.</p>
+
+  <div class="card">
+    <div class="card-title">🗂 The Three Zones of a Weapon</div>
+    <div class="trait-row">
+      <div class="trait-tag">TOP ZONE</div>
+      <div class="trait-body">
+        <div class="trait-title">Basic Info</div>
+        <p>Name, icon, description, <strong>Weapon Type</strong> (sword, bow, etc.), <strong>Animation</strong> (what plays on attack), and <strong>Price / Equip type</strong>. These are mostly labelling fields — they don't directly affect combat math except for Weapon Type, which determines which actors can equip it.</p>
+      </div>
+    </div>
+    <div class="trait-row">
+      <div class="trait-tag">MIDDLE ZONE</div>
+      <div class="trait-body">
+        <div class="trait-title">Parameters (Params)</div>
+        <p>Eight stat bonuses that get <strong>added directly</strong> to the actor's base stats when the weapon is equipped. If your character has 40 ATK and the sword gives +20 ATK, they now have 60 ATK. Simple addition.</p>
+      </div>
+    </div>
+    <div class="trait-row">
+      <div class="trait-tag">BOTTOM ZONE</div>
+      <div class="trait-body">
+        <div class="trait-title">Traits</div>
+        <p>These are <strong>rules and modifiers</strong> — not flat numbers, but percentage multipliers, resistances, special attack effects, and behavioral changes. Traits are where the real power lies and where most confusion happens.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout gold">
+    <div class="callout-label">🔑 Key Concept</div>
+    <p>Params are flat math. Traits are rules. A weapon can give you <strong>+50 ATK (Param)</strong> AND <strong>deal Fire damage (Trait)</strong> at the same time — they do completely different things.</p>
+  </div>
+
+  <h3>Weapon Type — What Does It Do?</h3>
+  <p>The Weapon Type field (Sword, Axe, Bow, etc.) does <strong>two things</strong>:</p>
+  <div class="wtype-grid">
+    <div class="wtype-card">
+      <div class="wtype-name">1. Equip Restriction</div>
+      <div class="wtype-desc">In each Actor's settings, you define which weapon types they can equip. A mage locked to "Staves" can't equip a sword — even if you give it mage stats.</div>
+    </div>
+    <div class="wtype-card">
+      <div class="wtype-name">2. Skill Gating</div>
+      <div class="wtype-desc">Skills can require a specific weapon type to use. A "Sword Arts" skill can check "is the actor equipping a Sword type?" — if not, the skill is greyed out. You set this in the Skill's required weapon type field.</div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-label">✅ Beginner Tip</div>
+    <p>The Weapon Type names ("Sword", "Axe"…) are just labels you define in the <strong>System</strong> tab. You can rename them to anything. MZ doesn't care what you call them — it just matches the ID number.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ PARAMS ═══════════════ -->
+<section id="params">
+  <h2>Parameters (Params)</h2>
+  <p class="section-intro">These are the eight flat number bonuses on a weapon. They add directly to the actor's stats. Nothing fancy — just addition.</p>
+
+  <div class="params-grid">
+    <div class="param-card">
+      <div class="param-name">MHP</div>
+      <div class="param-full">Max Hit Points</div>
+      <div class="param-desc">Boosts the wearer's maximum HP. A shield that gives +500 MHP means they can take 500 more damage before dying.</div>
+      <div class="param-example">+200 MHP → actor goes from 800 HP to 1000 HP</div>
+    </div>
+    <div class="param-card">
+      <div class="param-name">MMP</div>
+      <div class="param-full">Max Magic Points</div>
+      <div class="param-desc">Boosts maximum MP. Useful on staves/accessories for mages who need more spell casts per battle.</div>
+      <div class="param-example">+100 MMP → can cast more spells before running dry</div>
+    </div>
+    <div class="param-card">
+      <div class="param-name">ATK</div>
+      <div class="param-full">Attack Power</div>
+      <div class="param-desc">Physical attack strength. Used in the standard damage formula for physical skills. The bigger this is, the harder physical hits land.</div>
+      <div class="param-example">Default formula: (a.atk * 4 - b.def * 2)</div>
+    </div>
+    <div class="param-card">
+      <div class="param-name">DEF</div>
+      <div class="param-full">Defense Power</div>
+      <div class="param-desc">Physical damage reduction. In the default formula, DEF reduces incoming physical damage. Heavy armor stacks this.</div>
+      <div class="param-example">High DEF = absorbs more physical hits</div>
+    </div>
+    <div class="param-card">
+      <div class="param-name">MAT</div>
+      <div class="param-full">Magic Attack Power</div>
+      <div class="param-desc">Magic spell strength. Same role as ATK but for magical skills. Staves and mage weapons boost this.</div>
+      <div class="param-example">Default formula: (a.mat * 4 - b.mdf * 2)</div>
+    </div>
+    <div class="param-card">
+      <div class="param-name">MDF</div>
+      <div class="param-full">Magic Defense Power</div>
+      <div class="param-desc">Reduces incoming magic damage. The magical equivalent of DEF. Robes and magic-resist gear stacks this.</div>
+      <div class="param-example">High MDF = tanky against spells</div>
+    </div>
+    <div class="param-card">
+      <div class="param-name">AGI</div>
+      <div class="param-full">Agility</div>
+      <div class="param-desc">Controls turn order. Higher AGI = acts first in combat. <strong>Note:</strong> In MZ, AGI does <em>not</em> feed into HIT or EVA by default — those are separate X-Params (see Traits tab). Agility only determines action order.</div>
+      <div class="param-example">Acts before slower enemies if AGI is higher</div>
+    </div>
+    <div class="param-card">
+      <div class="param-name">LUK</div>
+      <div class="param-full">Luck</div>
+      <div class="param-desc">Affects status effect accuracy and resistance, critical rates, and other luck-based rolls. Often underused by beginners but very useful.</div>
+      <div class="param-example">High LUK = better crit chance &amp; status resistance</div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-label">ℹ️ How Params Stack</div>
+    <p>All param bonuses from all equipped items are <strong>added together</strong>, then added to the actor's base stat. Equip a sword (+30 ATK) and a ring (+10 ATK) and you get +40 ATK total. Dead simple.</p>
+  </div>
+
+  <div class="callout warn">
+    <div class="callout-label">⚠️ Params vs Traits — Don't Confuse These!</div>
+    <p>Params are flat additions (+20 ATK). Traits include things like "ATK Rate ×150%" which is a <em>percentage multiplier</em> applied to the final stat — a completely different beast. We cover that in the Traits tab.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ TRAITS ═══════════════ -->
+<section id="traits">
+  <h2>Traits — The Rules Engine</h2>
+  <p class="section-intro">Traits are NOT flat numbers. They are percentage-based rules, resistances, flags, and modifiers. Think of them like "special laws" applied to the actor while the weapon is equipped.</p>
+
+  <div class="callout gold">
+    <div class="callout-label">🗝 The Golden Rule of Traits</div>
+    <p>Traits are organized into <strong>groups</strong>. Within each group, they work differently — some multiply together, some add together, some override. You need to know which group you're in.</p>
+  </div>
+
+  <h3>Group 1 — RATE Traits (Percentage Multipliers)</h3>
+  <p>These multiply an existing stat or resistance by a percentage. <strong>100% = no change. 150% = 1.5× boost. 50% = half.</strong></p>
+
+  <div class="percent-grid">
+    <div class="pct-card">
+      <div class="pct-val boost">150%</div>
+      <div class="pct-label">Boosted (50% more)</div>
+    </div>
+    <div class="pct-card">
+      <div class="pct-val normal">100%</div>
+      <div class="pct-label">Default (no change)</div>
+    </div>
+    <div class="pct-card">
+      <div class="pct-val nerf">50%</div>
+      <div class="pct-label">Halved (50% less)</div>
+    </div>
+    <div class="pct-card">
+      <div class="pct-val nerf">0%</div>
+      <div class="pct-label">Immune / Nullified</div>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">Element Rate</div>
+    <div class="trait-body">
+      <div class="trait-title">Elemental Resistance / Weakness</div>
+      <p>How much damage this element deals to the bearer. <strong>200% = double damage (weakness). 50% = half damage (resist). 0% = immune. You can even go -100% to absorb the element as healing.</strong><br>Example: A Fire Robe with Fire Rate 50% means fire spells do half damage to whoever wears it.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">Debuff Rate</div>
+    <div class="trait-body">
+      <div class="trait-title">How Easily Debuffs Land on the Wearer</div>
+      <p>This controls how susceptible the <strong>wearer</strong> is to having their stats debuffed. 200% = debuffs land more easily. 0% = completely immune to debuffs on that stat. <em>This is about being debuffed, not debuffing others.</em></p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">State Rate</div>
+    <div class="trait-body">
+      <div class="trait-title">Status Effect Susceptibility</div>
+      <p>How easily a specific status (Poison, Sleep, Paralysis…) lands on the <strong>wearer</strong>. 200% = twice as likely to get poisoned. 0% = immune to that status. A charm immunity ring would set the Charm State Rate to 0%.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">State Resist</div>
+    <div class="trait-body">
+      <div class="trait-title">Hard Status Immunity</div>
+      <p>Unlike State Rate, this is a <strong>flat "cannot get this status" switch</strong>. If State Resist for Poison is checked, the wearer simply cannot be poisoned, period. No percentage — just on/off immunity.</p>
+    </div>
+  </div>
+
+  <h3>Group 2 — PARAM Rate Traits (Stat Percentage Boosts)</h3>
+
+  <div class="trait-row">
+    <div class="trait-tag">Parameter Rate</div>
+    <div class="trait-body">
+      <div class="trait-title">Multiply a Stat by a Percentage</div>
+      <p>Choose a stat (ATK, DEF, MAT…) and a percentage. This multiplies the actor's <em>total</em> stat by that amount.<br><strong>Example:</strong> Actor has 100 ATK. Weapon has ATK Rate 150%. Final ATK = 150. Stack two items with ATK Rate 150% and they <em>multiply</em> together: 100 × 1.5 × 1.5 = 225.</p>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <div class="callout-label">⚠️ Param Rates MULTIPLY Together</div>
+    <p>Two weapons giving ATK Rate 150% each don't give +100% ATK. They multiply: 1.5 × 1.5 = <strong>2.25×</strong> your ATK. This matters a lot for balance.</p>
+  </div>
+
+  <h3>Group 3 — X-PARAM Traits (Extra Parameters)</h3>
+  <p>These are additional stats that <strong>add together</strong> across all sources, and represent combat rates and special abilities. Their default is 0% (not 100% like normal params).</p>
+
+  <div class="trait-row">
+    <div class="trait-tag">HIT</div>
+    <div class="trait-body">
+      <div class="trait-title">Hit Rate</div>
+      <p>Base accuracy of physical attacks. Default is 95% (for actors). Add +5% HIT from a weapon to reach 100%. Missing can be annoying — invest in this for reliable accuracy.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">EVA</div>
+    <div class="trait-body">
+      <div class="trait-title">Evasion Rate</div>
+      <p>Chance to dodge physical attacks. Default 0%. Adding 20% EVA means 20% of physical attacks miss entirely. Stacks additively with other EVA sources.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">CRI</div>
+    <div class="trait-body">
+      <div class="trait-title">Critical Hit Rate</div>
+      <p>Chance to land a critical hit (default 3× damage in MZ). Default is 4%. Add +10% CRI on a dagger to make it feel "stabby" and crit-happy. Stacks additively.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">CEV</div>
+    <div class="trait-body">
+      <div class="trait-title">Critical Evasion Rate</div>
+      <p>Chance to negate an incoming critical hit. Reduces crits landing on the wearer. Good for defensive armor.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">MEV</div>
+    <div class="trait-body">
+      <div class="trait-title">Magic Evasion Rate</div>
+      <p>Chance to dodge magical skills entirely. The magical version of EVA. Useful on late-game robes or rings.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">MRF</div>
+    <div class="trait-body">
+      <div class="trait-title">Magic Reflection Rate</div>
+      <p>Chance that a magic skill is <strong>reflected back</strong> at the caster. 30% MRF means 30% of magic aimed at the wearer hits the attacker instead. Very powerful.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">CNT</div>
+    <div class="trait-body">
+      <div class="trait-title">Counter Attack Rate</div>
+      <p>When the wearer is hit by a physical attack, this is the chance they <strong>automatically counter-attack</strong>. A spiky shield with 30% CNT can punish melee enemies automatically.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">HRG</div>
+    <div class="trait-body">
+      <div class="trait-title">HP Regeneration</div>
+      <p>Percentage of max HP recovered <strong>per turn</strong>. 5% HRG on a ring means recovering 5% of your max HP at the end of every turn, passively. Great for tanky builds.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">MRG</div>
+    <div class="trait-body">
+      <div class="trait-title">MP Regeneration</div>
+      <p>Percentage of max MP recovered per turn. Staves with MP regen keep mages fueled.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">TRG</div>
+    <div class="trait-body">
+      <div class="trait-title">TP Regeneration</div>
+      <p>Percentage of max TP recovered per turn. Useful if your game uses TP heavily.</p>
+    </div>
+  </div>
+
+  <h3>Group 4 — S-PARAM Traits (Special Parameters)</h3>
+  <p>These also start at 100% by default and <strong>multiply together</strong> across sources. They control special combat scaling factors.</p>
+
+  <div class="trait-row">
+    <div class="trait-tag">TGR</div>
+    <div class="trait-body">
+      <div class="trait-title">Target Rate</div>
+      <p>How likely enemies are to <strong>target this actor</strong>. Default 100%. Set to 200% on a heavy knight to make enemies focus them. Set to 0% to make an actor essentially invisible to enemies. Great for tank/aggro mechanics.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">GRD</div>
+    <div class="trait-body">
+      <div class="trait-title">Guard Effect Rate</div>
+      <p>Multiplies how effective the Guard command is for this actor. Default 100% → guard halves damage. 200% → guard reduces damage more aggressively.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">REC</div>
+    <div class="trait-body">
+      <div class="trait-title">Recovery Effect Rate</div>
+      <p>Multiplies <strong>how much healing this actor receives</strong>. 150% REC means healing spells restore 1.5× as much HP. 50% means they're harder to heal. Doesn't affect self-cast heal skills unless you're also the target.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">PHA</div>
+    <div class="trait-body">
+      <div class="trait-title">Pharmacology</div>
+      <p>Multiplies the effect of <strong>items</strong> (potions, etc.) used on or by this actor. Default 100%. 200% PHA = potions heal twice as much. Great for a "Chemist" archetype.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">MCR</div>
+    <div class="trait-body">
+      <div class="trait-title">MP Cost Rate</div>
+      <p>Multiplies the MP cost of all skills for this actor. 50% MCR = all spells cost half MP. Very powerful when stacked — 50% × 50% = 25% of original cost. Great for a "Spell Saver" ring.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">TCR</div>
+    <div class="trait-body">
+      <div class="trait-title">TP Charge Rate</div>
+      <p>Multiplies how fast TP fills up when taking actions or damage. 200% TCR = TP builds twice as fast.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">PDR</div>
+    <div class="trait-body">
+      <div class="trait-title">Physical Damage Rate</div>
+      <p>Multiplies <strong>all physical damage received</strong>. 50% PDR = physical hits only do half. 200% PDR = extremely vulnerable to physical. This is a global physical resistance/weakness.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">MDR</div>
+    <div class="trait-body">
+      <div class="trait-title">Magic Damage Rate</div>
+      <p>Same as PDR but for magical damage. 50% MDR = magic spells deal half damage to wearer. Stack on a mystic robe for a true mage-resistant character.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">FDR</div>
+    <div class="trait-body">
+      <div class="trait-title">Floor Damage Rate</div>
+      <p>Multiplies damage taken from floor damage tiles. 0% FDR = completely immune to floor hazards. Mostly niche, useful for dungeon-crawling games with spike floors etc.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">EXR</div>
+    <div class="trait-body">
+      <div class="trait-title">Experience Rate</div>
+      <p>Multiplies EXP gained by this actor. 150% EXR = this actor levels up faster. Great for an "EXP Charm" accessory.</p>
+    </div>
+  </div>
+
+  <h3>Group 5 — ATTACK Traits</h3>
+
+  <div class="trait-row">
+    <div class="trait-tag">Attack Element</div>
+    <div class="trait-body">
+      <div class="trait-title">Add an Element to Normal Attacks</div>
+      <p>This makes the actor's normal attacks (the "Attack" command) deal damage of the specified element. Stack multiple to hit multiple elements at once. Equip a Fire Sword with Attack Element: Fire and all normal attacks check fire resistance on the enemy.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">Attack State</div>
+    <div class="trait-body">
+      <div class="trait-title">Chance to Apply a Status on Hit</div>
+      <p>Normal attacks have an X% chance to apply a status effect. Set "Attack State: Poison, 30%" and every normal attack has a 30% chance to poison the target. This is one of the most fun weapon traits for flavor.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">Attack Speed</div>
+    <div class="trait-body">
+      <div class="trait-title">Flat Bonus/Penalty to Action Speed</div>
+      <p>A flat number added to turn order priority. Positive = acts earlier. Negative = acts later. A "Heavy Greatsword" might have Attack Speed -5 to feel slow and weighty.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">Attack Times</div>
+    <div class="trait-body">
+      <div class="trait-title">Extra Hits Per Normal Attack</div>
+      <p>Each point adds one additional hit to the normal Attack command. Attack Times +1 = attacks twice. Attack Times +2 = attacks three times. Each hit is calculated separately, so each can crit individually. Very powerful — don't go overboard.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">Attack Skill</div>
+    <div class="trait-body">
+      <div class="trait-title">Replace the Default Attack With a Skill</div>
+      <p>The "Attack" command uses a skill instead of the basic attack. If you set Attack Skill to "Fire Slash," the Attack button now does Fire Slash. The actor doesn't need to have learned the skill — the weapon grants it automatically.</p>
+    </div>
+  </div>
+
+  <h3>Group 6 — SKILL / PARTY Traits (Misc)</h3>
+
+  <div class="trait-row">
+    <div class="trait-tag">Add Skill Type</div>
+    <div class="trait-body">
+      <div class="trait-title">Unlock a Whole Category of Skills</div>
+      <p>Grants access to all skills belonging to a skill type. Equip a holy staff that has "Add Skill Type: Holy Magic" and the actor can suddenly use all Holy Magic spells — even without learning them individually.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">Add Skill</div>
+    <div class="trait-body">
+      <div class="trait-title">Grant a Specific Individual Skill</div>
+      <p>Equipping this item grants one specific skill. Like a "Slime Ring" that grants the Slimeball skill while worn. The skill disappears when the item is removed.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">Seal Skill Type</div>
+    <div class="trait-body">
+      <div class="trait-title">Block an Entire Skill Category</div>
+      <p>Prevents the actor from using any skill in a category. A cursed weapon that seals "Magic" skill type means the actor can't cast any spells while it's equipped.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">Seal Skill</div>
+    <div class="trait-body">
+      <div class="trait-title">Block One Specific Skill</div>
+      <p>Prevents using a single named skill. More surgical than Seal Skill Type.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">Equip Weapon</div>
+    <div class="trait-body">
+      <div class="trait-title">Allow Equipping a Weapon Type</div>
+      <p>Grants the ability to equip a weapon type the actor normally can't. A passive that lets your mage equip swords, for example.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">Equip Armor</div>
+    <div class="trait-body">
+      <div class="trait-title">Allow Equipping an Armor Type</div>
+      <p>Same but for armor types. Let your rogue wear heavy armor if you want.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">Slot Type</div>
+    <div class="trait-body">
+      <div class="trait-title">Dual Wield</div>
+      <p>When set to "Dual Wield," the actor's Shield slot becomes a second Weapon slot. The actor can now equip two weapons simultaneously. Each weapon's traits and params both apply.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">Action Times+</div>
+    <div class="trait-body">
+      <div class="trait-title">Chance of an Extra Turn</div>
+      <p>Each turn, there's an X% chance the actor gets an additional action. 25% Action Times+ means a 1-in-4 chance of acting twice in a row. This is an extremely powerful trait — use sparingly.</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">Special Flag</div>
+    <div class="trait-body">
+      <div class="trait-title">Auto Battle / Guard / Substitute / Preserve TP</div>
+      <p>Four binary switches: <strong>Auto Battle</strong> (AI controls the actor), <strong>Guard</strong> (always guarding), <strong>Substitute</strong> (intercepts lethal hits aimed at allies with low HP), <strong>Preserve TP</strong> (TP doesn't reset to 0 at battle start).</p>
+    </div>
+  </div>
+
+  <div class="trait-row">
+    <div class="trait-tag">Party Ability</div>
+    <div class="trait-body">
+      <div class="trait-title">Whole-Party Benefits While Equipped</div>
+      <p>Grants a party-wide passive as long as ONE party member has this equipped: <strong>Encounter Half</strong> (50% fewer random battles), <strong>Encounter None</strong> (no random battles), <strong>Cancel Surprise</strong>, <strong>Raise Preemptive</strong>, <strong>Gold Double</strong>, <strong>Item Double</strong>. Very useful for exploration-focused accessories.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ BUFFS ═══════════════ -->
+<section id="buffs">
+  <h2>Buffs, Debuffs & "Who Gets Them?"</h2>
+  <p class="section-intro">This is the most confusing part for beginners. Let's break it down completely.</p>
+
+  <div class="callout gold">
+    <div class="callout-label">🔑 The Most Important Rule</div>
+    <p>In RPG Maker MZ, <strong>Buffs and Debuffs in Skills/Traits apply to the TARGET of the skill — not the caster.</strong> But the target depends on the skill's scope. Let's walk through it.</p>
+  </div>
+
+  <h3>Scenario: You put "M.ATK Down" on a weapon trait — what happens?</h3>
+
+  <div class="callout warn">
+    <div class="callout-label">⚠️ Weapon Traits Don't Have Debuff Effects!</div>
+    <p>Here's the thing — <strong>weapons don't have a "apply buff/debuff" trait</strong>. That kind of effect lives on <strong>Skills</strong> and <strong>States (Status Effects)</strong>, not weapon traits. Weapons have "Attack State" which can apply a STATUS EFFECT on hit — and that status effect can then apply a buff/debuff. Let's trace the full chain.</p>
+  </div>
+
+  <h3>The Full Chain: How "Attack lowers M.ATK" Works</h3>
+
+  <div class="flow">
+    <div class="flow-box actor">🧙 Your Actor<br><small>equips weapon</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box skill">Weapon has<br>Attack State:<br>"MAT Down Curse"<br>@ 50%</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box target">Enemy gets hit<br>→ 50% chance to<br>apply state</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box target">State "MAT Down Curse"<br>applies Debuff Rate<br>on ENEMY</div>
+  </div>
+
+  <p>So the flow is: <strong>Weapon → triggers State on target → State lowers enemy's stat</strong>. The debuff is on the <strong>enemy</strong>, not you.</p>
+
+  <h3>Where Buffs and Debuffs Actually Live</h3>
+
+  <div class="card">
+    <div class="card-title">📍 Buffs/Debuffs in SKILLS (Effects Tab)</div>
+    <p>When you open a Skill in the database and go to its <strong>Effects</strong> tab, you'll see options like:</p>
+    <div class="chips">
+      <span class="chip">Add State</span>
+      <span class="chip">Remove State</span>
+      <span class="chip">Add Buff</span>
+      <span class="chip">Add Debuff</span>
+      <span class="chip">Remove Buff</span>
+      <span class="chip">Remove Debuff</span>
+    </div>
+    <p style="margin-top:10px"><strong>The buff/debuff applies to whoever the skill TARGETS.</strong></p>
+    <div class="flow" style="margin-top:12px">
+      <div class="flow-box actor">Your actor uses<br>skill on SELF</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box self">YOU get the<br>buff/debuff</div>
+    </div>
+    <div class="flow">
+      <div class="flow-box actor">Your actor uses<br>skill on ENEMY</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box target">ENEMY gets the<br>buff/debuff</div>
+    </div>
+    <div class="flow">
+      <div class="flow-box actor">Your actor uses<br>skill on ALL ALLIES</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box self">ALL ALLIES get<br>the buff</div>
+    </div>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-label">✅ Simple Rule</div>
+    <p>Ask yourself: <strong>"Who is the scope of this skill targeting?"</strong> That's who gets the buff or debuff. It doesn't matter who is casting it. The SCOPE (set in the skill's Scope field) determines the target, and the target gets the effect.</p>
+  </div>
+
+  <h3>What Do Buff/Debuff Actually Do to a Stat?</h3>
+
+  <p>In MZ, buffs and debuffs work in <strong>stacks</strong> on a specific stat. Each stat can be buffed or debuffed up to <strong>2 stacks</strong> in each direction.</p>
+
+  <div class="percent-grid">
+    <div class="pct-card">
+      <div class="pct-val boost">+2 Buff</div>
+      <div class="pct-label">Stat × 2.0 (double)</div>
+    </div>
+    <div class="pct-card">
+      <div class="pct-val boost">+1 Buff</div>
+      <div class="pct-label">Stat × 1.5 (50% more)</div>
+    </div>
+    <div class="pct-card">
+      <div class="pct-val normal">0 (none)</div>
+      <div class="pct-label">Stat × 1.0 (normal)</div>
+    </div>
+    <div class="pct-card">
+      <div class="pct-val nerf">-1 Debuff</div>
+      <div class="pct-label">Stat × 0.75 (25% less)</div>
+    </div>
+    <div class="pct-card">
+      <div class="pct-val nerf">-2 Debuff</div>
+      <div class="pct-label">Stat × 0.5 (half)</div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-label">ℹ️ Buff Stacking</div>
+    <p>Adding a buff twice on the same stat goes to +2 stacks max (2.0×). You <strong>cannot exceed +2 or go below -2 stacks</strong>. Applying more beyond the cap just refreshes the timer. Buffs last for a set number of turns (default 5 turns) then disappear automatically.</p>
+  </div>
+
+  <h3>The "Add Buff" vs "Debuff Rate" Confusion</h3>
+
+  <div class="card">
+    <div class="card-title">🔍 These Are TWO Different Things</div>
+    <div class="trait-row" style="margin-bottom:10px">
+      <div class="trait-tag">Add Buff<br>(Skill Effect)</div>
+      <div class="trait-body">
+        <div class="trait-title">Temporarily multiplies a stat for a few turns</div>
+        <p>This is a temporary in-battle buff. It adds 1 or 2 stacks to a stat, boosting it by 1.5× or 2.0×. Goes away after a set number of turns. Found in the <strong>Effects tab of a Skill</strong>.</p>
+      </div>
+    </div>
+    <div class="trait-row">
+      <div class="trait-tag">Debuff Rate<br>(Item Trait)</div>
+      <div class="trait-body">
+        <div class="trait-title">Changes how susceptible YOU ARE to receiving debuffs</div>
+        <p>This is a permanent passive on the <strong>item wearer</strong>. If an enemy tries to debuff your ATK, this percentage changes how likely that debuff lands on you. 0% Debuff Rate (ATK) = immune to ATK debuffs. Found in the <strong>Traits tab of a weapon/armor</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Practical Example: "I want enemies to hit less hard after I attack them"</h3>
+  <div class="card">
+    <div class="card-title">Step-by-Step Setup</div>
+    <p><strong>Step 1:</strong> Create a State called "ATK Down" in the States database. Give it a trait: Parameter Rate → ATK → 75% (25% reduction). Set its auto-removal to "Action End: 2 turns."</p>
+    <p><strong>Step 2:</strong> Go to your weapon in the Weapons database. Add Trait → Attack State → select "ATK Down" → set probability 40%.</p>
+    <p><strong>Result:</strong> Every time the actor using this weapon makes a normal attack, there is a 40% chance the enemy gets the ATK Down state, reducing their ATK by 25% for 2 turns.</p>
+    <div class="callout tip">
+      <div class="callout-label">✅ The debuff is on the ENEMY</div>
+      <p>The ATK Down state is on the enemy, reducing the enemy's ATK. The attacker is unaffected. The weapon triggered it via "Attack State."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ ELEMENTS ═══════════════ -->
+<section id="elements">
+  <h2>Elements — Damage Types</h2>
+  <p class="section-intro">Elements are damage types like Fire, Ice, Thunder. They're defined in your System settings and referenced by ID number in the database.</p>
+
+  <h3>How Elements Work in Weapons</h3>
+
+  <div class="card">
+    <div class="card-title">Two Ways to Give a Weapon an Element</div>
+    <div class="trait-row">
+      <div class="trait-tag">Via Skill</div>
+      <div class="trait-body">
+        <div class="trait-title">The Skill Has the Element</div>
+        <p>Most of the time, the <strong>skill</strong> the weapon triggers has the element, not the weapon itself. A "Fire Slash" skill has its damage type set to Fire in the skill's <strong>Damage → Type → Element</strong> field. The weapon just enables or uses that skill.</p>
+      </div>
+    </div>
+    <div class="trait-row">
+      <div class="trait-tag">Via Trait</div>
+      <div class="trait-body">
+        <div class="trait-title">Attack Element on the Weapon</div>
+        <p>Add Trait → Attack → Attack Element → Fire. Now the actor's <strong>basic Attack command</strong> deals Fire damage in addition to physical. This works on top of anything else. Stack "Attack Element: Fire" and "Attack Element: Ice" on the same weapon for a dual-element attack.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Element Resistance — Element Rate Trait</h3>
+  <p>When you put Element Rate on a weapon/armor, you're telling the game: <em>"While this item is equipped, change how much [element] damage this actor takes."</em></p>
+
+  <div class="percent-grid">
+    <div class="pct-card">
+      <div class="pct-val nerf">200%</div>
+      <div class="pct-label">Weakness (double damage)</div>
+    </div>
+    <div class="pct-card">
+      <div class="pct-val normal">100%</div>
+      <div class="pct-label">Neutral (normal damage)</div>
+    </div>
+    <div class="pct-card">
+      <div class="pct-val boost">50%</div>
+      <div class="pct-label">Resistance (half damage)</div>
+    </div>
+    <div class="pct-card">
+      <div class="pct-val boost">0%</div>
+      <div class="pct-label">Immune (no damage)</div>
+    </div>
+    <div class="pct-card">
+      <div class="pct-val boost" style="color:var(--purple)">-100%</div>
+      <div class="pct-label">Absorb (healed by it)</div>
+    </div>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-label">ℹ️ Multiple Element Rate Sources</div>
+    <p>If an actor has two items both modifying Fire Rate, they <strong>multiply together</strong>. Fire Robe (50% fire rate) + Ring of Fire (50% fire rate) = 25% fire rate. The actor takes only a quarter fire damage. Stack carefully!</p>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-label">✅ Absorb Trick</div>
+    <p>Setting Element Rate to a <strong>negative value</strong> (like -100%) means the actor is HEALED by that element instead of damaged. A fire golem with Fire Rate -100% gets healed by fire spells. Use this for unique boss gimmicks or endgame equipment.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ CALC ═══════════════ -->
+<section id="calc">
+  <h2>Damage Calculation — How It All Fits Together</h2>
+  <p class="section-intro">Understanding the default damage formula helps you make sense of why ATK, DEF, MAT, and MDF matter and how weapon params interact with skills.</p>
+
+  <h3>The Default Physical Damage Formula</h3>
+  <div class="card" style="font-family:'JetBrains Mono',monospace; font-size:16px; color:var(--gold); text-align:center; padding:28px;">
+    a.atk × 4 − b.def × 2
+  </div>
+  <p><strong>a</strong> = attacker (the one using the skill). <strong>b</strong> = target (the one being hit). So: <em>(Attacker's total ATK × 4) minus (Target's total DEF × 2)</em>.</p>
+
+  <h3>The Default Magic Damage Formula</h3>
+  <div class="card" style="font-family:'JetBrains Mono',monospace; font-size:16px; color:var(--purple); text-align:center; padding:28px;">
+    a.mat × 4 − b.mdf × 2
+  </div>
+  <p>Identical structure, but uses MAT and MDF. This is why mage weapons boost MAT and magic armor boosts MDF.</p>
+
+  <h3>Interactive Damage Calculator</h3>
+  <div class="buff-demo">
+    <div class="demo-row">
+      <label>Attacker ATK</label>
+      <input type="range" id="atk" min="1" max="300" value="80" oninput="calcDmg()">
+      <span class="val-display" id="atk-v">80</span>
+    </div>
+    <div class="demo-row">
+      <label>Weapon Bonus</label>
+      <input type="range" id="watk" min="0" max="200" value="30" oninput="calcDmg()">
+      <span class="val-display" id="watk-v">+30</span>
+    </div>
+    <div class="demo-row">
+      <label>Target DEF</label>
+      <input type="range" id="def" min="0" max="300" value="40" oninput="calcDmg()">
+      <span class="val-display" id="def-v">40</span>
+    </div>
+    <div class="demo-row">
+      <label>Variance %</label>
+      <input type="range" id="vari" min="0" max="40" value="20" oninput="calcDmg()">
+      <span class="val-display" id="vari-v">20%</span>
+    </div>
+    <div class="demo-result">
+      <div class="res-item">
+        <span class="res-val" id="base-dmg">280</span>
+        <span class="res-label">Base Damage</span>
+      </div>
+      <div class="res-item">
+        <span class="res-val" id="range-dmg">224–336</span>
+        <span class="res-label">With Variance</span>
+      </div>
+    </div>
+  </div>
+
+  <h3>The Full Damage Chain (Simplified)</h3>
+
+  <div class="flow" style="flex-direction:column; align-items:flex-start; gap:8px;">
+    <div class="flow-box actor" style="width:100%;text-align:left">1. Calculate raw damage from formula (e.g. a.atk × 4 − b.def × 2) — <em>Buff/Debuff multipliers are already baked into a.atk, b.def etc. at this step</em></div>
+    <div class="flow-arrow" style="margin-left:20px">↓</div>
+    <div class="flow-box skill" style="width:100%;text-align:left">2. Apply Element Rate (if elemental — multiply by target's element rate for that element)</div>
+    <div class="flow-arrow" style="margin-left:20px">↓</div>
+    <div class="flow-box skill" style="width:100%;text-align:left">3. Apply PDR or MDR (target's physical/magic damage rate — from S-Params)</div>
+    <div class="flow-arrow" style="margin-left:20px">↓</div>
+    <div class="flow-box target" style="width:100%;text-align:left">4. Critical hit check (base 3× damage if CRI roll succeeds) — happens <em>before</em> variance</div>
+    <div class="flow-arrow" style="margin-left:20px">↓</div>
+    <div class="flow-box skill" style="width:100%;text-align:left">5. Apply Variance (random roll within ±variance%)</div>
+    <div class="flow-arrow" style="margin-left:20px">↓</div>
+    <div class="flow-box skill" style="width:100%;text-align:left">6. Apply Guard reduction (if target is guarding — reduced by GRD rate)</div>
+    <div class="flow-arrow" style="margin-left:20px">↓</div>
+    <div class="flow-box target" style="width:100%;text-align:left">7. Final HP is reduced. Apply any on-hit states (Attack State, Add State in skill effects)</div>
+  </div>
+
+  <div class="callout tip">
+    <div class="callout-label">✅ Key Takeaway for Weapon Building</div>
+    <p>Your weapon's <strong>ATK param</strong> feeds directly into step 1. Your weapon's <strong>Attack Element trait</strong> triggers step 2. Your weapon's <strong>Attack State trait</strong> triggers step 7. Knowing which step each thing affects lets you design smarter weapons.</p>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-label">ℹ️ You Can Edit the Formula</div>
+    <p>Every skill has a custom formula box. You can write <code>a.atk * 8 - b.def * 2</code> for a hard-hitting skill, or <code>(a.atk + a.mat) * 2</code> for a hybrid attack. No plugins needed — just edit the formula field in the skill.</p>
+  </div>
+</section>
+
+</main>
+
+<script>
+  function switchTab(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function calcDmg() {
+    const atk  = +document.getElementById('atk').value;
+    const watk = +document.getElementById('watk').value;
+    const def  = +document.getElementById('def').value;
+    const vari = +document.getElementById('vari').value;
+
+    document.getElementById('atk-v').textContent  = atk;
+    document.getElementById('watk-v').textContent = '+' + watk;
+    document.getElementById('def-v').textContent  = def;
+    document.getElementById('vari-v').textContent = vari + '%';
+
+    const totalAtk = atk + watk;
+    const base = Math.max(0, totalAtk * 4 - def * 2);
+    const low  = Math.round(base * (1 - vari / 100));
+    const high = Math.round(base * (1 + vari / 100));
+
+    document.getElementById('base-dmg').textContent  = base;
+    document.getElementById('range-dmg').textContent = low + '–' + high;
+  }
+
+  calcDmg();
+</script>
+
+</body>
+</html>
