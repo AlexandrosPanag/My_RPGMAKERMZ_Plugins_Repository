@@ -3,7 +3,6 @@
 > **Disclaimer:** This guide was created with the assistance of **Claude Sonnet 4.6** (Anthropic). Content has been reviewed and corrected for accuracy against RPG Maker MZ's default engine behavior. Always verify against your own project's configuration.
 
 ---
-A collection of powerful battle system enhancements that bring your RPG Maker MZ battles to life.
 
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
 ![License](https://img.shields.io/badge/license-CC%20BY%204.0-orange)
