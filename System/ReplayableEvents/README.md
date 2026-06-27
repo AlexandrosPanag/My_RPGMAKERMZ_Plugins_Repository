@@ -4,6 +4,11 @@
 ![Version](https://img.shields.io/badge/version-1.0.0-green)
 ![License](https://img.shields.io/badge/license-CC%20BY%204.0-orange)
 
+## 👤 Author
+
+**Alexandros Panagiotakopoulos**
+
+
 ## The Problem
 
 RPG Maker MZ events are **one-and-done by default**. The standard workaround for making an event repeatable is to use Self Switches — flip Self Switch A to ON at the end of page 1 to move to page 2, and then somehow reset it back via another event, a parallel process, or a convoluted multi-page setup.
