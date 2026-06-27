@@ -4,6 +4,11 @@
 ![Version](https://img.shields.io/badge/version-1.0.0-green)
 ![License](https://img.shields.io/badge/license-CC%20BY%204.0-orange)
 
+## 👤 Author
+
+**Alexandros Panagiotakopoulos**
+
+
 ## 📄 License & Attribution
 
 ### **Copyright Information**
