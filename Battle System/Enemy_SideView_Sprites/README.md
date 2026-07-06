@@ -26,6 +26,9 @@ This project is licensed under the **Creative Commons Attribution 4.0 Internatio
 - **Technologies**: JavaScript ES6+, RPG Maker MZ Core Scripts
 - **Inspiration**: Bridging the gap between actor and enemy sprite systems
 
+## ⚙️ Changelog:
+
+- 1.0.1: Fixed sideview animation implementation, added more sprites that can be used, now the enemies are automatically flipped horizontally (facing right).
 
 ## ✨ Features
 
