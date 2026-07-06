@@ -1,7 +1,7 @@
 # Enemy Side-View Sprites for RPG Maker MZ
 
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
-![Version](https://img.shields.io/badge/version-1.0.0-green)
+![Version](https://img.shields.io/badge/version-1.0.1-green)
 ![License](https://img.shields.io/badge/license-CC%20BY%204.0-orange)
 
 A plugin that allows enemies in RPG Maker MZ to use animated side-view sprite sheets instead of static battler images, bringing them to life with the same motion system used by actors.
