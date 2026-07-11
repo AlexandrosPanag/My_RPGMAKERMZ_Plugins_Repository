@@ -1,38 +1,9 @@
 //=============================================================================
 // DevToolsManage.js
 // ----------------------------------------------------------------------------
-// Original Author: (C)2020 Triacontane
-// Modified by: Alexandros Panagiotakopoulos (2025-2026)
-// This software is released under the MIT License.
-// http://opensource.org/licenses/mit-license.php
+// Created by triacontane
+// Modified by Alexandros Panagiotakopoulos
 // ----------------------------------------------------------------------------
-// Version
-// 2.3.0 2026/07/11 Dead code removal: eliminated duplicate /*:ja block, unused Controller_NwJs stub, empty _blurHandler, dead getWindowState method, and duplicate executeScreenshot logic. Code compression: collapsed ~40 single-body methods to one-liners, tightened BattleManager force methods, Scene_Base.isAnyWindowActive, DataManager.reloadSystemData, Game_Map.restoreEventErase, and guard-return refactors throughout. Added DevConsole.takeScreenshot() shared helper. New console commands: vars(), switches(), party().
-// 2.2.0 2026/02/07 Fixed require.main.filename error with NW.js fallback paths, added /help console command system, code optimizations, cached DOM queries
-// 2.1.0 2025/11/19 Code Modernization: Updated to 2025 standards, replaced deprecated Node.js APIs
-// 2.0.1 2025/11/15 Memory & Performance Update: Fixed memory leaks, added cleanup methods
-// 1.3.0 2025/11/01 Improvements: Use of modern NW.js API, performance optimization, UI improvements
-// 1.2.2 2023/10/07 IDE breakpoint support is now optional.
-// 1.2.1 2023/07/20 Fixed an incorrect title cut for the English parameter.
-// 1.2.0 2023/01/08 Changed the behavior of title cuts to allow you to choose between starting a new game or loading the latest data.
-// 1.1.4 2022/04/30 Addressed an issue where an error would occur when using the map reload function after deleting events duplicated with the EventRespawn.js region function.
-// 1.1.3 2021/04/10 Disabled the incomplete function that prevented title cuts by holding down the CTRL key during title cut settings.
-// 1.1.2 2021/03/27 Fixed an issue where deleted events would not be restored during normal loads.
-// 1.1.1 2020/10/11 Fixed a conflict where enemy groups were not selected correctly in battle tests when combined with AnimationMv.js.
-// 1.1.0 2020/09/26 Added a shortcut command to open the project folder.
-// 1.0.5 2020/09/13 Fixed an issue where the forced victory command did not work.
-// 1.0.4 2020/08/21 Fixed an issue where an error occurred when attempting to use the map auto-reload function.
-// 1.0.3 2020/08/20 Fixed an issue where the plugin would not work with the official version of PluginCommonBase.
-// 1.0.2 2020/06/06 Improved the English help.
-// 1.0.1 2020/04/20 Improved breakpoints.
-
-// 1.0.0 2020/04/05 Created using the MV version
-// ----------------------------------------------------------------------------
-// [Original Blog]   : https://triacontane.blogspot.jp/
-// [Original Twitter]: https://twitter.com/triacontane/
-// [Original GitHub] : https://github.com/triacontane/
-// [Modified by]     : https://github.com/AlexandrosPanag
-//=============================================================================
 
 /*:
  * @plugindesc Development Support Plugin
