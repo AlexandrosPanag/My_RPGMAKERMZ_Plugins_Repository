@@ -1,6 +1,6 @@
 # DevToolsManage.js - Changelog
 
-## Version 2.2.0 (2026/02/07)
+## Version 2.2.0 February 2 2026
 
 ### Fixed
 - **NW.js Compatibility Issue**: Fixed `require.main.filename` error that occurred when creating backups in certain NW.js contexts
