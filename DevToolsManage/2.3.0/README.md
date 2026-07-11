@@ -1,6 +1,6 @@
 # DevToolsManage.js — Changelog
 
-## 2.3.0 — 2026/07/11
+## 2.3.0 — July 11 2026
 **Modified by:** Alexandros Panagiotakopoulos
 
 ### Dead Code Removed
