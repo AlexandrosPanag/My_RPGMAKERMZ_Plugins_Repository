@@ -2,7 +2,7 @@
 > Everything you need to know about the `img/sv_actors/` sprite sheet format.
 
 ---
-![](https://raw.githubusercontent.com/AlexandrosPanag/My_RPGMAKERMZ_Plugins_Repository/refs/heads/main/Guides/SV_Pixel_Guide/TRIPLE%20SIZED%20SPRITE%20SV%20TEMPLATE.png)
+![](https://raw.githubusercontent.com/AlexandrosPanag/My_RPGMAKERMZ_Plugins_Repository/refs/heads/main/Visuals/SV%20Triple%20Sized%20Grid%20Template/TRIPLE%20SIZED%20GRID%20SPRITE%20SV%20TEMPLATE_RED.png)
 
 ## The Sheet at a Glance
 
@@ -190,3 +190,4 @@ At original 1× scale (64×64): just divide all coords by 3.
 ---
 
 *Made for `001_BATTLER1.png` — RPG Maker MZ SV Actor format (9×6 grid)*
+
