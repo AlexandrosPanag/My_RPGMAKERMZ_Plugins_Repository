@@ -2,6 +2,7 @@
 > Everything you need to know about the `img/sv_actors/` sprite sheet format.
 
 ---
+![](https://raw.githubusercontent.com/AlexandrosPanag/My_RPGMAKERMZ_Plugins_Repository/refs/heads/main/Guides/SV_Pixel_Guide/TRIPLE%20SIZED%20SPRITE%20SV%20TEMPLATE.png)
 
 ## The Sheet at a Glance
 
