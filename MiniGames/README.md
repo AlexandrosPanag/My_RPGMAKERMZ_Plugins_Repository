@@ -1,4 +1,4 @@
-# 🕹️ RPG Maker MZ MiniGame Plugins Collection
+# 🕹️ RPG Maker MZ Minigame Plugins Collection
 
 Welcome to my collection of RPG Maker MZ minigame plugins! This repository contains various gameplay enhancement plugins designed to add depth and immersion to your RPG projects.
 
