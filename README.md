@@ -26,35 +26,6 @@ This is a professional plugin collection focused on creating immersive RPG exper
 3. **Enable** the plugins in the Plugin Manager
 4. **Configure** parameters according to your project needs
 
----
-
-## ⚙️ System Requirements
-
-- **RPG Maker MZ** (Latest version recommended)
-- **Modern Web Browser** with ES6+ support
-- **Minimum 4GB RAM** for optimal performance monitoring
-- **Developer Console Access** for advanced features
-
-### Compatibility
-- ✅ **Windows** (Tested)
-- ✅ **macOS** (Compatible)
-- ✅ **Linux** (Compatible)
-- ✅ **Web Deployment** (Full support)
-- ✅ **Mobile Deployment** (Performance optimized)
-
-
-## 🛠️ Development & Contributing
-
-
-### Code Standards
-- **ES6+ JavaScript** with modern best practices
-- **Comprehensive error handling** for production stability
-- **Performance-first design** with minimal overhead
-- **Clear documentation** and inline comments
-- **Modular architecture** for easy maintenance
-
----
-
 ## ⚖️ License & Copyright
 
 ## 📄 License & Attribution
@@ -98,7 +69,7 @@ Plugins by Alexandros Panagiotakopoulos
 
 ### Getting Help
 - **Documentation**: Check individual plugin README files
-- **Issues**: Report bugs or performance problems through official channels
+- **Issues**: Report bugs or performance problems through official GitHub sections
 - **Questions**: Refer to comprehensive documentation provided
 - **Updates**: Watch this repository for latest versions
 
@@ -111,7 +82,7 @@ For commercial projects requiring custom modifications or dedicated support, con
 
 **Created by:** Alexandros Panagiotakopoulos  
 **Project Type:** Professional RPG Maker MZ Plugin Collection  
-**Focus:** Performance, System and enhanced gameplay optimized experience  
+**Focus:** Evolving game development of JRPG-Making to the next level 
 
 ### Special Thanks
 - RPG Maker MZ community for feedback and testing
