@@ -1,0 +1,7 @@
+[
+  null,
+  {"id":1,"battlerName":"Actor1_1","characterIndex":0,"characterName":"Actor1","classId":1,"equips":[1,1,2,3,0],"faceIndex":0,"faceName":"Actor1","initialLevel":1,"maxLevel":99,"name":"Harold","nickname":"Hero","note":"","profile":"A brave warrior who seeks adventure.","traits":[{"code":22,"dataId":0,"value":0.05},{"code":51,"dataId":1,"value":1}]},
+  {"id":2,"battlerName":"Actor1_2","characterIndex":1,"characterName":"Actor1","classId":2,"equips":[0,0,3,4,0],"faceIndex":1,"faceName":"Actor1","initialLevel":1,"maxLevel":99,"name":"Theresa","nickname":"Sage","note":"","profile":"A wise mage with command over the elements.","traits":[{"code":22,"dataId":2,"value":0.03}]},
+  {"id":3,"battlerName":"Actor1_3","characterIndex":2,"characterName":"Actor1","classId":3,"equips":[3,0,2,3,0],"faceIndex":2,"faceName":"Actor1","initialLevel":1,"maxLevel":99,"name":"Marsha","nickname":"Healer","note":"","profile":"A gentle priestess devoted to healing.","traits":[]},
+  {"id":4,"battlerName":"Actor1_4","characterIndex":3,"characterName":"Actor1","classId":4,"equips":[4,0,2,3,0],"faceIndex":3,"faceName":"Actor1","initialLevel":1,"maxLevel":99,"name":"Lucius","nickname":"Shadow","note":"","profile":"A mysterious rogue who strikes from the shadows.","traits":[{"code":22,"dataId":0,"value":0.1}]}
+]

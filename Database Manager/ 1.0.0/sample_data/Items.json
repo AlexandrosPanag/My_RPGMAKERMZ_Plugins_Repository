@@ -1,0 +1,7 @@
+[
+  null,
+  {"id":1,"name":"Potion","iconIndex":32,"description":"Restores 200 HP to one ally.","itypeId":1,"price":50,"consumable":true,"scope":7,"occasion":0,"speed":0,"successRate":100,"repeats":1,"animationId":43,"tpGain":0,"hitType":0,"damage":{"critical":false,"elementId":0,"formula":"0","type":0,"variance":0},"effects":[{"code":11,"dataId":0,"value1":0,"value2":200}],"note":""},
+  {"id":2,"name":"Hi-Potion","iconIndex":33,"description":"Restores 500 HP to one ally.","itypeId":1,"price":150,"consumable":true,"scope":7,"occasion":0,"speed":0,"successRate":100,"repeats":1,"animationId":43,"tpGain":0,"hitType":0,"damage":{"critical":false,"elementId":0,"formula":"0","type":0,"variance":0},"effects":[{"code":11,"dataId":0,"value1":0,"value2":500}],"note":""},
+  {"id":3,"name":"Ether","iconIndex":34,"description":"Restores 50 MP to one ally.","itypeId":1,"price":100,"consumable":true,"scope":7,"occasion":0,"speed":0,"successRate":100,"repeats":1,"animationId":43,"tpGain":0,"hitType":0,"damage":{"critical":false,"elementId":0,"formula":"0","type":0,"variance":0},"effects":[{"code":12,"dataId":0,"value1":0,"value2":50}],"note":""},
+  {"id":4,"name":"Antidote","iconIndex":36,"description":"Cures poison from one ally.","itypeId":1,"price":30,"consumable":true,"scope":7,"occasion":0,"speed":0,"successRate":100,"repeats":1,"animationId":43,"tpGain":0,"hitType":0,"damage":{"critical":false,"elementId":0,"formula":"0","type":0,"variance":0},"effects":[{"code":22,"dataId":4,"value1":1,"value2":0}],"note":""}
+]
