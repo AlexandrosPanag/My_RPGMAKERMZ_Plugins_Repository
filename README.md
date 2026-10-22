@@ -59,7 +59,7 @@ This is a professional plugin collection focused on creating immersive RPG exper
 
 ## 📄 License & Attribution
 
-**Copyright © 2025-2026 Alexandros Panagiotakopoulos. All Rights Reserved.**
+**Copyright © 2025-2027 Alexandros Panagiotakopoulos. All Rights Reserved.**
 
 Licensed under **Creative Commons Attribution 4.0 International License**
 
