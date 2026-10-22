@@ -177,22 +177,6 @@ rpgmz-database-manager/
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome! Here are some ideas:
-
-- [ ] Undo / Redo support
-- [ ] Drag-and-drop reordering in the entry list
-- [ ] Icon preview for `iconIndex` fields
-- [ ] Cross-referencing (show which skills a class learns, which enemies drop an item, etc.)
-- [ ] Dark / Light theme toggle
-- [ ] Export / Import individual entries as JSON snippets
-- [ ] Batch operations (rename, stat scaling, etc.)
-
-Please open an issue first to discuss any major changes.
-
----
-
 ## 📄 License
 
 This work is licensed under the **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License**.
