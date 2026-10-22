@@ -53,7 +53,7 @@ Licensed under CC BY 4.0
 
 ---
 
-**Copyright © 2026 Alexandros Panagiotakopoulos. All Rights Reserved.**
+**Copyright © 2025-2027 Alexandros Panagiotakopoulos. All Rights Reserved.**
 
 
 **Minimum attribution:**
