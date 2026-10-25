@@ -10,14 +10,14 @@ Compatible with PartyJump which can be downloaded here:
 ![License](https://img.shields.io/badge/license-CC%20BY--ND%204.0-orange)
 
 **Author:** Alexandros Panagiotakopoulos  
-**Version:** 2.2.0  
+**Version:** 2.0.0  
 **Compatibility:** RPG Maker MZ  
 **License:** CC BY-ND 4.0 (attribution required)  
 **Copyright © 2025-2026 Alexandros Panagiotakopoulos. All Rights Reserved.**
 
 ---
 
-## 🆕 Version 2.2.0 Changelog
+## 🆕 Version 2.0.0 Changelog
 - Overlay redesigned as a **vertical button tower** (Select, Cancel, Dash, Menu, Jump)
 - **Live press feedback** - rows highlight while a button is held
 - New icon set: outline shapes for PlayStation, letters for Xbox
