@@ -13,9 +13,9 @@
 
 /*:
  * @target MZ
- * @plugindesc [v2.2.0] Controller Detection with Vertical Button Overlay
+ * @plugindesc [v2.0.0] Controller Detection with Vertical Button Overlay
  * @author Alexandros Panagiotakopoulos
- * @version 2.2.0
+ * @version 2.0.0
  * @license CC-BY-ND-4.0
  * @url https://alexandrospanag.github.io
  * @help ControllerDetection.js
