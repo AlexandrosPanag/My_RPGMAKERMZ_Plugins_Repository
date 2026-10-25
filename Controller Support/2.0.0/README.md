@@ -6,7 +6,7 @@ Compatible with PartyJump which can be downloaded here:
 # 🎮 RPG Maker MZ Controller Detection Plugin Documentation
 
 ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
-![Version](https://img.shields.io/badge/version-2.2.0-green)
+![Version](https://img.shields.io/badge/version-2.0.0-green)
 ![License](https://img.shields.io/badge/license-CC%20BY--ND%204.0-orange)
 
 **Author:** Alexandros Panagiotakopoulos  
