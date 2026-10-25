@@ -16,9 +16,9 @@ Compatible with PartyJump which can be downloaded here:
 
 ---
 
-**Copyright © 2025 Alexandros Panagiotakopoulos. All Rights Reserved.**
+**Copyright © 2025-2026 Alexandros Panagiotakopoulos. All Rights Reserved.**
 
-**Version:** 2.0.0  
+**Version:** 1.0.0  
 **Compatibility:** RPG Maker MZ  
 **Copyright:** Alexandros Panagiotakopoulos. All Rights Reserved Ⓒ  
 **License:** Free to use with attribution required  
