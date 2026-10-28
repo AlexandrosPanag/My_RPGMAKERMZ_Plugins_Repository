@@ -1,6 +1,6 @@
 # DevToolsManage.js — Changelog
 
-##⚠️ WARNING: 
+## ⚠️ WARNING: 
 This version is highly expiremental - it is integrated with the DEBUG folder repository for an all-in-one master solution.
 If any problems are encountered - switch to version 2.4.0 and as always ensure you have your game files backed-up!
 
