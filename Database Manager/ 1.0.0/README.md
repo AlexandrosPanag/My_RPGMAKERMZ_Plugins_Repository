@@ -4,13 +4,12 @@
   <b>An advanced desktop tool for editing, reordering, and managing RPG Maker MZ database files.</b>
 </p>
 
+ ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
+ 
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10+">
   <img src="https://img.shields.io/badge/Qt-PySide6-41CD52?style=for-the-badge&logo=qt&logoColor=white" alt="PySide6">
-  
-  ![RPG Maker MZ](https://img.shields.io/badge/RPG%20Maker-MZ-blue)
-  
-  <img src="https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-ee5522?style=for-the-badge" alt="License">
+  <img src="https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-ee5522?style=for-the-badge" alt="License"> 
 </p>
 
 ---
